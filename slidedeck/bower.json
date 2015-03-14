@@ -1,0 +1,19 @@
+{
+  "name": "react-workshop-slides",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "2.6.1",
+    "jquery.classList": "*",
+    "headjs": "1.0.3",
+    "lesshat": "~2.0.15",
+    "font-awesome": "4.3.0",
+    "highlight.js": "components/highlightjs"
+  }
+}

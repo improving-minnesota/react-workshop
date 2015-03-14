@@ -1,0 +1,35 @@
+// Title Slide
+doctype html
+include ../includes/mixins
+
++page("Lecture 01 - Something about Lecture 1")
+  +lecture-title-page("This is the subject", "Lecture 01")
+
+  section
+    h1 Header and slides start here.
+
+
+//Code block
+pre.
+  <code class="json" data-trim>
+  {
+    "name": "my-project",
+    "version": "0.0.1",
+    "description": "My Cool Node Project",
+    "main": "index.js",
+    "author": "Sterling Archer",
+    "dependencies": {
+      "grunt": "0.4.2"
+    }
+  }
+
+  </code>
+  
+// Code block with HTML
+pre.
+  <code class="html" data-trim>
+  &lt;div ng-init="myVar = 1 + 2;"&gt;
+    &lt;p ng-bind="myVar"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+
+  </code>

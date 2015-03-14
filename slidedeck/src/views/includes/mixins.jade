@@ -1,0 +1,51 @@
+- var basepath = "/react-workshop"
+
+mixin page(title)
+  html(class="no-js")
+    head
+      meta(charset="utf-8")
+      title=title
+      meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+      meta(name="apple-mobile-web-app-capable", content="yes")
+      meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
+      meta(name="description", content=title)
+      link(href="#{basepath}/assets/css/style.css", rel="stylesheet", type="text/css")
+      script(type='text/javascript').
+        if( window.location.search.match( /print-pdf/gi ) ) {
+          var link = document.createElement( 'link' );
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          link.href = '#{basepath}/assets/css/pdf.css';
+          document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+
+    body
+      .reveal
+        .opi-logo
+        .slides
+          block
+
+      script(src="#{basepath}/assets/js/app.js")
+
+
+mixin animated-header()
+  .sliding-image-container
+    img.animate-logos.image1(src="#{basepath}/assets/img/react-logo.png")
+    img.animate-logos.grunt(src="#{basepath}/assets/img/grunt-logo.png")
+    img.animate-logos.yeoman(src="#{basepath}/assets/img/yeoman-logo.png")
+    img.animate-logos.node(src="#{basepath}/assets/img/node-logo.png")
+    img.animate-logos.bower(src="#{basepath}/assets/img/bower-logo.png")
+  .fading-header-container
+    h1.animate-headers.image1 React
+    h1.animate-headers.grunt Grunt.js
+    h1.animate-headers.yeoman Yeoman
+    h1.animate-headers.node Node.js
+    h1.animate-headers.bower Bower.js
+  block
+
+
+mixin lecture-title-page(title, subtitle)
+  section.index-section(data-state="index-slide")
+    +animated-header()
+    h3=title
+    h4=subtitle
