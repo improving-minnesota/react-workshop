@@ -2,10 +2,8 @@
 
 ### Ensure all global dependencies have been installed
 
-* [Grunt](https://github.com/cowboy/grunt) `npm install -g grunt-cli`
-* [Bower](http://twitter.github.com/bower/) `npm install -g bower`
-* [Docco](http://jashkenas.github.io/docco/) `npm install -g docco`
-* [Karma](https://github.com/karma-runner/karma/) `npm install -g karma`
+* [Grunt](https://github.com/cowboy/grunt) `npm install -g gulp`
+* [Nodemon](https://github.com/remy/nodemon/) `npm install -g nodemon`
 
 **NOTE:** If you have errors, try running this first:
 ```
@@ -17,13 +15,13 @@ npm config set strict-ssl false
 - Checkout project from Github
 
 ```
-git clone https://github.com/objectpartners/angular-timesheet.git
+git clone https://github.com/objectpartners/react-timesheet.git
 ```
 
 - You should get output similar to below:
 
 ```javascript
-Cloning into 'angular-training'...
+Cloning into 'react-workshop'...
 remote: Counting objects: 3003, done.
 remote: Compressing objects: 100% (1458/1458), done.
 remote: Total 3003 (delta 1413), reused 2684 (delta 1256)
@@ -35,13 +33,13 @@ Checking connectivity... done.
 - Change directories to the lab main directory.
 
 ```
-cd angular-timesheet
+cd react-workshop
 ```
 
 - Now let's checkout the `lab-1-setup` branch.
 
 ```
-git checkout lab-1-setup
+git checkout lab-01-project-setup-start
 ```
 
 ### Install the application dependencies
@@ -52,32 +50,44 @@ git checkout lab-1-setup
 npm install
 ```
 
-- Install the Bower dependencies
+### Start the Gulp build and watcher.
+
+- Compile the Semantic UI `less` into `CSS`.
 
 ```
-bower install
+gulp init
 ```
-- Compile the `less` and template files.
+
+![](img/lab01/gulp.init.png)
+
+- Run the Gulp watcher for our Client src.
 
 ```
-grunt development
+gulp watch:dev
 ```
+![](img/lab01/gulp.watch.png)
+
+> This is a long running process that watches for changes in your code and immediately kicks off a build.
 
 ### Run the application and view the start screen
 
-- In a console window, run:
+- In a SEPARATE terminal window, run:
 
 ```
-grunt serve:development
+gulp serve:dev
 ```
 
 - This kicks off a Node server and serves up our `index.html` page.
+
+- This is also a long running process..it only ends on an error.
+
+![](img/lab01/gulp.serve.png)
 
 - Open your browser and navigate to http://localhost:3000.
 
 - Verify that you see the welcome page.
 
-![](img/lab01/indexResult.png)
+![](img/lab01/welcome.png)
 
 ### Commit your changes to Git
 
