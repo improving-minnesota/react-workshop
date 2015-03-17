@@ -230,6 +230,7 @@ describe('Hello World:', function () {
 
 ![](img/lab02/breakpoint.png)
 
+&nbsp;
 ## Let's render Hello World to the Browser!!
 
 - Open **main.jsx**, which is our entry point for the Browserify bundler, and tell **React** to render our component into our index.html.
@@ -245,6 +246,13 @@ React.render(<Hello />, document.getElementById('app'));
 
 > Note that we do not wrap this in a `module.exports` because we want this code to be executed upon interpretation in order to bootstrap our application.
 
+&nbsp;
+## Run the application and see your work.
+
+- In a terminal windows run: `gulp watch:dev` to fire off the build.
+- In a separate terminal run: `gulp serve:dev` to serve the index.html.
+- Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
+
 ![](img/lab02/howdy.partner.png)
 
 - Since we didn't set the `friend` prop on our component, the default value is displayed.
@@ -258,7 +266,7 @@ React.render(<Hello friend="WoooHooo!", document.getElementById('app'));
 
 ![](img/lab02/woohoo.png)
 
-
+&nbsp;
 ### Commit your changes to Git and get ready for the next lab.
 
 ```
