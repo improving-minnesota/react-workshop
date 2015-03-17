@@ -1,5 +1,17 @@
-** Creating Your Own Custom Components **
+# Lab Six - Adding Flux to the Application
 
+## Checkout the Lab Branch
+- In a terminal:
+
+```
+git checkout lab-06-custom-components-start
+git pull
+```
+&nbsp;
+### Check it out!
+
+&nbsp;
+### Create our Dispatcher
 
 components/snackbar.jsx
 ```javascript
@@ -8,6 +20,9 @@ var classes = require('react-classes');
 var SnackbarStore = require('../../stores/snackbar.store');
 var SnackbarActions = require('../../actions/snackbar.actions');
 ```
+
+&nbsp;
+### Create our Dispatcher
 
 components/snackbar.jsx
 ```javascript
@@ -55,6 +70,8 @@ components/snackbar.jsx
     )
   }
 ```
+&nbsp;
+### Create our Dispatcher
 
 components/snackbar.spec.js
 ```javascript
@@ -129,6 +146,9 @@ components/snackbar.spec.js
   });
 ```
 
+&nbsp;
+### Create our Dispatcher
+
 components/app.jsx
 ```javascript
 var Snackbar = require('./common/snackbar');
@@ -140,6 +160,20 @@ components/app.jsx
  <Snackbar />
 ```
 
+&nbsp;
+## Run the application and see your work.
+
+- In a terminal windows run: `gulp watch:dev` to fire off the build.
+- In a separate terminal run: `gulp serve:dev` to serve the index.html.
+- Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
+
+- Click around and enjoy the result of your hard work during this lab.
+
+![](img/lab03/first.page.png)
+
+
+&nbsp;
+### Create our Dispatcher
 
 util/progress.js
 ```
@@ -166,6 +200,30 @@ util/progress.js
   );
 ```
 
+&nbsp;
+### Create our Dispatcher
+
 main.jsx
 // Set up the axios interceptors
 require('./util/progress')();
+
+
+
+&nbsp;
+## Run the application and see your work.
+
+- In a terminal windows run: `gulp watch:dev` to fire off the build.
+- In a separate terminal run: `gulp serve:dev` to serve the index.html.
+- Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
+
+- Click around and enjoy the result of your hard work during this lab.
+
+![](img/lab03/first.page.png)
+
+&nbsp;
+### Commit your changes to Git and get ready for the next lab.
+
+```
+git add .
+git commit -m 'We added some routes'
+```

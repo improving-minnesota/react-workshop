@@ -1,4 +1,25 @@
-** Flux ** 
+# Lab Four - Adding Flux to the Application
+
+## Checkout the Lab Branch
+- In a terminal:
+
+```
+git checkout lab-04-flux-start
+git pull
+```
+&nbsp;
+### Check it out!
+
+- Before doing anything, let's look at the progress that has already been completed by the team on the application.
+  - Peruse the **client/src/components** directory and notice that the **Projects** and **Timesheets** modules have been implemented by the team.
+  - We will be building out the **Dispatcher** and **Store** Flux components.
+  - We will use the **Store** Component to implement an **EmployeeStore** component to handle your business.
+  - We will then build our our **EmployeeActions** to communicate with the **EmployeeStore**.
+  - Finally we will register our **Employees** controller component to listen for updates from our **EmployeeStore** and have our **EmployeeRow** notify the store of any changes.
+  - The module files have been stubbed out for us, we just need to add the codez.
+
+&nbsp;
+### Create our Dispatcher
 
 flux/flux.dispatcher.js
 ```javascript
@@ -19,6 +40,9 @@ flux/flux.dispatcher.spec.js
     });
   });
 ```
+
+&nbsp;
+### Create the Store
 
 flux/flux.store.js
 ```javascript
@@ -61,6 +85,9 @@ flux/flux.store.js
     });
   }
 ```
+
+&nbsp;
+### Create the Store
 
 actions/employee.actions.js
 ```javascript
@@ -113,6 +140,9 @@ actions/employee.actions.js
     });
   }
 ```
+
+&nbsp;
+### Create the Store
 
 actions/employee.actions.spec.js
 ```javascript
@@ -212,155 +242,9 @@ actions/employee.actions.spec.js
   });
 ```
 
-actions/timesheet.actions.js
-```javascript
-  LIST: 'LIST_TIMESHEETS',
-  GET: 'GET_TIMESHEET',
-  CREATE: 'CREATE_TIMESHEET',
-  UPDATE: 'UPDATE_TIMESHEET',
-  DELETE: 'DELETE_TIMESHEET',
-  RESTORE: 'RESTORE_TIMESHEET',
+&nbsp;
+### Create the Store
 
-  list: function (query) {
-    dispatcher.handleViewAction({
-      actionType: TimesheetActions.LIST,
-      query: query
-    });
-  },
-
-  get: function (id) {
-    dispatcher.handleViewAction({
-      actionType: TimesheetActions.GET,
-      timesheet: {_id: id}
-    });
-  },
-
-  create: function (timesheet) {
-    dispatcher.handleViewAction({
-      actionType: TimesheetActions.CREATE,
-      timesheet: timesheet
-    });
-  },
-
-  update: function (timesheet) {
-    dispatcher.handleViewAction({
-      actionType: TimesheetActions.UPDATE,
-      timesheet: timesheet
-    });
-  },
-
-  remove: function (timesheet) {
-    dispatcher.handleViewAction({
-      actionType: TimesheetActions.DELETE,
-      timesheet: timesheet
-    });
-  },
-
-  restore: function (timesheet) {
-    dispatcher.handleViewAction({
-      actionType: TimesheetActions.RESTORE,
-      timesheet: timesheet
-    });
-  }
-```
-
-actions/timesheet.actions.spec.js
-```javascript
-  beforeEach(function () {
-    React = require('react/addons');
-    TestUtils = React.addons.TestUtils;
-    _ = require('lodash');
-    fluxDispatcher = require('../flux/flux.dispatcher');
-  });
-
-  beforeEach(function () {
-    TimesheetActions = require('./timesheet.actions');
-
-    dispatcher = sinon.stub(fluxDispatcher, 'handleViewAction', _.noop);
-  });
-
-  afterEach(function () {
-    dispatcher.restore();
-  });
-
-  it('should instantiate the TimesheetActions', function () {
-    expect(TimesheetActions).to.be.defined;
-  });
-
-  describe('firing a list action', function () {
-    beforeEach(function () {
-      query = "query";
-      TimesheetActions.list(query);
-
-      payload = {query: query, actionType: TimesheetActions.LIST};
-    });
-
-    it('should dispatch a view action with the query and a type of LIST', function () {
-      expect(dispatcher).to.have.been.calledWith(payload);
-    });
-  });
-
-  describe('firing a get action', function () {
-    beforeEach(function () {
-      id = "testId";
-      TimesheetActions.get(id);
-
-      payload = {timesheet: {_id: id}, actionType: TimesheetActions.GET};
-    });
-
-    it('should dispatch a view action with the id and a type of GET', function () {
-      expect(dispatcher).to.have.been.calledWith(payload);
-    });
-  });
-
-  describe('firing a create action', function () {
-    beforeEach(function () {
-      TimesheetActions.create(timesheet);
-
-      payload = {timesheet: timesheet, actionType: TimesheetActions.CREATE};
-    });
-
-    it('should dispatch a view action with the timesheet and a type of LIST', function () {
-      expect(dispatcher).to.have.been.calledWith(payload);
-    });
-  });
-
-  describe('firing a update action', function () {
-    beforeEach(function () {
-      TimesheetActions.update(timesheet);
-
-      payload = {timesheet: timesheet, actionType: TimesheetActions.UPDATE};
-    });
-
-    it('should dispatch a view action with the timesheet and a type of UPDATE', function () {
-      expect(dispatcher).to.have.been.calledWith(payload);
-    });
-  });
-
-  describe('firing a remove action', function () {
-    beforeEach(function () {
-      TimesheetActions.remove(timesheet);
-
-      payload = {timesheet: timesheet, actionType: TimesheetActions.DELETE};
-    });
-
-    it('should dispatch a view action with the timesheet and a type of DELETE', function () {
-      expect(dispatcher).to.have.been.calledWith(payload);
-    });
-  });
-
-  describe('firing a restore action', function () {
-    beforeEach(function () {
-      TimesheetActions.restore(timesheet);
-
-      payload = {timesheet: timesheet, actionType: TimesheetActions.RESTORE};
-    });
-
-    it('should dispatch a view action with the timesheet and a type of RESTORE', function () {
-      expect(dispatcher).to.have.been.calledWith(payload);
-    });
-  });
-```
 
 stores/employee.store.js
 ```javascript
@@ -481,124 +365,9 @@ stores/employee.store.js
   }
 ```
 
-stores/timesheet.store.js
-```javascript
-  initialize: function () {
-    var events = {};
-    events[actions.LIST]    = this.list;
-    events[actions.GET]     = this.get;
-    events[actions.UPDATE]  = this.update;
-    events[actions.DELETE]  = this.remove;
-    events[actions.RESTORE] = this.restore;
-    events[actions.CREATE]  = this.create;
-    this.register(events);
 
-    this.setState({
-      timesheet: {},
-      pageConfig: {
-        data: [],
-        totalItems: 0,
-        limit: 5,
-        page: 1
-      }
-    });
-
-    return this;
-  },
-
-  url: function (timesheetId) {
-    var url = 'users/all/timesheets';
-    if (timesheetId) {
-      url += '/' + timesheetId;
-    }
-
-    return url;
-  },
-
-  list: function (payload) {
-    var self = this;
-
-    return axios.get(this.url(), {params: payload.action.query})
-      .then(function (res) {
-        self.setState({pageConfig: res.data});
-      })
-      .catch(function (x) {
-        console.log('Error attempting to retrieve timesheets.');
-      });
-  },
-
-  get: function (payload) {
-    var self = this;
-
-    return axios.get(this.url(payload.action.timesheet._id))
-      .then(function (res) {
-        self.setState({timesheet: res.data});
-        return true;
-      })
-      .catch(function (data) {
-        console.log('There was an error getting the timesheet');
-      });
-  },
-
-  update: function (payload) {
-    var self = this;
-    var timesheet = payload.action.timesheet;
-
-    return axios.put(this.url(timesheet._id), timesheet)
-      .then(function (res) {
-        self.setState({timesheet: res.data});
-        console.log('Timesheet : ' + timesheet.name + ', updated.');
-      })
-      .catch(function (x) {
-        console.log('There was an error updating timesheet.');
-      });
-  },
-
-  remove: function (payload) {
-    var self = this;
-    var timesheet = payload.action.timesheet;
-    timesheet.deleted = true;
-
-    return axios.put(this.url(timesheet._id), timesheet)
-      .then(function (res) {
-        self.setState({timesheet: res.data});
-        console.log('Timesheet : ' + timesheet.name + ', was deleted.');
-        return true;
-      })
-      .catch(function (x) {
-        console.log('Error attempting to delete timesheet.');
-      });
-  },
-
-  restore: function (payload) {
-    var self = this;
-    var timesheet = payload.action.timesheet;
-    timesheet.deleted = false;
-
-    return axios.put(this.url(timesheet._id), timesheet)
-      .then(function (res) {
-        self.setState({timesheet: res.data});
-        console.log('Timesheet : ' + timesheet.name + ', was restored.');
-        return true;
-      })
-      .catch(function (x) {
-        console.log('Error attempting to restore timesheet.');
-      });
-  },
-
-  create: function (payload) {
-    var self = this;
-
-    return axios.post(this.url(), payload.action.timesheet)
-      .then(function (res) {
-        self.setState({timesheet: res.data});
-        console.log('Timesheet : ' + timesheet.name + ', created.');
-      })
-      .catch(function (x) {
-        console.log('There was an error creating timesheet.');
-      });
-  }
-```
+&nbsp;
+### Create the Store
 
 components/employees.js
 
@@ -633,6 +402,10 @@ components/employees.js
 
 ```
 
+
+&nbsp;
+### Communicate with the EmployeeStore via EmployeeActions
+
 components/employee.row.js
 ```javascript
 
@@ -655,51 +428,22 @@ it('should fire a restore employee action', function () {
 });
 ```
 
-components/timesheets.js
-```javascript
-  store: TimesheetStore,
 
-  requestTimesheets: TimesheetActions.list,
+&nbsp;
+## Run the application and see your work.
 
-  getInitialState: function () {
-    return this.store.getState();
-  },
+- In a terminal windows run: `gulp watch:dev` to fire off the build.
+- In a separate terminal run: `gulp serve:dev` to serve the index.html.
+- Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
 
-  onChange: function () {
-    this.setState(this.store.getState());
-  },
+- Click around and enjoy the result of your hard work during this lab.
 
-  componentWillMount: function () {
-    this.requestTimesheets({page: 1});
-    this.store.addChangeListener(this.onChange);
-  },
+![](img/lab03/first.page.png)
 
-  componentWillUnmount: function () {
-    this.store.removeChangeListener(this.onChange);
-  },
-
-  onPageChange: function (page) {
-    this.requestTimesheets({page: page});
-  },
-```
-
-components/timesheet.row.js
-```javascript
-
-TimesheetActions.remove(this.props.timesheet);
-
-TimesheetActions.restore(this.props.timesheet);
+&nbsp;
+### Commit your changes to Git and get ready for the next lab.
 
 ```
-
-components/timesheet.row.spec.js
-```javascript
-it('should fire a remove timesheet action', function () {
-  expect(spies.remove).to.have.been.calledWith(timesheet);
-});
-
-it('should fire a restore timesheet action', function () {
-  expect(spies.restore).to.have.been.calledWith(timesheet);
-});
-
+git add .
+git commit -m 'We added some routes'
 ```
