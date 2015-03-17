@@ -2,7 +2,7 @@
 
 ### Ensure all global dependencies have been installed
 
-* [Grunt](https://github.com/cowboy/grunt) `npm install -g gulp`
+* [Gulp](http://gulpjs.com/) `npm install -g gulp`
 * [Nodemon](https://github.com/remy/nodemon/) `npm install -g nodemon`
 
 **NOTE:** If you have errors, try running this first:
