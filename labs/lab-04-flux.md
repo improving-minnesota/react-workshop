@@ -544,19 +544,22 @@ If you haven't already done so,
 ### Communicate with the EmployeeStore via EmployeeActions
 
 - Open **client/src/components/employee.row.js**
+- Uncomment the require statement for the **EmployeeActions**.
 - Find the `TODO`s and add the appropriate Action calls to signal the **EmployeeStore** to take 'action'.
 
 ```javascript
 EmployeeActions.remove(this.props.employee);
+```
 
+```javascript
 EmployeeActions.restore(this.props.employee);
 ```
 
 > This time, instead of creating a helper, we are calling the Action methods directly. Which do you like better?
 
-- Now let's test that they work.
+- Now, let's test that they work.
 - Open **client/src/components/employee.row.spec.js**
-- First things first, uncomment the spies already written to stub out the calls to action.
+- First things first, uncomment the spies already written that stub out the calls to action.
 - Next add the tests to verify that the component is firing the actions.
 
 
@@ -564,17 +567,20 @@ EmployeeActions.restore(this.props.employee);
 it('should fire a remove employee action', function () {
   expect(spies.remove).to.have.been.calledWith(employee);
 });
+```
 
+```javascript
 it('should fire a restore employee action', function () {
   expect(spies.restore).to.have.been.calledWith(employee);
 });
 ```
 
-- Run the tests, watch them pass, and move on to the next section.
+- Run the tests, watch them pass.
 
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
