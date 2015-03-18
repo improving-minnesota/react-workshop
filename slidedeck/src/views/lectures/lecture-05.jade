@@ -8,44 +8,88 @@ include ../includes/mixins
     h1 React Forms
     
   section
-    p forms and validation
-    
+    p <input>, <textarea>, and <option> differ from other native components.
+    p Mutated via user interactions. 
+    p Provide interfaces to manage forms in response to user interactions.
+
   section
-    p validation (show path)  
-    p item does not update without passing validationg
-    
-  section
-    h1 Forms
-    
-  section
-    p controlled components
-    p mixins
-    
-  section
-    h1 TestUtils and proxyquire
-    
-  section
-    p Routes
-    p willTransitionTo
-    p review route params
-    p getParams()
-    p transitionTo
-    
-  section
-    h1 React
+    h1 Interactive Props
     
   section 
-    p statics
+    p Props affected via user interactions:
+    ul 
+      li value, supported by input and textarea.
+      li checked, supported checkbox or radio.
+      li selected, supported by option.
+      
+  section
+    p Form components allow listening for changes.
+    p Set a callback to the onChange prop. 
+    ul 
+      li The value changes.
+      li Checked state changes.
+      li Selected state changes.
+      
+  section 
+    h1 Controlled Components
     
   section
-    h1 TestUtils
+    p Any &lt;input&gt; with value set is a controlled component. 
+    p Value of the rendered element will always reflect the value prop. 
     
   section
-    p findRenderedDOMComponentWithTag
-    p Simulate
+    h1 Uncontrolled Components
     
+  section
+    p Any &lt;input&gt; that does not supply a value (or sets it to null).
+    p Value of the rendered element will reflect the user's input.
+    
+  section
+    h1 Validation 
+    
+  section
+    p We can now used controlled components in our form to enforce validation.
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      &lt;form name="employeeForm"&gt;
+        &lt;input name="username" 
+          value={this.props.employee.username}
+          onChange={this.props.validate} /&gt;
+      &lt;/form&gt;
+      </code>
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      validate: function (event) {
+        var field = event.target.name;
+        var value = event.target.value;
+        
+        // min length 1
+        if (!value || value.length &lt; 1) {
+          this.state.errors[field] = 
+            'You must provide a username.';
+        }
+        // max length 40
+        else if (value.length &gt; 40) {
+          this.state.errors[field] = 
+            'Username can only be 40 characters long.';
+        }
+
+        this.props.employee[field] = value;
+        return this.setState({
+          employee: this.state.employee, 
+          errors: this.state.errors
+        });
+      },
+      </code>
+        
   section
     h1 lab prep
-  
-  section
     p LoginStore and LoginActions
+
+  section
+    h1 Lab 5
+    h2 React Form Validation

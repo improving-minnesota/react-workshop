@@ -5,10 +5,58 @@ include ../includes/mixins
   +lecture-title-page("Custom Components", "Lecture 06")
 
   section
-    h1 React
+    h1 Custom Components
+    
+  section
+    h1 axios interceptors
+    
+  section
+    p You can actually intercept requests before they are made. 
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      axios.interceptors.request.use(
+        // successful request
+        function (config) {
+          // Do something with the request config
+          return config;
+        },
+        // errored request
+        function (err) {
+          // recover from the error?
+          return Promise.reject(err);
+        }
+      );
+      axios.interceptors.response.use(
+        // successful response
+        function (response) {
+          // manipulate your response before
+          // sending it to the store
+          return response;
+        },
+        // errored response
+        function (err) {
+          // attempt to recover from the error
+          return Promise.reject(err);
+        }
+      );
+      </code>
 
-    custom components
-    axios
-    interceptors
-    NProgress
-    start/stop
+  section 
+    h1 NProgress
+    
+  section
+    p 
+      a(href="http://ricostacruz.com/nprogress/") Website
+      
+  section
+    h3 API
+    ul
+      li start() : start the progress bar
+      li done() : show the progress completed
+    
+
+  section
+    h1 Lab 6
+    h2 External Libraries and Custom Components
