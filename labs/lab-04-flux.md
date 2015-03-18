@@ -408,9 +408,9 @@ update: function (payload) {
 
 ```
 
-- Our DBA is extremely risk-intollerant so we are not allowed to actually DELETE a record from the database. We are only allowed to set a deleted flag so that a record can be restored easily. She has a periodic job that removes 'deleted' records and cleans up the data.
+- Our DBA is extremely risk-intollerant, so we are not allowed to actually DELETE a record from the database. We are only allowed to set a deleted flag so the record can be restored easily. Our DBA has a periodic job that removes 'deleted' records and cleans up the data.
 
-- So instead of using an HTTP DELETE request, we set the flag and perform an updat:
+- So, instead of using an HTTP DELETE request, we set the deleted flag and perform an update:
 
 ```javascript
 remove: function (payload) {
@@ -447,7 +447,7 @@ restore: function (payload) {
 
 ```
 
-- Our final method is to POST to create a new employee in the database:
+- Our final method creates a new employee with an HTTP POST request:
 
 ```javascript
 create: function (payload) {
@@ -463,22 +463,21 @@ create: function (payload) {
     });
 }
 ```
- - Now that we have completely set up the Flux architecture for **Employees** in our application, we just need to add hooks into our components to take advantage of it.
+ - Now that we have completely set up the Flux architecture for **Employees** in our application, we just need to add hooks in our components to take advantage of it.
 
 &nbsp;
 ### Add the Store and Actions to Employees
 
-- Open **client/src/components/employees.js**
+- Open **client/src/components/employees.jsx**
 
-- First things first, look inside the render method because there are a couple of enhancements that have been made for you:
+- First things first, look inside the render method.  There are a couple of enhancements that have been made for you:
   - A **Pagination** component has been added for you to control pagination. Notice that it calls the `onPageChange()` callback.
 
-- Start by uncommenting the require for our **EmployeeActions**.
 - Next delete the stubbed methods between the TODO and ending comment.
 
-- Now we can implement our **Employees** controller component to handle data interactions:
+- Now we can implement our **Employees** controller component to handle data interactions.
 
-- Let's first assign the **EmployeeStore** to the store property.
+- Let's assign the **EmployeeStore** to the store property.
 
 ```javascript
 store: EmployeeStore,
@@ -490,7 +489,7 @@ store: EmployeeStore,
 requestEmployees: EmployeeActions.list,
 ```
 
-- Remember in previous labs, `getInitialState` was returning a default object? Now we have completely handed that functionality over to the **EmployeeStore**, so all we have to do is return the store's state.
+- Remember in previous labs that `getInitialState` was returning a default object? Now, we've completely handed that functionality over to the **EmployeeStore**.  All we have to do is return the store's state.
 
 ```javascript
 getInitialState: function () {
@@ -498,8 +497,8 @@ getInitialState: function () {
 },
 ```
 
-- Now we just need to hook up our component to its store by registering as a listener for changes and reacting accordingly:
-  - When the component is initially rendered to the browser, we want to request the list of employees and register to listen for changes on the store.
+- Now, we just need to hook up our component to its store by registering it as a listener for changes.
+  - When the component is initially rendered to the DOM, we want to request the list of employees and listen for changes on the store.
   - When the store's state changes, we just need to update the component's state with the store's new state.
   - When the component is removed from the DOM, we want to stop listening for change events on the store.
 
@@ -518,8 +517,8 @@ componentWillUnmount: function () {
 },
 ```
 
-- Finally we need create the callback for when the **Paginator** emits a change event.
-  - The event's payload will be the new page to load, so we just need to request that page of employees.
+- Finally, we need create the callback for when the **Paginator** emits a change event.
+  - The event's payload will be the new page to load.  We just need to request that page of employees.
 
 ```javascript
 onPageChange: function (page) {
@@ -530,6 +529,7 @@ onPageChange: function (page) {
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
