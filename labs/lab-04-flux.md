@@ -7,26 +7,29 @@
 git checkout lab-04-flux-start
 git pull
 ```
+
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-03-routing-start branch.
+
 &nbsp;
 ### Check it out!
 
-- Before doing anything, let's look at the progress that has already been completed by the team on the application.
+- Before doing anything, let's look at the progress that has already been completed on the application by the rest of the team.
   - Peruse the **client/src/components** directory and notice that the **Projects** and **Timesheets** modules have been implemented by the team.
   - Also look at the **Actions** and **Stores** directories to get a feel for how these classes are laid out and used.
-  - Don't worry if it looks a little cryptic to you at first. By the end of this lab, you will understand what is happening.
+  - Don't worry if it looks a little cryptic, by the end of this lab, you will understand what is happening.
 
 
 - What will we do?
   - We will be building out the **Dispatcher** and **Store** Flux components.
-  - We will use the **Store** Component to implement an **EmployeeStore** component to handle your business.
+  - We will use the **Store** Component to implement an **EmployeeStore** component.
   - We will then build our our **EmployeeActions** to communicate with the **EmployeeStore**.
   - Finally we will register our **Employees** controller component to listen for updates from our **EmployeeStore** and have our **EmployeeRow** notify the store of any changes.
   - The module files have been stubbed out for us, we just need to add the codez.
 
-> The Flux pattern involves having the developer provide quite a bit more boilerplate than full-fledged frameworks like **Angular** or **Ember**.
+> The Flux pattern involves having the developer provide more boilerplate than other full-fledged frameworks like **Angular** or **Ember**.
 
 &nbsp;
-### Create our Flux Dispatcher
+### Create the Flux Dispatcher
 
 - Open **client/src/flux/flux.dispatcher.js**
 - Most of the boilerplate has completed, you'll just need to implement `handleViewAction`:
@@ -40,10 +43,10 @@ handleViewAction: function(action) {
 }
 ```
 
-> This is the method that our **Actions** call when they are fired. Any component that is registered
+> This is the method that our **Actions** call when they are fired.
 
-- Now let's test that this function does what we think it does:
-- Open **client/src/flux/flux.dispatcher.spec.js** and add the test below:
+- Now let's test that this function does what we think it should:
+- Open **client/src/flux/flux.dispatcher.spec.js** and add the suite below to the end of the Flux Dispatcher suite:
 
 ```javascript
 describe('handling a view action', function () {
@@ -59,13 +62,12 @@ describe('handling a view action', function () {
 &nbsp;
 ### Create the Flux Store
 
-- Flux stores extend Node's **Event.Emitter** so components can register to 'listen' for any events stores emit.
-  - We do this by utilizing the `emit()` method in the store.
-
+- Flux stores extend Node's **Event.Emitter** so that components can 'listen' for any events that the stores emit.
+  - We emit events using the `emit()` method on the store.
 
 - Open **client/src/flux/flux.store.js**.
 
-- First we need to create an object to hold our store's state and add a getter and setter for the state.
+- First, we need to create an object to hold our store's state as well as a getter and setter for the state.
 
 ```javascript
 state: {},
@@ -78,7 +80,7 @@ setState: function (state) {
   this.state = _.extend(this.state, state);
 },
 ```
-- Next we need to add our methods to add/remove change listeners and a method to emit the change event to our listeners.
+- Next, we need to add methods that will add/remove change listeners as well as a method to emit the change event to our listeners.
 
 ```javascript
 emitChange: function () {
@@ -94,9 +96,9 @@ removeChangeListener: function(callback) {
 },
 ```
 
-- Finally we need a `register()` method that allows our the implementing stores to register **Actions** and the callbacks with the store.
-  - This method takes an object (events) that has the action types for keys with the respective callback as the value.
-  - When the method is called, it registers a callback with the dispatcher that checks if there is a matching event and calls the callback when there is.
+- Finally we need a `register()` method that allows our stores to register **Actions** and callbacks with the store.
+  - This method takes an object (events) that has the action types as keys and the respective callback as the value.
+  - When the method is called, it registers a callback with the dispatcher which checks if there are any matching events.  If there are matches, it then calls the associated callback.
   - The callback must return a **Promise** so that when it resolves, `emitChange()` is called and all of the store's listeners can react accordingly.
 
 ```javascript
@@ -118,12 +120,12 @@ register: function (events) {
 }
 ```
 
-> That is really all of the boilerplate needed to implement the Flux pattern. The rest of this lab will concentrate on extending the base store and pairing functionality with action types.
+> That is really all the boilerplate needed to implement the Flux pattern. The rest of this lab will concentrate on extending the base store and pairing functionality with action types.
 
 &nbsp;
 ### Create the Employee Actions
 
-- Next we need to define the actions that can happen around an employee.
+- Next, we need to define the actions that can happen around an employee.
 - For now, the actions are basic CRUD actions.
 - Open **client/src/actions/employee.actions.js**
 
