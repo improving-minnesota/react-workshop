@@ -7,43 +7,280 @@ include ../includes/mixins
   section
     h1 react-router
     
-  section 
-    p Router.run()
-    p Router.State
-    p Router.Navigation
-    p transitionTo
-    p Router.Link
+  section
+    p Library to help us track routes with states of our application
+    p Able to nest routes and thier handlers
+    p Routes are represented as React Components
+      
+  section
+    h1 Router.Route
+    h2 &lt;Route /&gt;
     
   section 
-    p <RouteHandler />
-    p handlers
+    h1 Route props
     
   section 
-    h1 React
+    h3 name
+    p The unique name of the route
+    p Used in the Link component and the router's transition methods.
+   
+  section
+    h3 path
+    p Used in the URL. 
+    p If left undefined, defined by the name.
+    p If there is no name, will default to '/'.
+
+  section
+    h3 handler
+    p The component to be rendered when the route is active.
+    
+  section
+    h3 children
+    p Routes can be nested. 
+    p When a child route path matches, the parent route is also activated. 
+    
+  section
+    h1 Router.Redirect
+    h2 &lt;Redirect /&gt;
+    
+  section
+    h1 Redirect props.
     
   section 
-    p propTypes
-    p refs
-    p onClick
+    h3 from
+    p Path you want to redirect from, including dynamic segments. 
+    p Defaults to * so you can redirect anything not found to somewhere else.
+    
+  section
+    h3 to
+    p Name of the route you want to redirect to.
+    
+  section
+    h3 params
+    p By default, the parameters will just pass through to the new route. 
+    p You can specify them if you need to.
+
+  section
+    h3 query
+    p By default, the query parameters will just pass through to the new route.
+    p You can specify them if you need to.
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      var Projects = require('./components/projects/projects');
+      var Employees = require('./components/employees/employees');
+      var Timesheets = require('./components/timesheets/timesheets');
+      
+      &lt;Route name='app' path="/" handler={App}&gt;
+
+        &lt;Route name='projects'   path='/projects'  handler={Projects} /&gt;
+        &lt;Route name='employees'  path='/employees' handler={Employees} /&gt;
+        &lt;Route name='timesheets' path='/employees/:user_id/timesheets' handler={Timesheets} /&gt;
+        
+        &lt;Redirect to="employees" /&gt;
+      &lt;/Route&gt;
+      </code>
+    
+  section
+    h1 Router.Link
+    h2 &lt;Link /&gt;
+    
+  section
+    p Renders an &lt;a&gt; tag.
+    p Links to a route in the application.
+    p If you change the path of your route, you don't also have to change your links.
+
+  section
+    p Knows when the route it links to is active.
+    p Automatically applies its activeClassName and/or activeStyle.
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      &lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
+      &lt;Link className={employeesClasses} to="employees"&gt;Employees&lt;/Link&gt;
+      &lt;Link className={timesheetsClasses} to="timesheets" params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;      
+      </code>
+      
+  section
+    h1 Router.RouteHandler
+    h2 &lt;RouteHandler /&gt;
+    
+  section 
+    p Renders the handler of the route.
+    
+  section
+    h3 Static Lifecycle Methods
+    p willTransitionTo(transition, params, query, callback)
+    p Called when a handler is about to render.
+    p willTransitionFrom(transition, component, callback)
+    p Called when an active route is being transitioned out.
+    
+  section 
+    h3 Router.run()
+    p The main API into react router. 
+    
+  section
+    p It runs your routes.
+    p Matches them against a location.
+    p Calls back with the next state for you to render.
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      Router.run(routes, function (Handler, state) {
+        React.render(<Handler />, document.getElementById('app'));
+      });
+      </code>
+  
+  section
+    h1 Router Mixins
+    h2 Router.State and Router.Navigation
+    
+  section 
+    h1 Router.State
+  
+  section
+    h3 getPath()
+    p Returns the current URL path, including query string.
+    
+  section 
+    h3 getPathname()
+    p Returns the current URL path without the query string.
+    
+  section
+    h3 getParams()
+    p Returns a hash of the currently active URL params.
+    
+  section
+    h3 getQuery()
+    p Returns a hash of the currently active query params.
+    
+  section
+    h3 isActive(routeName, params, query)
+    p Returns true if a route, params, and query are active, false otherwise.
+    
+  section
+    h3 getRoutes()
+    p Returns an array of the currently active routes, in nesting order.
+    
+  section
+    h1 Router.Navigation
+    
+  section 
+    h3 transitionTo(routeNameOrPath, [params[, query]])
+    p Programmatically transition to a new route.
+    
+  section
+    h3 replaceWith(routeNameOrPath, [params[, query]])
+    p Replace current route with a new route. 
+    p Does not add an entry into the browser history.
+    
+  section
+    h3 goBack()
+    p Go to the last route
+    p Removes the most recent entry from the browser history. 
+    p Returns true unless it's the first entry in the app history.
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      if (!this.goBack()) {
+        this.transitionTo('/otherpage')
+      }
+      </code>
+  
+  section
+    h3 makePath(routeName, params, query)
+    p Creates a URL path to a route.
+    
+  section
+    h3 makeHref(routeName, params, query)
+    p Creates an href to a route. 
+    p Used with State when you need to build components similar to Link.
+    
+  section 
+    h1 React (cont.)
+
+  section
+    h1 JSX Event Handlers
+    h2 SyntheticEvent
+    
+  section
+    p Event handlers are passed instances of SyntheticEvent.
+    p Cross-browser wrapper around the browser's native event.
+    p It has the same interface as the browser's native event.
+    p stopPropagation() and preventDefault()
+    
+  section
+    h1 Supported Events
+    
+  section 
+    h3 Clipboard Events
+    p onCopy onCut onPaste
+    
+  section
+    h3 Keyboard Events
+    p onKeyDown onKeyPress onKeyUp
+    
+  section
+    h3 Form Events
+    p onChange onInput onSubmit
+    
+  section
+    h3 Mouse Events
+    p onClick onContextMenu onDoubleClick 
+    p onDrag onDragEnd onDragEnter onDragExit
+    p onDragLeave onDragOver onDragStart onDrop 
+    p onMouseDown onMouseEnter onMouseLeave
+    p onMouseMove onMouseOut onMouseOver onMouseUp
+    
+  section
+    h3 Touch events
+    p Enabled by calling: React.initializeTouchEvents(true) before rendering any component.
+    p onTouchCancel onTouchEnd onTouchMove onTouchStart
+    
+  section 
+    h3 UI Events
+    p onScroll
+    
+  section
+    h3 Wheel Events
+    p onWheel
+    
+  section
+    p Each of these events are normalized for every supported browser. 
+    p Behave the same across browsers.
+    p Have the same properties.
+    p Check the docs for each event's properties.
+    
+  section 
+    h1 The Classes Mixin
+    
+  section
+    p Third party utility to make it easier to manipulate CSS classes in your React components. 
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      var classes = require('react-classes');
+      // In our Component 
+      mixins: [classes],
+      render: function () {
+        var classNames = this.getClass('repeated-item fadeable-row', {
+          'faded': employee.deleted
+        });
+      }
+      </code>
     
   section 
     p classes mixin
     
   section
-    p mockComponent()
-    
-  section
-    p Sinon
-    p stub
-    p use with proxyquire
-    
-  section
-    p TestUtils
-    p scryRenderedComponentsWithType
-    p findRenderedDOMComponentWithClass
-    p getDOMNode()
-    
-  section
-    p Lab Prep
+    h3 Lab Prep
     p Show Projects and Timesheets implementation
-    p controller components (nested components)
+    
+  section
+    h1 Lab 03
+    h2 Routing and Component Composition 

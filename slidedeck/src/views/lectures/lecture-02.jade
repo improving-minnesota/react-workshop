@@ -194,10 +194,10 @@ include ../includes/mixins
       render : function () {
 
        return (
-        &gt;div className="ui message"&lt;
-          &gt;div className="ui huge header"&lt;{this.state.greeting}&gt;/div&lt;
-          &gt;div className="ui large header"&lt;{this.props.friend}&gt;/div&lt;
-        &gt;/div&lt;
+        &lt;div className="ui message"&gt;
+          &lt;div className="ui huge header"&gt;{this.state.greeting}&lt;/div&gt;
+          &lt;div className="ui large header"&gt;{this.props.friend}&lt;/div&gt;
+        &lt;/div&gt;
        );
       }
       </code>
@@ -244,7 +244,7 @@ include ../includes/mixins
   section
     pre.
       <code class="json" data-trim>
-      React.render(&gt;Hello friend="WoooHooo"/&lt;, document.getElementById('app'));
+      React.render(&lt;Hello friend="WoooHooo"/&gt;, document.getElementById('app'));
       </code>
       
   section
@@ -268,14 +268,14 @@ include ../includes/mixins
       <code class="json" data-trim>
       render : function () {
         return (
-          &gt;EmployeeForm employee={this.state.employee}
+          &lt;EmployeeForm employee={this.state.employee}
             errors={this.state.errors}
             validateAll={this.validateAll}
             hasErrors={this.hasErrors}
             saveText={this.state.saveText}
             onSave={this.saveEmployee}
             validate={this.validate}
-            toggleAdmin={this.toggleAdmin} /&lt;
+            toggleAdmin={this.toggleAdmin} /&gt;
         );
       }
       </code>
