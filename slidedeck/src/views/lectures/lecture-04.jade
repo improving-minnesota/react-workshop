@@ -7,34 +7,171 @@ include ../includes/mixins
   section
     h1 Flux
     
+  section
+    p Three major parts
+    ul 
+      li the dispatcher
+      li the stores
+      li the views (React components)
+      
+  section
+    p Not MVC
+    p Controllers do exist in a Flux application, but they are controller-views
+    
+  section
+    h3 Controller Components
+    p Views at the top of the hierarchy that retrieve data from the stores
+    p Pass data down to their children.
+    
+  section 
+    h3 Action creators
+    p Dispatcher helper methods
+    p Support a semantic API that describes all changes that are possible in the application. 
+    
+  section
+    p Unidirectional data flow. 
+    p When a user interacts with a React view, the view propagates an action.
+    p The stores react and fire an event
+    p All interested other views update accordingly. 
+
+  section 
+    img(src="#{basePath}/assets/img/lecture-04/flux.diagram.png")
+    
   section 
     h1 Dispatcher
     
   section
-    p handleViewAction
-    p handleServerAction
+    p Singleton
+    p Central hub of data flow in a Flux application. 
+    
+  section
+    p Essentially a registry of callbacks.
+    p Can invoke these callbacks in order. 
+    
+  section
+    p Each store registers a callback with the dispatcher. 
+    p When new data comes into the dispatcher, it then uses these callbacks to propagate that data to all of the stores. 
+    
+  section
+    p Initiated through the dispatch() method
+    p Takes a data payload object as its sole argument. 
+    p This payload is typically synonymous with an action.
+    
+  section
+    p dispatch() provides a simple, synchronous iteration through the callbacks
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      var dispatcher = _.extend(new Dispatcher(), {
+        handleViewAction: function(action) {
+          this.dispatch({
+            source: 'VIEW_ACTION',
+            action: action
+          });
+        }
+      });
+      </code>
     
   section 
-    h1 Stores
-
-  section
-    p axios
-
-  section
-    p register()
-    p setState/getState
-    p method must return a Promise
-    
-  section
     h1 Actions
     
+  section 
+    p Used to update data via user interaction or other changes in the UI.
+    p Data is packaged into an action
+    ul 
+      li Object literal containing the new fields of data.
+      li Specific action type. 
+      
   section
-    p Constants
-    p methods to fire the action
+    p Identified by a type attribute. 
+    p Stores typically use this attribute to determine if and how they should respond to it. 
+  
+  section
+    p Stores and views control themselves.
+    p They are not acted upon by external objects. 
+    p Actions flow into the stores through the callbacks they define and register.
+
+  section
+    pre.
+      <code class="json" data-trim>
+      list: function (query) {
+        dispatcher.handleViewAction({
+          actionType: 'list',
+          query: query
+        });
+      },
+      </code>
+  
+  section 
+    h1 Stores
     
   section
-    h1 React
+    p Contain the application state and logic.
+    p Somewhat similar to a model in a traditional MVC
+    p They manage the state of many objects.
+    p They do not represent a single record of data like ORM models do.
+
+  section
+    p Registers itself with the dispatcher and provides it with a callback. 
+    p Callback receives the action as a parameter. 
+    p Interpret the action and to provide the proper hooks into the store's internal methods. 
+    p This allows an action to result in an update to the state of the store, via the dispatcher. 
     
   section
-    p componentWillMount
-    p componentWillUnmount
+    p After the stores are updated, they broadcast an event.
+    p Declare that their state has changed.
+    p Views query the new state and update themselves.
+    
+  section
+    p Let's look at the base Store that other's extend
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      // The initialize function of an extended Store
+      initialize: function () {
+        var events = {};
+        events['list']    = this.list;
+        events['get']     = this.get;
+        events['update']  = this.update;
+        this.register(events);
+        return this;
+      },
+      </code>
+      
+  section
+    pre.
+      <code class="json" data-trim>
+      register: function (events) {
+        var self = this;
+
+        // calling the dispatcher's register method
+        dispatcher.register(function (payload) {
+          var action = payload.action;
+          var promise = events[action.actionType];
+
+          if (!_.isUndefined(promise)) {
+            promise.apply(self, [payload])
+              .then(function () {
+                self.emitChange();
+              });
+          }
+          return true;
+        });
+      }
+      </code>
+      
+  section
+    p Notice that the callback is expecting the Store's method to return a promise so that it know to emit a change. 
+    
+  section
+    h1 axios
+    p Cool library to simplify HTTP calls
+    p 
+      a(href="https://github.com/mzabriskie/axios") API on Github
+    
+  section
+    h1 Lab 04
+    h2 Adding Flux to Timesheetz
+    
