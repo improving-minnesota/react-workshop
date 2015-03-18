@@ -5,4 +5,285 @@ include ../includes/mixins
   +lecture-title-page("Project Layout and Development Tools", "Lecture 01")
 
   section
-    h1 React
+    h1 NPM
+    p
+      a(href="https://www.npmjs.org") npmjs.org
+
+  section
+    p
+      strong  NPM
+      |  is the official package manager for Node.js.
+
+  section
+    p NPM runs through the command line and manages dependencies for an application.
+    p It also allows users to install Node.js applications that are available on the NPM registry.
+
+  section
+    pre.
+      <code class="json" data-trim>
+      {
+        "name": "my-project",
+        "version": "0.0.1",
+        "description": "My Cool Node Project",
+        "main": "index.js",
+        "author": "Sterling Archer",
+        "dependencies": {
+          "grunt": "0.4.2"
+        }
+      }
+
+      </code>
+
+  section
+    p When checking out a fresh project from GitHub, simply run
+      strong  'npm install'
+      |  to install all the dependencies required to run the project.
+
+  section
+    p You can visit the NPM website to learn more about them.
+    
+  section
+    h1 Browserify
+    p
+      a(href="http://browserify.org/") browserify.org
+    
+  section
+    p Browserify lets you require('modules') in the browser by bundling up all of your dependencies.
+    p We can use Node.js modules in the browser!!
+    p No more using 2 different module systems. 
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      var React = require('react/addons');
+      var myModule = require('./modules/myModule');
+      </code>
+      
+    p Can be either .js or .jsx
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      % browserify main.js
+      </code>
+    
+  section
+    h1 Reactify
+    p
+      a(href="https://github.com/andreypopp/reactify") github repo
+    
+  section
+    p Browserify transform for JSX (superset of JavaScript used in React library)
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      % browserify -t reactify main.js
+      </code>
+    
+  section
+    h1 Gulp
+    p
+      a(href="http://gulpjs.com/") gulpjs.com
+    
+  section
+    p The streaming build system.
+    p Runs tasks asynchronuously and uses streams. 
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      gulp.task('uglify', ['watchify'], function () {
+        return gulp.src(dist('/js/app.js'))
+          .pipe(gulp.dest(dist('/js')))
+          .pipe(uglify())
+          .pipe(rename({extname: '.min.js'}))
+          .pipe(gulp.dest(dist('/js')))
+          .pipe(livereload())
+          .on('error', gutil.log.bind(gutil, 'Error during minification.'));
+      });
+      </code>
+      
+  section
+    p How do we run our tasks?
+    pre.
+      <code class="json" data-trim>
+      gulp uglify
+      </code>
+      
+  section
+    pre.
+      <code class="json" data-trim>
+      gulp watch:dev
+      </code>
+    
+    p Watches our code for changes and re-runs the build.
+      
+  section
+    pre.
+      <code class="json" data-trim>
+      gulp serve:dev
+      </code>
+      
+    p Starts our Hapi server and serves our static content.
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      gulp test
+      </code>
+      
+    p Runs our unit tests via the Karma test runner. 
+    
+  section 
+    h1 Hapi
+    p
+      a(href="http://hapijs.com/") hapijs.com
+      
+  section
+    p A rich framework for building applications and services 
+    p Created by smart people at Walmart Labs
+    p Focuses on Configuration
+    
+  section
+    p Provides us with a complete backend for our lab project.
+    
+  section
+    h1 Mocha
+    p
+      a(href="http://mochajs.org/") mochajs.org
+      
+  section
+    p Feature-rich JavaScript test framework running on node.js and the browser
+    
+  section
+    p BDD-style (Behavior Driven Development)
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      describe('when there is no message', function () {
+        beforeEach(function () {
+          Snackbar = require('./snackbar');
+          element = TestUtils.renderIntoDocument(<Snackbar />);
+        });
+
+        it('should hide the snackbar', function () {
+          var div = TestUtils.findRenderedDOMComponentWithTag(element, 'div');
+          expect(div.props.className).contains('hide');
+        });
+      });
+      </code>
+      
+  section
+    p Reporter in Terminal
+    img(src="#{basePath}/assets/img/lecture-01/gulp.test.png")
+      
+  section
+    p HTML Reporter
+    img(src="#{basePath}/assets/img/lecture-01/mocha.htmlreporter.png")
+    
+  section
+    h1 Chai
+    p
+      a(href="http://chaijs.com/") chaijs.com
+    
+  section
+    p Assertion library for node and the browser that can be delightfully paired with any javascript testing framework
+    
+  section
+    h1 Sinon
+    p
+      a(href="http://sinonjs.org/") sinonjs.org
+      
+  section
+    p Standalone test spies, stubs and mocks for JavaScript.
+    p No dependencies, works with any unit testing framework.
+      
+  section
+    p Used with sinon-chai
+    pre.
+      <code class="json" data-trim>
+      spies.transitionTo = sinon.stub(element, 'transitionTo');
+      
+      expect(spies.transitionTo).to.have.been.calledWith('employees.create');
+      </code>
+    
+  section
+    h1 Proxyquire
+    p
+      a(href="https://github.com/thlorenz/proxyquire") github repo
+      
+  section
+    p Proxies nodejs's require in order to make overriding dependencies during testing easy while staying totally unobstrusive.
+    
+  section
+    pre.
+      <code class="json" data-trim>
+      proxies = {
+        './employee.form': mockComponent('EmployeeForm'),
+        '../../actions/employee.actions': {
+          get: sinon.stub(),
+          update: sinon.stub()
+        },
+        'react-router': {
+          RouteHandler: mockComponent('RouteHandler'),
+          Link: mockComponent('Link'),
+          State: {
+            getParams: function () {return {_id: 'abc123'}}
+          }
+        }
+      };
+
+      EmployeeDetail = proxyquire('./employee.detail', proxies);
+      </code>
+    
+  section
+    p Actually using Proxiquireify to work with Browserify
+    p
+      a(href="https://github.com/thlorenz/proxyquireify") Proxyquireify Github
+    
+  section
+    h1 Karma
+    p
+      a(href="http://karma-runner.github.io/0.12/index.html") karma-runner.github.io
+      
+  section
+    p Test runner build orginally for Angular
+    p Runs tests in multiple browsers
+
+  section
+    h1 Semantic UI
+    p
+      a(href="http://semantic-ui.com/kitchen-sink.html") kitchen sink
+      
+  section
+    p Emphasizes concise HTML
+    p CSS is Code
+    
+  section
+    h1 Less
+    p
+      a(href="http://lesscss.org/") lesscss.org
+      
+  section
+    p Less is a CSS pre-processor, meaning that it extends the CSS language, adding features that allow variables, mixins, functions and many other techniques that allow you to make CSS that is more maintainable, themable and extendable
+    
+  section
+    p Styles and Less will be provided for you during the labs, but feel free to tinker as you please. 
+
+  section
+    h1 Project Layout
+
+  section
+    p In this training class, you'll be building a React application that tracks employee timesheets across different projects.
+
+  section
+    p To help speed things along so we can focus on the really important parts like React/Flux, we've created the base project structure for you.
+
+  section
+    p Let's take a look.
+
+  section
+    h1 Lab 01
+    h2 Application Setup
