@@ -188,7 +188,7 @@ var SnackbarStore = require('../stores/snackbar.store');
 
 - Try Deleting and Restoring an employee to see your Snackbar message.
 
-![](img/lab03/snackbar.png)
+![](img/lab06/snackbar.png)
 
 
 &nbsp;
@@ -240,7 +240,7 @@ require('./util/progress')();
 
 - Try Deleting and Restoring employees, projects, or timesheets and watch for the spinner.
 
-![](img/lab03/progress.png)
+![](img/lab06/progress.png)
 
 &nbsp;
 ## Commit your changes to Git and celebrate. You have completed your final lab.
