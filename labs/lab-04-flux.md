@@ -125,14 +125,14 @@ register: function (events) {
 &nbsp;
 ### Create the Employee Actions
 
-- Next, we need to define the actions that can happen around an employee.
-- For now, the actions are basic CRUD actions.
+- Next, we need to define actions that can happen around an employee.
+- For now, the actions are basic CRUD.
 - Open **client/src/actions/employee.actions.js**
 
 
 - An action definition consists of 2 main parts.
   - A constant representing the type.
-  - A function to call that fires the action by telling the dispatcher to `handleViewAction()` and sending it a payload that will be sent to listeners.
+  - A function to call which fires the action by telling the dispatcher to `handleViewAction()` and then sending it a payload which will be sent to listeners.
 
 
 - First, let's define our constants:
@@ -147,7 +147,9 @@ register: function (events) {
 ```
 
 - Now we can implement the methods that notify the dispatcher to handle the view action.
-  - One thing to not is that the Action's payload can be any valid Javascript object, it could even contain callback functions.
+  - One thing to note is that the Action's payload can be any valid Javascript object.  It could even contain callback functions.
+
+- Add the following to **EmployeeActions**
 
 ```javascript
 list: function (query) {
@@ -300,13 +302,13 @@ describe('firing a restore action', function () {
 &nbsp;
 ### Create the EmployeeStore
 
-- Now we get to create the store that will handle all of the business logic for our **Employees** components.
+- Now, we get to create the store that will handle all of the business logic for our **Employees** components.
 - Open **client/src/stores/employee.store.js**
 
-- Our first task is to implement an `initialize()` method to register our store's actions with methods on the store and provide a default state.
+- Our first task is to implement an `initialize()` method.  This method will register our store's actions with methods on the store and provide a default state.
   - We first create an events object and assign the respective callbacks on our store to the action type on the events object.
   - Once the events configuration has been created, we call the `register()` method on the base store. (see above)
-  - Next we set up the default state by using the `setState()` method.
+  - Next, we set up the default state by using the `setState()` method.
 
 ```javascript
 initialize: function () {
@@ -346,11 +348,11 @@ url: function (employeeId) {
 },
 ```
 
-- OK..now let's start talking to our server!!
+- Now, let's start talking to our server!!
 
 - A quick side note: We will be using the awesome [axios](https://github.com/mzabriskie/axios) library to make our HTTP request/responses.
 
-- First let's implement a method to get a list of employees:
+- First, let's implement a method to get a list of employees:
   - Note: the server is set up for pagination, so we need to send a pagination query and receive a page config object in the response.
 
 ```javascript
@@ -369,7 +371,7 @@ list: function (payload) {
 
 > Notice that the method needs to return a **Promise** because that's how the base `register()` method will know to `emitChange()`.
 
-- Now let's implement the method to retrieve an individual employee and set it on the state:
+- Now, let's implement the method to retrieve an individual employee and set it on the state:
 
 ```javascript
 get: function (payload) {
@@ -387,7 +389,7 @@ get: function (payload) {
 
 ```
 
-- Next is our update method using an HTTP PUT request:
+- Next, is our update method using an HTTP PUT request:
 
 ```javascript
 update: function (payload) {
