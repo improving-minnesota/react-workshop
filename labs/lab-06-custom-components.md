@@ -1,4 +1,4 @@
-# Lab Six - Adding Flux to the Application
+# Lab Six - Creating Custom Components
 
 ## Checkout the Lab Branch
 - In a terminal:
@@ -7,24 +7,25 @@
 git checkout lab-06-custom-components-start
 git pull
 ```
-&nbsp;
-### Check it out!
 
 &nbsp;
-### Create our Dispatcher
+## Check it out!
 
-components/snackbar.jsx
-```javascript
-var classes = require('react-classes');
+- In this Lab we are going to create 2 custom components:
+  - A progress spinner for REST calls using NProgress
+  - A "Snackbar" messenger service.
 
-var SnackbarStore = require('../../stores/snackbar.store');
-var SnackbarActions = require('../../actions/snackbar.actions');
-```
+- The Flux stores and actions have already been implemented for us, we just need to create the components.
 
 &nbsp;
-### Create our Dispatcher
+## Create the Snackbar Messenger Component
 
-components/snackbar.jsx
+- Before we start, check out the **SnackbarStore** and **SnackbarActions** implemented for you.
+
+- Open **client/src/components/snackbar.jsx**
+
+- First let's take care of the boilerplate to hook our component to our **Flux** classes, set our mixins, and initial state.
+
 ```javascript
   store: SnackbarStore,
 
@@ -48,11 +49,12 @@ components/snackbar.jsx
   notify: function () {
     this.setState(this.store.getState());
   },
+```
 
-  hide: function () {
-    SnackbarActions.hide();
-  },
+- In our render method, we set **success**, **info**, or **error** classes on the snackbar according to the `messageType` on the component's state.
+- It also adds a **hide** class if there is no message, so the easiest way to hide the snackbar is to remove the message from the component's state.
 
+```javascript
   render: function () {
 
     var classes = this.getClass('ui inline snackbar top right', {
@@ -70,10 +72,21 @@ components/snackbar.jsx
     )
   }
 ```
-&nbsp;
-### Create our Dispatcher
 
-components/snackbar.spec.js
+- Now let's implement a `hide()` method to remove the message from our state and hide component.
+  - It's just going to fire a `SnackbarAction.hide()`.
+
+```javascript
+  hide: function () {
+    SnackbarActions.hide();
+  },
+```
+
+&nbsp;
+## Test the Snackbar
+
+- Open **client/src/components/snackbar.spec.js** and add the specs. You know the drill by now.
+
 ```javascript
   describe('when there is no message', function () {
 
@@ -146,16 +159,22 @@ components/snackbar.spec.js
   });
 ```
 
-&nbsp;
-### Create our Dispatcher
+- Verify the tests pass and move on to the next section.
 
-components/app.jsx
+&nbsp;
+## Add the Snackbar to the App Component
+
+- Open **client/src/components/app.jsx**
+
+- First we need to inject our **Snackbar** into the **App** module:
+
 ```javascript
 var Snackbar = require('./common/snackbar');
 var SnackbarStore = require('../stores/snackbar.store');
 ```
 
-components/app.jsx
+- Inside the `render()` method, find the `TODO` and replace it with our new **Snackbar**
+
 ```javascript
  <Snackbar />
 ```
@@ -167,47 +186,50 @@ components/app.jsx
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
 
-- Click around and enjoy the result of your hard work during this lab.
+- Try Deleting and Restoring an employee to see your Snackbar message.
 
-![](img/lab03/first.page.png)
+![](img/lab03/snackbar.png)
 
 
 &nbsp;
-### Create our Dispatcher
+## Create a Progress Spinner
+
+- We will utilize **axios** interceptors to start and stop the NProgress spinner.
 
 util/progress.js
 ```
-  axios.interceptors.request.use(
-    function (config) {
-      NProgress.start();
-      return config;
-    },
-    function (err) {
-      NProgress.done();
-      return Promise.reject(err);
-    }
-  );
+axios.interceptors.request.use(
+  function (config) {
+    NProgress.start();
+    return config;
+  },
+  function (err) {
+    NProgress.done();
+    return Promise.reject(err);
+  }
+);
 
-  axios.interceptors.response.use(
-    function (response) {
-      NProgress.done();
-      return response;
-    },
-    function (err) {
-      NProgress.done();
-      return Promise.reject(err);
-    }
-  );
+axios.interceptors.response.use(
+  function (response) {
+    NProgress.done();
+    return response;
+  },
+  function (err) {
+    NProgress.done();
+    return Promise.reject(err);
+  }
+);
 ```
 
 &nbsp;
-### Create our Dispatcher
+## Register the Interceptors During Bootstrap
 
-main.jsx
+- Add the require to **client/src/main.jsx**:
+
+```javascript
 // Set up the axios interceptors
 require('./util/progress')();
-
-
+```
 
 &nbsp;
 ## Run the application and see your work.
@@ -216,14 +238,14 @@ require('./util/progress')();
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
 
-- Click around and enjoy the result of your hard work during this lab.
+- Try Deleting and Restoring employees, projects, or timesheets and watch for the spinner.
 
-![](img/lab03/first.page.png)
+![](img/lab03/progress.png)
 
 &nbsp;
-### Commit your changes to Git and get ready for the next lab.
+## Commit your changes to Git and celebrate. You have completed your final lab.
 
 ```
 git add .
-git commit -m 'We added some routes'
+git commit -m 'We added some custom components'
 ```

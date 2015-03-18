@@ -182,12 +182,15 @@ render: function () {
 ```
 
 ###### There are 2 items in the above JSX that I want you to notice:
-1.The form is specifying to call the `handleSubmit()` callback on submit.  
+
+- The form is specifying to call the `handleSubmit()` callback on submit.  
+
 ```javascript
 <form className="ui form" name="loginForm" onSubmit={this.handleSubmit}>
 ```
 
-2. The `username` and `password` inputs are calling the `validate()` callback on change.
+- The `username` and `password` inputs are calling the `validate()` callback on change.
+
 ```javascript
 onChange={this.validate}
 ```
@@ -229,11 +232,6 @@ handleSubmit: function (event) {
 - Did it work?
 
 ![](img/lab05/login.form.png)
-
-- Try logging in with non-sense. (You can click the link in the navbar to logout).
-- Did you get an error message?
-
-![](img/lab05/login.fail.png)!
 
 
 &nbsp;
@@ -645,7 +643,7 @@ describe('clicking the row', function () {
 
 - Try navigating to an employee detail by clicking on a row in the table and editing the employee. Did it save correctly?
 
-![](img/lab05/employee.detail.png)
+![](img/lab05/edit.employee.png)
 
 
 &nbsp;
@@ -764,7 +762,7 @@ describe('saving an employee', function () {
 </div>
 ```
 
-- And then, of courcse, test it:
+- And then, of course, test it:
 
 - In **client/src/components/employees.spec.js** add:
 
