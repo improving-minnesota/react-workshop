@@ -264,7 +264,7 @@ Router.run(routes, function (Handler) {
 &nbsp;
 ## Run the application and see your work.
 
-If you haven't already done so, 
+If you haven't already done so,
 - In a terminal window run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
@@ -274,7 +274,7 @@ If you haven't already done so,
 &nbsp;
 ## Composing React Components
 
-- Now that we fully functional routing between the three sections of our application, we need to finish the **Employee** module.
+- Now that we have functional routing between our three sections of the application, we need to finish the **Employee** module.
 
 - We want to display the list of employees when the user clicks the employee link in the navbar.
 - To do this, we need to build three components:
