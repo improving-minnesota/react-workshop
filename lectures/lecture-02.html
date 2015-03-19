@@ -45,9 +45,9 @@
           <h1>Virtual Dom</h1>
         </section>
         <section>
-          <p>Replica of the Browser DOM</p>
-          <p>React redraws the entire screen on change</p>
-          <p>React calculates the minimum amount of changes</p>
+          <p>Replica of the Browser DOM.</p>
+          <p>React redraws the entire screen on change.</p>
+          <p>React calculates the minimum amount of changes required.</p>
         </section>
         <section>
           <p><a href="http://facebook.github.io/react/docs/glossary.html">More info?</a></p>
@@ -64,7 +64,7 @@
         </section>
         <section>
           <p>Creates a component class, given a specification. </p>
-          <p>A component implements a render method which returns one single child. </p>
+          <p>A component implements a render method which returns a single child. </p>
           <p>That child may have an arbitrarily deep child structure. </p>
           <p>They are convenience wrappers that construct backing instances (via new) for you.</p>
         </section>
@@ -97,9 +97,9 @@ module.exports = Hello;
         </section>
         <section>
           <h2 class="lower">render()</h2>
-          <p>Should be pure</p>
-          <p>Does not modify component state</p>
-          <p>Returns the same result each time it's invoked</p>
+          <p>Should be pure.</p>
+          <p>Does not modify component state.</p>
+          <p>Returns the same result each time it's invoked.</p>
           <p>Does not read from or write to the DOM. </p>
           <p>Perform work in componentDidMount() or the other lifecycle methods.</p>
         </section>
@@ -128,7 +128,7 @@ getInitialState: function () {
         </section>
         <section>
           <h2 class="lower">getDefaultProps()</h2>
-          <p>This method is invoked before any instances are created and thus cannot rely on this.props. </p>
+          <p>This method is invoked before any instances are created and therefore it can't rely on this.props. </p>
           <p>Objects returned will be shared across instances, not copied.</p>
         </section>
         <section>
@@ -175,7 +175,7 @@ mixins: [
         <section>
           <h2 class="lower">statics: {}</h2>
           <p>The statics object allows you to define static methods that can be called on the component class. </p>
-          <p>Methods defined within this block are static, meaning that you can run them before any component instances are created.</p>
+          <p>Methods defined within this block are static, meaning you can run them before any component instances are created.</p>
         </section>
         <section>
           <h2 class="lower">statics: {}</h2>
@@ -210,7 +210,7 @@ displayName: 'super-cool-thingy'
         </section>
         <section>
           <p>JavaScript syntax extension that looks similar to XML. </p>
-          <p>Compiles to actual Javascript which you will be able to see during labs.</p>
+          <p>Compiles to actual Javascript that you'll be able to see during labs.</p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -249,7 +249,7 @@ render : function () {
           </ul>
         </section>
         <section>
-          <p>Since JSX is JavaScript, identifiers such as class and for are discouraged as XML attribute names. </p>
+          <p>Since JSX is a superset of JavaScript, identifiers like class and for as XML attribute names is discouraged. </p>
           <ul>
             <li>htmlFor = for</li>
             <li>className = class</li>
@@ -257,7 +257,7 @@ render : function () {
         </section>
         <section>
           <h2 class="lower">React.render()</h2>
-          <p>Renders a ReactElement into the DOM in the supplied container.</p>
+          <p>Renders a ReactElement into the DOM of the supplied container.</p>
           <p>Returns a reference to the component.</p>
           <p>Replaces the contents of the container node you pass in.</p>
         </section>
