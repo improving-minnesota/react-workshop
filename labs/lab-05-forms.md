@@ -554,7 +554,7 @@ describe('saving an employee', function () {
 ## Add navigation to the Employee Detail Component
 
 - We have an Employee Detail route, but there's no way to get to it yet.
-- We're going to functionality so that when you click an **EmployeeRow**, navigate to the appropriate detail route for the employee.
+- We're going to add functionality so that when you click an **EmployeeRow**, the router will transition to the appropriate detail route for the employee.
 
 
 - Open **client/src/components/employees/employee.row.jsx**
@@ -565,7 +565,7 @@ describe('saving an employee', function () {
 showDetail: function showDetail () {
   var employee = this.props.employee;
   if (employee.deleted) {
-    SnackbarActions.error('You cannot edit a deleted employee.');
+    console.log('You cannot edit a deleted employee.');
     return;
   }
   this.props.store.setState({employee: employee});
