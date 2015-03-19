@@ -593,18 +593,8 @@ describe('clicking the row', function () {
         deleted: true
       };
 
-      spies.error = sinon.stub(SnackbarActions, 'error');
-
       element = TestUtils.renderIntoDocument(<EmployeeRow employee={employee} store={EmployeeStore} />);
       element.showDetail();
-    });
-
-    afterEach(function () {
-      spies.error.restore();
-    });
-
-    it('should display an error in the snackbar', function () {
-      expect(spies.error).to.have.been.calledWith('You cannot edit a deleted employee.');
     });
   });
 
