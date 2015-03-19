@@ -8,23 +8,25 @@ git checkout lab-06-custom-components-start
 git pull
 ```
 
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-06-custom-components-start branch.
+
 &nbsp;
 ## Check it out!
 
-- In this Lab we are going to create 2 custom components:
+- In this Lab we are going to create two custom components:
   - A progress spinner for REST calls using NProgress
   - A "Snackbar" messenger service.
 
-- The Flux stores and actions have already been implemented for us, we just need to create the components.
+- The Flux stores and actions have already been implemented for us.  All we need to do is create the components.
 
 &nbsp;
 ## Create the Snackbar Messenger Component
 
-- Before we start, check out the **SnackbarStore** and **SnackbarActions** implemented for you.
+- Before we start, check out the **SnackbarStore** and **SnackbarActions** that have already been implemented for you.
 
 - Open **client/src/components/snackbar.jsx**
 
-- First let's take care of the boilerplate to hook our component to our **Flux** classes, set our mixins, and initial state.
+- First, let's take care of the boilerplate to hook our component to our **Flux** classes, set our mixins, and initial state.
 
 ```javascript
   store: SnackbarStore,
@@ -52,7 +54,8 @@ git pull
 ```
 
 - In our render method, we set **success**, **info**, or **error** classes on the snackbar according to the `messageType` on the component's state.
-- It also adds a **hide** class if there is no message, so the easiest way to hide the snackbar is to remove the message from the component's state.
+- It also adds a **hide** class if there is no message.  The easiest way to hide the snackbar is to remove the message from the component's state.
+- Add the render method below:
 
 ```javascript
   render: function () {
@@ -73,7 +76,7 @@ git pull
   }
 ```
 
-- Now let's implement a `hide()` method to remove the message from our state and hide component.
+- Now, let's implement a `hide()` method to remove the message from our state and hide component.
   - It's just going to fire a `SnackbarAction.hide()`.
 
 ```javascript
@@ -85,7 +88,7 @@ git pull
 &nbsp;
 ## Test the Snackbar
 
-- Open **client/src/components/snackbar.spec.js** and add the specs. You know the drill by now.
+- Open **client/src/components/snackbar.spec.js** and add the suites. You know the drill by now.
 
 ```javascript
   describe('when there is no message', function () {
@@ -159,7 +162,7 @@ git pull
   });
 ```
 
-- Verify the tests pass and move on to the next section.
+- Verify that all the tests pass before moving on to the next section.
 
 &nbsp;
 ## Add the Snackbar to the App Component
@@ -182,6 +185,7 @@ var SnackbarStore = require('../stores/snackbar.store');
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
@@ -194,9 +198,11 @@ var SnackbarStore = require('../stores/snackbar.store');
 &nbsp;
 ## Create a Progress Spinner
 
-- We will utilize **axios** interceptors to start and stop the NProgress spinner.
+- We'll use the **axios** interceptors to start and stop the NProgress spinner.
 
-util/progress.js
+- Open **client/src/util/progress.js**
+- Add the following:
+
 ```
 axios.interceptors.request.use(
   function (config) {
@@ -234,11 +240,13 @@ require('./util/progress')();
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
 
 - Try Deleting and Restoring employees, projects, or timesheets and watch for the spinner.
+- Sweet!
 
 ![](img/lab06/progress.png)
 
