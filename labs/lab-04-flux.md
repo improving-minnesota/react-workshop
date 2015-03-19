@@ -7,26 +7,29 @@
 git checkout lab-04-flux-start
 git pull
 ```
+
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-03-routing-start branch.
+
 &nbsp;
 ### Check it out!
 
-- Before doing anything, let's look at the progress that has already been completed by the team on the application.
+- Before doing anything, let's look at the progress that has already been completed on the application by the rest of the team.
   - Peruse the **client/src/components** directory and notice that the **Projects** and **Timesheets** modules have been implemented by the team.
   - Also look at the **Actions** and **Stores** directories to get a feel for how these classes are laid out and used.
-  - Don't worry if it looks a little cryptic to you at first. By the end of this lab, you will understand what is happening.
+  - Don't worry if it looks a little cryptic, by the end of this lab, you will understand what is happening.
 
 
 - What will we do?
   - We will be building out the **Dispatcher** and **Store** Flux components.
-  - We will use the **Store** Component to implement an **EmployeeStore** component to handle your business.
+  - We will use the **Store** Component to implement an **EmployeeStore** component.
   - We will then build our our **EmployeeActions** to communicate with the **EmployeeStore**.
   - Finally we will register our **Employees** controller component to listen for updates from our **EmployeeStore** and have our **EmployeeRow** notify the store of any changes.
   - The module files have been stubbed out for us, we just need to add the codez.
 
-> The Flux pattern involves having the developer provide quite a bit more boilerplate than full-fledged frameworks like **Angular** or **Ember**.
+> The Flux pattern involves having the developer provide more boilerplate than other full-fledged frameworks like **Angular** or **Ember**.
 
 &nbsp;
-### Create our Flux Dispatcher
+### Create the Flux Dispatcher
 
 - Open **client/src/flux/flux.dispatcher.js**
 - Most of the boilerplate has completed, you'll just need to implement `handleViewAction`:
@@ -40,10 +43,10 @@ handleViewAction: function(action) {
 }
 ```
 
-> This is the method that our **Actions** call when they are fired. Any component that is registered
+> This is the method that our **Actions** call when they are fired.
 
-- Now let's test that this function does what we think it does:
-- Open **client/src/flux/flux.dispatcher.spec.js** and add the test below:
+- Now let's test that this function does what we think it should:
+- Open **client/src/flux/flux.dispatcher.spec.js** and add the suite below to the end of the Flux Dispatcher suite:
 
 ```javascript
 describe('handling a view action', function () {
@@ -59,13 +62,12 @@ describe('handling a view action', function () {
 &nbsp;
 ### Create the Flux Store
 
-- Flux stores extend Node's **Event.Emitter** so components can register to 'listen' for any events stores emit.
-  - We do this by utilizing the `emit()` method in the store.
-
+- Flux stores extend Node's **Event.Emitter** so that components can 'listen' for any events that the stores emit.
+  - We emit events using the `emit()` method on the store.
 
 - Open **client/src/flux/flux.store.js**.
 
-- First we need to create an object to hold our store's state and add a getter and setter for the state.
+- First, we need to create an object to hold our store's state as well as a getter and setter for the state.
 
 ```javascript
 state: {},
@@ -78,7 +80,7 @@ setState: function (state) {
   this.state = _.extend(this.state, state);
 },
 ```
-- Next we need to add our methods to add/remove change listeners and a method to emit the change event to our listeners.
+- Next, we need to add methods that will add/remove change listeners as well as a method to emit the change event to our listeners.
 
 ```javascript
 emitChange: function () {
@@ -94,9 +96,9 @@ removeChangeListener: function(callback) {
 },
 ```
 
-- Finally we need a `register()` method that allows our the implementing stores to register **Actions** and the callbacks with the store.
-  - This method takes an object (events) that has the action types for keys with the respective callback as the value.
-  - When the method is called, it registers a callback with the dispatcher that checks if there is a matching event and calls the callback when there is.
+- Finally we need a `register()` method that allows our stores to register **Actions** and callbacks with the store.
+  - This method takes an object (events) that has the action types as keys and the respective callback as the value.
+  - When the method is called, it registers a callback with the dispatcher which checks if there are any matching events.  If there are matches, it then calls the associated callback.
   - The callback must return a **Promise** so that when it resolves, `emitChange()` is called and all of the store's listeners can react accordingly.
 
 ```javascript
@@ -118,19 +120,19 @@ register: function (events) {
 }
 ```
 
-> That is really all of the boilerplate needed to implement the Flux pattern. The rest of this lab will concentrate on extending the base store and pairing functionality with action types.
+> That is really all the boilerplate needed to implement the Flux pattern. The rest of this lab will concentrate on extending the base store and pairing functionality with action types.
 
 &nbsp;
 ### Create the Employee Actions
 
-- Next we need to define the actions that can happen around an employee.
-- For now, the actions are basic CRUD actions.
+- Next, we need to define actions that can happen around an employee.
+- For now, the actions are basic CRUD.
 - Open **client/src/actions/employee.actions.js**
 
 
 - An action definition consists of 2 main parts.
   - A constant representing the type.
-  - A function to call that fires the action by telling the dispatcher to `handleViewAction()` and sending it a payload that will be sent to listeners.
+  - A function to call which fires the action by telling the dispatcher to `handleViewAction()` and then sending it a payload which will be sent to listeners.
 
 
 - First, let's define our constants:
@@ -145,7 +147,9 @@ register: function (events) {
 ```
 
 - Now we can implement the methods that notify the dispatcher to handle the view action.
-  - One thing to not is that the Action's payload can be any valid Javascript object, it could even contain callback functions.
+  - One thing to note is that the Action's payload can be any valid Javascript object.  It could even contain callback functions.
+
+- Add the following to **EmployeeActions**
 
 ```javascript
 list: function (query) {
@@ -298,13 +302,13 @@ describe('firing a restore action', function () {
 &nbsp;
 ### Create the EmployeeStore
 
-- Now we get to create the store that will handle all of the business logic for our **Employees** components.
+- Now, we get to create the store that will handle all of the business logic for our **Employees** components.
 - Open **client/src/stores/employee.store.js**
 
-- Our first task is to implement an `initialize()` method to register our store's actions with methods on the store and provide a default state.
+- Our first task is to implement an `initialize()` method.  This method will register our store's actions with methods on the store and provide a default state.
   - We first create an events object and assign the respective callbacks on our store to the action type on the events object.
   - Once the events configuration has been created, we call the `register()` method on the base store. (see above)
-  - Next we set up the default state by using the `setState()` method.
+  - Next, we set up the default state by using the `setState()` method.
 
 ```javascript
 initialize: function () {
@@ -344,11 +348,11 @@ url: function (employeeId) {
 },
 ```
 
-- OK..now let's start talking to our server!!
+- Now, let's start talking to our server!!
 
 - A quick side note: We will be using the awesome [axios](https://github.com/mzabriskie/axios) library to make our HTTP request/responses.
 
-- First let's implement a method to get a list of employees:
+- First, let's implement a method to get a list of employees:
   - Note: the server is set up for pagination, so we need to send a pagination query and receive a page config object in the response.
 
 ```javascript
@@ -367,7 +371,7 @@ list: function (payload) {
 
 > Notice that the method needs to return a **Promise** because that's how the base `register()` method will know to `emitChange()`.
 
-- Now let's implement the method to retrieve an individual employee and set it on the state:
+- Now, let's implement the method to retrieve an individual employee and set it on the state:
 
 ```javascript
 get: function (payload) {
@@ -385,7 +389,7 @@ get: function (payload) {
 
 ```
 
-- Next is our update method using an HTTP PUT request:
+- Next, is our update method using an HTTP PUT request:
 
 ```javascript
 update: function (payload) {
@@ -404,9 +408,9 @@ update: function (payload) {
 
 ```
 
-- Our DBA is extremely risk-intollerant so we are not allowed to actually DELETE a record from the database. We are only allowed to set a deleted flag so that a record can be restored easily. She has a periodic job that removes 'deleted' records and cleans up the data.
+- Our DBA is extremely risk-intollerant, so we are not allowed to actually DELETE a record from the database. We are only allowed to set a deleted flag so the record can be restored easily. Our DBA has a periodic job that removes 'deleted' records and cleans up the data.
 
-- So instead of using an HTTP DELETE request, we set the flag and perform an updat:
+- So, instead of using an HTTP DELETE request, we set the deleted flag and perform an update:
 
 ```javascript
 remove: function (payload) {
@@ -443,7 +447,7 @@ restore: function (payload) {
 
 ```
 
-- Our final method is to POST to create a new employee in the database:
+- Our final method creates a new employee with an HTTP POST request:
 
 ```javascript
 create: function (payload) {
@@ -459,22 +463,21 @@ create: function (payload) {
     });
 }
 ```
- - Now that we have completely set up the Flux architecture for **Employees** in our application, we just need to add hooks into our components to take advantage of it.
+ - Now that we have completely set up the Flux architecture for **Employees** in our application, we just need to add hooks in our components to take advantage of it.
 
 &nbsp;
 ### Add the Store and Actions to Employees
 
-- Open **client/src/components/employees.js**
+- Open **client/src/components/employees.jsx**
 
-- First things first, look inside the render method because there are a couple of enhancements that have been made for you:
+- First things first, look inside the render method.  There are a couple of enhancements that have been made for you:
   - A **Pagination** component has been added for you to control pagination. Notice that it calls the `onPageChange()` callback.
 
-- Start by uncommenting the require for our **EmployeeActions**.
 - Next delete the stubbed methods between the TODO and ending comment.
 
-- Now we can implement our **Employees** controller component to handle data interactions:
+- Now we can implement our **Employees** controller component to handle data interactions.
 
-- Let's first assign the **EmployeeStore** to the store property.
+- Let's assign the **EmployeeStore** to the store property.
 
 ```javascript
 store: EmployeeStore,
@@ -486,7 +489,7 @@ store: EmployeeStore,
 requestEmployees: EmployeeActions.list,
 ```
 
-- Remember in previous labs, `getInitialState` was returning a default object? Now we have completely handed that functionality over to the **EmployeeStore**, so all we have to do is return the store's state.
+- Remember in previous labs that `getInitialState` was returning a default object? Now, we've completely handed that functionality over to the **EmployeeStore**.  All we have to do is return the store's state.
 
 ```javascript
 getInitialState: function () {
@@ -494,8 +497,8 @@ getInitialState: function () {
 },
 ```
 
-- Now we just need to hook up our component to its store by registering as a listener for changes and reacting accordingly:
-  - When the component is initially rendered to the browser, we want to request the list of employees and register to listen for changes on the store.
+- Now, we just need to hook up our component to its store by registering it as a listener for changes.
+  - When the component is initially rendered to the DOM, we want to request the list of employees and listen for changes on the store.
   - When the store's state changes, we just need to update the component's state with the store's new state.
   - When the component is removed from the DOM, we want to stop listening for change events on the store.
 
@@ -514,8 +517,8 @@ componentWillUnmount: function () {
 },
 ```
 
-- Finally we need create the callback for when the **Paginator** emits a change event.
-  - The event's payload will be the new page to load, so we just need to request that page of employees.
+- Finally, we need create the callback for when the **Paginator** emits a change event.
+  - The event's payload will be the new page to load.  We just need to request that page of employees.
 
 ```javascript
 onPageChange: function (page) {
@@ -526,6 +529,7 @@ onPageChange: function (page) {
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
@@ -540,19 +544,22 @@ onPageChange: function (page) {
 ### Communicate with the EmployeeStore via EmployeeActions
 
 - Open **client/src/components/employee.row.js**
+- Uncomment the require statement for the **EmployeeActions**.
 - Find the `TODO`s and add the appropriate Action calls to signal the **EmployeeStore** to take 'action'.
 
 ```javascript
 EmployeeActions.remove(this.props.employee);
+```
 
+```javascript
 EmployeeActions.restore(this.props.employee);
 ```
 
 > This time, instead of creating a helper, we are calling the Action methods directly. Which do you like better?
 
-- Now let's test that they work.
+- Now, let's test that they work.
 - Open **client/src/components/employee.row.spec.js**
-- First things first, uncomment the spies already written to stub out the calls to action.
+- First things first, uncomment the spies already written that stub out the calls to action.
 - Next add the tests to verify that the component is firing the actions.
 
 
@@ -560,17 +567,20 @@ EmployeeActions.restore(this.props.employee);
 it('should fire a remove employee action', function () {
   expect(spies.remove).to.have.been.calledWith(employee);
 });
+```
 
+```javascript
 it('should fire a restore employee action', function () {
   expect(spies.restore).to.have.been.calledWith(employee);
 });
 ```
 
-- Run the tests, watch them pass, and move on to the next section.
+- Run the tests, watch them pass.
 
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
