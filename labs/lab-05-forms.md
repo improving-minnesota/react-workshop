@@ -9,12 +9,14 @@ git checkout lab-05-forms-start
 git pull
 ```
 
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-05-forms-start branch.
+
 &nbsp;
 ### Check it out!
 
-- Let's see what pull requests have been merged into our code base during the slides.
-  - The biggest change is that our server team has added cookie-based security so we need to create a login form and all the flux components needed for that.
-  - The file for the components needed to edit and or create an employee have been created for you, but they need to be hooked up.
+- Let's look at the progress that has already been completed on the application by the rest of the team.
+  - The biggest change is that our server team has added cookie-based security.  We need to create a login form and all the flux components needed for that.
+  - The component files needed to create and edit an employee have been created for you.  You will need to implement them.
   - You'll also notice that **React Router** mixins have been added to some of our previous components. More on that later.
 
 &nbsp;
@@ -48,7 +50,7 @@ git pull
 </Route>
 ```
 
-> Take the time to check out the path declarations and how they are adding route params, via a colon, that are dynamically replaced.
+> Take the time to check out the path declarations and how they are adding route params that are dynamically replaced.
 
 
 &nbsp;
@@ -63,8 +65,8 @@ git pull
 
 
 - Let's implement that right now:
-- Open **client/src/main.jsx**
-- Add the call to the `LoginStore.current()` to our bootstrap process.
+  - Open **client/src/main.jsx**
+  - Add the call to the `LoginStore.current()` to our bootstrap process.
 
 ```javascript
 // Attempt to get a current user session
@@ -78,11 +80,11 @@ LoginStore.current()
   });
 ```
 
-- Another way that we can secure the application is by using **react-router**'s `willTransitionTo()` static method that it adds to components that are used as handlers.
+- Another way we can secure the application is by using **react-router**'s `willTransitionTo()` static method.  This method adds components that are used as handlers.
   - The `willTransitionTo()` method is expecting a **Promise** to be returned in its implementation.
   - It will block the transition until the promise has been resolved.
 
-- The **LoginStore** also has a `requireAuthenticatedUser()` method that returns a **Promise** that resolves upon a successful authentication.  
+- The **LoginStore** also has a `requireAuthenticatedUser()` method that returns a **Promise** which resolves on successful authentication.  
 
 - Let's implement `willTransitionTo()` in our **App** component.
 - Open **client/src/components/app.jsx** and add the statics array block:
@@ -95,8 +97,8 @@ statics: {
 },
 ```
 
-- Now let's test that it is working.
-- Open **client/src/components/app.spec.js** and add the test:
+- Now, let's test that it is working.
+- Open **client/src/components/app.spec.js** and add the suite below:
 
 ```javascript
 describe('during the will transition to lifecyle', function () {
@@ -106,7 +108,7 @@ describe('during the will transition to lifecyle', function () {
   });
 });
 ```
-- Run the tests and make sure it passes before moving on.
+- Run the tests and make sure the all pass before moving on.
 
 &nbsp;
 ## Add a Login Form Component
@@ -136,7 +138,7 @@ componentWillUnmount: function () {
 },
 ```
 
-- Next let's create the JSX to display a login form: (yeah..you can copy/paste this)
+- Next, let's create the JSX to display a login form: (yeah..you can copy/paste this)
 
 ```javascript
 render: function () {
@@ -197,7 +199,7 @@ onChange={this.validate}
 
 - We need to implement these two callbacks.
 
-- Since input's are controlled components they will not automatically update themselves just by having your user type into them.
+- Since inputs are controlled components, they will not automatically update themselves when the user types into them.
 - Controlled components force you to deliberately handle changes to the input. This makes it very easy to write custom validation for any of your form inputs.
 
 - We don't really need to validate either form inputs, so we can just update our store and component state with the value:
@@ -218,12 +220,13 @@ handleSubmit: function (event) {
 },
 ```
 
-> Note that we needed to prevent the default behavior of the submit event so that our browser didn't try to do a traditional form submit. Remember this is just Javascript. **React** is not doing any magic for us under the covers to overwrite the default behavior of the browser.
+> Note that we needed to prevent the default behavior of the submit event.  That way, the browser doesn't try to do a traditional form submit. Remember, this is just Javascript. **React** is not doing any magic for us under the covers to override the default behavior of the browser.
 
 
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
@@ -240,16 +243,16 @@ handleSubmit: function (event) {
 - Now that we can log in to our application, let's set up a way to edit an employee.
 
 &nbsp;
-###### Before we get started, take the time to look at our custom form components already implemented for us.
+###### Before we get started, take the time to look at the custom form components already implemented for us.
 
 - The first component we need is a form to contain all of our employee's properties.
 - Open **client/src/components/employees.form.jsx**.
 
-- This form has several more props than any component we've made so far so let's review them:
+- This form has more props than any component we've made so far, so let's review them:
   - employee : the employee we will be editing
   - errors: an object containing validation errors
   - validate: the function to be called upon a form input value change
-  - validateAll: the function to call to validate the entire form
+  - validateAll: the function to validate the entire form
   - hasErrors: a function that can be called to determine if any of the form inputs have validation errors
   - toggleAdmin: a helper function to toggle the boolean value of `employee.admin`
   - onSave: the callback to call when the user submits the form
@@ -285,7 +288,7 @@ onCancel: function (event) {
 },
 ```
 
-- Now it's time to draw our `render()` method with the JSX to build the form:
+- Now it's time to draw our `render()` method with the JSX we'll use to build the form:
 
 ```javascript
 render : function () {
@@ -344,7 +347,7 @@ render : function () {
 > Notice that we are not actually implementing the save function. That is left for the component that uses this form to implement and pass it in as a prop.
 
 - Time to test the form.
-- For time's sake, we'll just test the functionality of the cancel button, because it will highlight some more coolness of **TestUtils**.
+- For time's sake, we'll just test the functionality of the cancel button.  This will highlight some more coolness of **TestUtils**.
 
 - Open **client/src/components/employees.form.spec.js**.
 
@@ -354,6 +357,7 @@ render : function () {
   - Telling **TestUtils** to simulate a click on that button.
   - Testing that the `transitionTo` method was called as a result.
 
+- Add the test suite below and uncomment all the spies:
 
 ```javascript
 describe('clicking the cancel button', function () {
@@ -367,15 +371,15 @@ describe('clicking the cancel button', function () {
 });
 ```
 
-- Run the tests and validate it passes before going to the next section.
+- Run the tests and validate that they all pass before going to the next section.
 
 &nbsp;
 ## Add the Form into an Employee Detail Component
 
-- Now let's actually USE the form we just built.
+- Now let's actually use the form we just built.
 
 - Before we get started, an **EmployeeMixin** with basic form validation has been implemented for you.
-  - Open **client/src/mixins/employee.mixin.js** and look at what all is in there:
+  - Open **client/src/mixins/employee.mixin.js** and look at everything in it:
     - Attaching the **EmployeeStore** to the component.
     - `validate()` `validateAll()` `hasErrors()` and `toggleAdmin()` method implementations.
     - Basic validation for our form
@@ -386,7 +390,7 @@ describe('clicking the cancel button', function () {
 - Add the following mixins:
   - **Router.Navigation** gives us access to the `transitionTo()` method.
   - **Router.State** give us access to the `getParams()` method
-  - **EmployeeMixin** is the
+  - **EmployeeMixin** is the mixin that provides basic validation for our employee
 
 
 ```javascript
@@ -397,7 +401,7 @@ mixins: [
 ],
 ```
 
-- Next let's provide a default state for the component:
+- Next, let's provide a default state for the component:
 
 ```javascript
 getInitialState: function () {
@@ -410,7 +414,6 @@ getInitialState: function () {
 ```
 
 - The next step is hook our component up to our Flux architecture.
-  -
 
 ```javascript
 onChange: function () {
@@ -426,9 +429,9 @@ componentWillUnmount: function () {
 },
 ```
 
-- If the user refreshes the page or navigates directly to the employee edit route, we need to go get the employee from our REST service.
+- If the user refreshes the page or navigates directly to the employee edit route, we need to get the employee from our REST service.
 
-- We'll use the `componentDidMount` lifecycle event to make this call so that the store's listeners have been registered.
+- We'll use the `componentDidMount` lifecycle event to make this call so the store's listeners have been registered.
 
 ```javascript
 componentDidMount: function () {
@@ -453,9 +456,9 @@ get: function () {
 },
 ```
 
-- We need to provide the **EmployeeForm** with a callback to apply when the save button is clicked.
-  - We will first validate the entire form to make sure no input has validation errors.
-  - If there are no errors, we fire the update action and transition back to the `employees` route.
+- We need to provide the **EmployeeForm** with a callback to call when the save button is clicked.
+  - We'll first validate the entire form to make sure none of the inputs have validation errors.
+  - If there aren't any errors, we'll fire the update action and transition back to the `employees` route.
 
 ```javascript
 saveEmployee: function (event) {
@@ -470,7 +473,7 @@ saveEmployee: function (event) {
 
 ```
 
-- Finally we just need to use the form and pass it all of the props it is expecting in our `render()` method.
+- Finally, we just need to use the form and pass it all of the props it is expecting in our `render()` method.
 
 ```javascript
 render : function () {
@@ -490,7 +493,8 @@ render : function () {
 &nbsp;
 ## Test the Employee Detail Component
 
-- Open **client/src/components/employee.detail.spec.js** and add the following tests:
+- Open **client/src/components/employee.detail.spec.js**
+- Uncomment the spies and add the following suites:
 
 ```javascript
 describe('getting the employee', function () {
@@ -547,9 +551,10 @@ describe('saving an employee', function () {
 
 - Run the tests and verify that they pass before moving on to the next section.
 
+## Add navigation to the Employee Detail Component
 
-- We've got an Employee Detail route, but don't have a way to get to it yet.
-- We're going to make it so that when you click an **EmployeeRow** we navigate to the appropriate detail route for that employee.
+- We have an Employee Detail route, but there's no way to get to it yet.
+- We're going to add functionality so that when you click an **EmployeeRow**, the router will transition to the appropriate detail route for the employee.
 
 
 - Open **client/src/components/employees/employee.row.jsx**
@@ -574,10 +579,10 @@ showDetail: function showDetail () {
 <tr className={classNames} ref={employee._id} onClick={this.showDetail}>
 ```
 
-- Let's test that clicking the row actually navigates where it is supposed to:
+- Let's test that clicking the row actually navigates to where it's supposed to:
 
 - Open **client/src/components/employees/employee.row.spec.js**
-- Add the following tests:
+- Add the following suites to the end of the **Employee Row Component** suite:
 
 ```javascript
 describe('clicking the row', function () {
@@ -631,12 +636,12 @@ describe('clicking the row', function () {
 });
 ```
 
-- Run the tests and verify that they pass before moving to the next section.
-  - You'll have to uncomment the spies for them to work.
+- Run the tests and verify that all of them pass before moving to the next section.
 
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
@@ -739,7 +744,7 @@ describe('saving an employee', function () {
 });
 ```
 
-- We need a way to get there, so let's add a button in the **Employees** component to navigate us to the create employee route.
+- Now, we need a way to get there.  Let's add a button in the **Employees** component that navigates to the create employee route.
 
 - Open **client/src/components/employees.jsx**
 
@@ -762,7 +767,7 @@ describe('saving an employee', function () {
 </div>
 ```
 
-- And then, of course, test it:
+- Then, lets test it, of course!:
 
 - In **client/src/components/employees.spec.js** add:
 
@@ -781,6 +786,7 @@ describe('clicking the new employee button', function () {
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
