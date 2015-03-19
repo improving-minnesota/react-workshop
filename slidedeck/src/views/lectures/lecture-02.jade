@@ -452,7 +452,7 @@ include ../includes/mixins
   section
     h4.lower findRenderedDOMComponentWithClass(ReactComponent tree, string className)
     p Like scryRenderedDOMComponentsWithClass() but expects there to be one result.
-    p Throws exception if there is any other number of matches besides one.
+    p Throws an exception if there is more than one match or no match at all. 
     
   section
     pre.
