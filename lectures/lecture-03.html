@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Lecture 03 - React Router</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Lecture 03 - React Router">
+    <link href="/react-workshop/assets/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/react-workshop/assets/css/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-state="index-slide" class="index-section">
+          <div class="sliding-image-container"><img src="/react-workshop/assets/img/react-logo.png" class="animate-logos image1"><img src="/react-workshop/assets/img/flux-logo.png" class="animate-logos image2"><img src="/react-workshop/assets/img/gulp-logo.png" class="animate-logos image3"><img src="/react-workshop/assets/img/browserify-logo.png" class="animate-logos image4"><img src="/react-workshop/assets/img/bower-logo.png" class="animate-logos image5"></div>
+          <div class="fading-header-container">
+            <h1 class="plain animate-headers image1">React</h1>
+            <h1 class="plain animate-headers image2">Flux</h1>
+            <h1 class="plain animate-headers image3">Gulp</h1>
+            <h1 class="plain animate-headers image4">Browserify</h1>
+            <h1 class="plain animate-headers image5">Bower.js</h1>
+          </div>
+          <h3 class="plain">React Router</h3>
+          <h4 class="plain">Lecture 03</h4>
+        </section>
+        <section>
+          <h1 class="lower">react-router</h1>
+        </section>
+        <section>
+          <p>Library to help us track routes with states of our application</p>
+          <p>Able to nest routes and thier handlers</p>
+          <p>Routes are represented as React Components</p>
+        </section>
+        <section>
+          <h2 class="lower">Router.Route</h2>
+          <h2 class="lower">&lt;Route /&gt;</h2>
+        </section>
+        <section>
+          <h2 class="plain">Route props</h2>
+        </section>
+        <section>
+          <h2 class="lower">name</h2>
+          <p>The unique name of the route</p>
+          <p>Used in the Link component and the router's transition methods.</p>
+        </section>
+        <section>
+          <h2 class="lower">path</h2>
+          <p>Used in the URL. </p>
+          <p>If left undefined, defined by the name.</p>
+          <p>If there is no name, will default to '/'.</p>
+        </section>
+        <section>
+          <h2 class="lower">handler</h2>
+          <p>The component to be rendered when the route is active.</p>
+        </section>
+        <section>
+          <h2 class="lower">children</h2>
+          <p>Routes can be nested. </p>
+          <p>When a child route path matches, the parent route is also activated. </p>
+        </section>
+        <section>
+          <h2 class="lower">Router.Redirect</h2>
+          <h3>&lt;Redirect /&gt;</h3>
+        </section>
+        <section>
+          <h2 class="plain">Redirect props.</h2>
+        </section>
+        <section>
+          <h2 class="lower">from</h2>
+          <p>Path you want to redirect from, including dynamic segments. </p>
+          <p>Defaults to * so you can redirect anything not found to somewhere else.</p>
+        </section>
+        <section>
+          <h2 class="lower">to</h2>
+          <p>Name of the route you want to redirect to.</p>
+        </section>
+        <section>
+          <h2 class="lower">params</h2>
+          <p>By default, the parameters will just pass through to the new route. </p>
+          <p>You can specify them if you need to.</p>
+        </section>
+        <section>
+          <h2 class="lower">query</h2>
+          <p>By default, the query parameters will just pass through to the new route.</p>
+          <p>You can specify them if you need to.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var Projects = require('./components/projects/projects');
+var Employees = require('./components/employees/employees');
+var Timesheets = require('./components/timesheets/timesheets');
+
+&lt;Route name='app' path="/" handler={App}&gt;
+
+  &lt;Route name='projects'   path='/projects'  handler={Projects} /&gt;
+  &lt;Route name='employees'  path='/employees' handler={Employees} /&gt;
+  &lt;Route name='timesheets' path='/employees/:user_id/timesheets' handler={Timesheets} /&gt;
+  
+  &lt;Redirect to="employees" /&gt;
+&lt;/Route&gt;
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2 class="lower">Router.Link</h2>
+          <h3 class="lower">&lt;Link /&gt;</h3>
+        </section>
+        <section>
+          <p>Renders an &lt;a&gt; tag.</p>
+          <p>Links to a route in the application.</p>
+          <p>If you change the path of your route, you don't also have to change your links.</p>
+        </section>
+        <section>
+          <p>Knows when the route it links to is active.</p>
+          <p>Automatically applies its activeClassName and/or activeStyle.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+&lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
+&lt;Link className={employeesClasses} to="employees"&gt;Employees&lt;/Link&gt;
+&lt;Link className={timesheetsClasses} to="timesheets" 
+  params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;      
+  
+</code>
+</pre>
+        </section>
+        <section>
+          <h2 class="lower">Router.RouteHandler</h2>
+          <h3>&lt;RouteHandler /&gt;</h3>
+        </section>
+        <section>
+          <p>Renders the handler of the route.</p>
+          <p>Entry point in the DOM for your handler component. </p>
+        </section>
+        <section>
+          <h3>Static Lifecycle Methods</h3>
+          <ul>
+            <li class="highlight">willTransitionTo(transition, params, query, callback)</li>
+            <ul>
+              <li>Called when a handler is about to render.</li>
+            </ul>
+            <li class="highlight">willTransitionFrom(transition, component, callback)</li>
+            <ul>
+              <li>Called when an active route is being transitioned out.</li>
+            </ul>
+          </ul>
+        </section>
+        <section>
+          <h3 class="lower">Router.run()</h3>
+          <p>The main API into react router. </p>
+          <p>It runs your routes.</p>
+          <p>Matches them against a location.</p>
+          <p>Calls back with the next state for you to render.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+Router.run(routes, function (Handler, state) {
+  React.render(<Handler />, document.getElementById('app'));
+});
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h1>Router Mixins</h1>
+        </section>
+        <section>
+          <h2 class="lower">Router.State</h2>
+        </section>
+        <section>
+          <h3 class="lower">getPath()</h3>
+          <p>Returns the current URL path, including query string.</p>
+        </section>
+        <section>
+          <h3 class="lower">getPathname()</h3>
+          <p>Returns the current URL path without the query string.</p>
+        </section>
+        <section>
+          <h3 class="lower">getParams()</h3>
+          <p>Returns a hash of the currently active URL params.</p>
+        </section>
+        <section>
+          <h3 class="lower">getQuery()</h3>
+          <p>Returns a hash of the currently active query params.</p>
+        </section>
+        <section>
+          <h3 class="lower">isActive(routeName, params, query)</h3>
+          <p>Returns true if a route, params, and query are active, false otherwise.</p>
+        </section>
+        <section>
+          <h3 class="lower">getRoutes()</h3>
+          <p>Returns an array of the currently active routes, in nesting order.</p>
+        </section>
+        <section>
+          <h3 class="lower">Router.Navigation</h3>
+        </section>
+        <section>
+          <h4 class="lower">transitionTo(routeNameOrPath, [params[, query]])</h4>
+          <p>Programmatically transition to a new route.</p>
+        </section>
+        <section>
+          <h4 class="lower">replaceWith(routeNameOrPath, [params[, query]])</h4>
+          <p>Replace current route with a new route. </p>
+          <p>Does not add an entry into the browser history.</p>
+        </section>
+        <section>
+          <h3 class="lower">goBack()</h3>
+          <p>Go to the last route</p>
+          <p>Removes the most recent entry from the browser history. </p>
+          <p>Returns true unless it's the first entry in the app history.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+if (!this.goBack()) {
+  this.transitionTo('/otherpage')
+}
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h4 class="lower">makePath(routeName, params, query)</h4>
+          <p>Creates a URL path to a route.</p>
+        </section>
+        <section>
+          <h4 class="lower">makeHref(routeName, params, query)</h4>
+          <p>Creates an href to a route. </p>
+          <p>Used with State when you need to build components similar to Link.</p>
+        </section>
+        <section>
+          <h1>React (cont.)</h1>
+        </section>
+        <section>
+          <h2>JSX Event Handlers</h2>
+          <h3 class="lower">SyntheticEvent</h3>
+        </section>
+        <section>
+          <p>Event handlers are passed instances of SyntheticEvent.</p>
+          <p>Cross-browser wrapper around the browser's native event.</p>
+          <p>It has the same interface as the browser's native event.</p>
+          <p class="highlight">stopPropagation() and preventDefault()</p>
+        </section>
+        <section>
+          <h2>Supported Events</h2>
+        </section>
+        <section>
+          <h2>Clipboard Events</h2>
+          <p>onCopy onCut onPaste</p>
+        </section>
+        <section>
+          <h2>Keyboard Events</h2>
+          <p>onKeyDown onKeyPress onKeyUp</p>
+        </section>
+        <section>
+          <h2>Form Events</h2>
+          <p>onChange onInput onSubmit</p>
+        </section>
+        <section>
+          <h2>Mouse Events</h2>
+          <p>onClick onContextMenu onDoubleClick </p>
+          <p>onDrag onDragEnd onDragEnter onDragExit</p>
+          <p>onDragLeave onDragOver onDragStart onDrop </p>
+          <p>onMouseDown onMouseEnter onMouseLeave</p>
+          <p>onMouseMove onMouseOut onMouseOver onMouseUp</p>
+        </section>
+        <section>
+          <h2>Touch events</h2>
+          <p>Enabled by calling: React.initializeTouchEvents(true) before rendering any component.</p>
+          <p>onTouchCancel onTouchEnd onTouchMove onTouchStart</p>
+        </section>
+        <section>
+          <h2>UI Events</h2>
+          <p>onScroll</p>
+        </section>
+        <section>
+          <h2>Wheel Events</h2>
+          <p>onWheel</p>
+        </section>
+        <section>
+          <p>Each of these events are normalized for every supported browser. </p>
+          <p>Behave the same across browsers.</p>
+          <p>Have the same properties.</p>
+          <p>Check the docs for each event's properties.</p>
+        </section>
+        <section>
+          <h2>The Classes Mixin</h2>
+        </section>
+        <section>
+          <p>Third party utility to make it easier to manipulate CSS classes in your React components. </p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var classes = require('react-classes');
+// In our Component 
+mixins: [classes],
+render: function () {
+  var classNames = this.getClass('repeated-item fadeable-row', {
+    'faded': employee.deleted
+  });
+}
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h3>Lab Prep</h3>
+          <p>Show Projects and Timesheets implementation</p>
+        </section>
+        <section>
+          <h1>Lab 03</h1>
+          <h2>Routing and Component Composition </h2>
+        </section>
+      </div>
+    </div>
+    <script src="/react-workshop/assets/js/app.js"></script>
+  </body>
+</html>
