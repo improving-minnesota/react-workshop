@@ -357,6 +357,7 @@ render : function () {
   - Telling **TestUtils** to simulate a click on that button.
   - Testing that the `transitionTo` method was called as a result.
 
+- Add the test suite below and uncomment all the spies:
 
 ```javascript
 describe('clicking the cancel button', function () {
@@ -375,10 +376,10 @@ describe('clicking the cancel button', function () {
 &nbsp;
 ## Add the Form into an Employee Detail Component
 
-- Now let's actually USE the form we just built.
+- Now let's actually use the form we just built.
 
 - Before we get started, an **EmployeeMixin** with basic form validation has been implemented for you.
-  - Open **client/src/mixins/employee.mixin.js** and look at what all is in there:
+  - Open **client/src/mixins/employee.mixin.js** and look at everything in it:
     - Attaching the **EmployeeStore** to the component.
     - `validate()` `validateAll()` `hasErrors()` and `toggleAdmin()` method implementations.
     - Basic validation for our form
@@ -389,7 +390,7 @@ describe('clicking the cancel button', function () {
 - Add the following mixins:
   - **Router.Navigation** gives us access to the `transitionTo()` method.
   - **Router.State** give us access to the `getParams()` method
-  - **EmployeeMixin** is the
+  - **EmployeeMixin** is the mixin that provides basic validation for our employee
 
 
 ```javascript
@@ -400,7 +401,7 @@ mixins: [
 ],
 ```
 
-- Next let's provide a default state for the component:
+- Next, let's provide a default state for the component:
 
 ```javascript
 getInitialState: function () {
@@ -413,7 +414,6 @@ getInitialState: function () {
 ```
 
 - The next step is hook our component up to our Flux architecture.
-  -
 
 ```javascript
 onChange: function () {
@@ -429,9 +429,9 @@ componentWillUnmount: function () {
 },
 ```
 
-- If the user refreshes the page or navigates directly to the employee edit route, we need to go get the employee from our REST service.
+- If the user refreshes the page or navigates directly to the employee edit route, we need to get the employee from our REST service.
 
-- We'll use the `componentDidMount` lifecycle event to make this call so that the store's listeners have been registered.
+- We'll use the `componentDidMount` lifecycle event to make this call so the store's listeners have been registered.
 
 ```javascript
 componentDidMount: function () {
@@ -456,9 +456,9 @@ get: function () {
 },
 ```
 
-- We need to provide the **EmployeeForm** with a callback to apply when the save button is clicked.
-  - We will first validate the entire form to make sure no input has validation errors.
-  - If there are no errors, we fire the update action and transition back to the `employees` route.
+- We need to provide the **EmployeeForm** with a callback to call when the save button is clicked.
+  - We'll first validate the entire form to make sure none of the inputs have validation errors.
+  - If there aren't any errors, we'll fire the update action and transition back to the `employees` route.
 
 ```javascript
 saveEmployee: function (event) {
