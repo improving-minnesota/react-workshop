@@ -16,9 +16,9 @@ include ../includes/mixins
     h1 Virtual Dom
     
   section
-    p Replica of the Browser DOM
-    p React redraws the entire screen on change
-    p React calculates the minimum amount of changes
+    p Replica of the Browser DOM.
+    p React redraws the entire screen on change.
+    p React calculates the minimum amount of changes required.
     
   section
     p 
@@ -35,7 +35,7 @@ include ../includes/mixins
     
   section
       p Creates a component class, given a specification. 
-      p A component implements a render method which returns one single child. 
+      p A component implements a render method which returns a single child. 
       p That child may have an arbitrarily deep child structure. 
       p They are convenience wrappers that construct backing instances (via new) for you.
       
@@ -68,9 +68,9 @@ include ../includes/mixins
     
   section
     h2.lower render()
-    p Should be pure
-    p Does not modify component state
-    p Returns the same result each time it's invoked
+    p Should be pure.
+    p Does not modify component state.
+    p Returns the same result each time it's invoked.
     p Does not read from or write to the DOM. 
     p Perform work in componentDidMount() or the other lifecycle methods.
 
@@ -99,7 +99,7 @@ include ../includes/mixins
     
   section
     h2.lower getDefaultProps()
-    p This method is invoked before any instances are created and thus cannot rely on this.props. 
+    p This method is invoked before any instances are created and therefore it can't rely on this.props. 
     p Objects returned will be shared across instances, not copied.
     
   section
@@ -146,7 +146,7 @@ include ../includes/mixins
   section
     h2.lower statics: {}
     p The statics object allows you to define static methods that can be called on the component class. 
-    p Methods defined within this block are static, meaning that you can run them before any component instances are created.
+    p Methods defined within this block are static, meaning you can run them before any component instances are created.
     
   section
     h2.lower statics: {}
@@ -181,7 +181,7 @@ include ../includes/mixins
     
   section
     p JavaScript syntax extension that looks similar to XML. 
-    p Compiles to actual Javascript which you will be able to see during labs.
+    p Compiles to actual Javascript that you'll be able to see during labs.
     
   section
     pre.
@@ -219,14 +219,14 @@ include ../includes/mixins
       li lowercase = tag
     
   section
-    p Since JSX is JavaScript, identifiers such as class and for are discouraged as XML attribute names. 
+    p Since JSX is a superset of JavaScript, identifiers like class and for as XML attribute names is discouraged. 
     ul
       li htmlFor = for
       li className = class
       
   section
     h2.lower React.render()
-    p Renders a ReactElement into the DOM in the supplied container.
+    p Renders a ReactElement into the DOM of the supplied container.
     p Returns a reference to the component.
     p Replaces the contents of the container node you pass in.
     
