@@ -5,7 +5,7 @@ include ../includes/mixins
   +lecture-title-page("React Router", "Lecture 03")
 
   section
-    h1 react-router
+    h1.lower react-router
     
   section
     p Library to help us track routes with states of our application
@@ -13,55 +13,55 @@ include ../includes/mixins
     p Routes are represented as React Components
       
   section
-    h1 Router.Route
-    h2 &lt;Route /&gt;
+    h2.lower Router.Route
+    h2.lower &lt;Route /&gt;
     
   section 
-    h1 Route props
+    h2.plain Route props
     
   section 
-    h3 name
+    h2.lower name
     p The unique name of the route
     p Used in the Link component and the router's transition methods.
    
   section
-    h3 path
+    h2.lower path
     p Used in the URL. 
     p If left undefined, defined by the name.
     p If there is no name, will default to '/'.
 
   section
-    h3 handler
+    h2.lower handler
     p The component to be rendered when the route is active.
     
   section
-    h3 children
+    h2.lower children
     p Routes can be nested. 
     p When a child route path matches, the parent route is also activated. 
     
   section
-    h1 Router.Redirect
-    h2 &lt;Redirect /&gt;
+    h2.lower Router.Redirect
+    h3 &lt;Redirect /&gt;
     
   section
-    h1 Redirect props.
+    h2.plain Redirect props.
     
   section 
-    h3 from
+    h2.lower from
     p Path you want to redirect from, including dynamic segments. 
     p Defaults to * so you can redirect anything not found to somewhere else.
     
   section
-    h3 to
+    h2.lower to
     p Name of the route you want to redirect to.
     
   section
-    h3 params
+    h2.lower params
     p By default, the parameters will just pass through to the new route. 
     p You can specify them if you need to.
 
   section
-    h3 query
+    h2.lower query
     p By default, the query parameters will just pass through to the new route.
     p You can specify them if you need to.
     
@@ -80,11 +80,12 @@ include ../includes/mixins
         
         &lt;Redirect to="employees" /&gt;
       &lt;/Route&gt;
+      
       </code>
     
   section
-    h1 Router.Link
-    h2 &lt;Link /&gt;
+    h2.lower Router.Link
+    h3.lower &lt;Link /&gt;
     
   section
     p Renders an &lt;a&gt; tag.
@@ -100,28 +101,32 @@ include ../includes/mixins
       <code class="json" data-trim>
       &lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
       &lt;Link className={employeesClasses} to="employees"&gt;Employees&lt;/Link&gt;
-      &lt;Link className={timesheetsClasses} to="timesheets" params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;      
+      &lt;Link className={timesheetsClasses} to="timesheets" 
+        params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;      
+      
       </code>
       
   section
-    h1 Router.RouteHandler
-    h2 &lt;RouteHandler /&gt;
+    h2.lower Router.RouteHandler
+    h3 &lt;RouteHandler /&gt;
     
   section 
     p Renders the handler of the route.
+    p Entry point in the DOM for your handler component. 
     
   section
     h3 Static Lifecycle Methods
-    p willTransitionTo(transition, params, query, callback)
-    p Called when a handler is about to render.
-    p willTransitionFrom(transition, component, callback)
-    p Called when an active route is being transitioned out.
+    ul
+      li.highlight willTransitionTo(transition, params, query, callback)
+      ul 
+        li Called when a handler is about to render.
+      li.highlight willTransitionFrom(transition, component, callback)
+      ul 
+        li Called when an active route is being transitioned out.
     
   section 
-    h3 Router.run()
+    h3.lower Router.run()
     p The main API into react router. 
-    
-  section
     p It runs your routes.
     p Matches them against a location.
     p Calls back with the next state for you to render.
@@ -132,53 +137,53 @@ include ../includes/mixins
       Router.run(routes, function (Handler, state) {
         React.render(<Handler />, document.getElementById('app'));
       });
+      
       </code>
   
   section
     h1 Router Mixins
-    h2 Router.State and Router.Navigation
     
   section 
-    h1 Router.State
+    h2.lower Router.State
   
   section
-    h3 getPath()
+    h3.lower getPath()
     p Returns the current URL path, including query string.
     
   section 
-    h3 getPathname()
+    h3.lower getPathname()
     p Returns the current URL path without the query string.
     
   section
-    h3 getParams()
+    h3.lower getParams()
     p Returns a hash of the currently active URL params.
     
   section
-    h3 getQuery()
+    h3.lower getQuery()
     p Returns a hash of the currently active query params.
     
   section
-    h3 isActive(routeName, params, query)
+    h3.lower isActive(routeName, params, query)
     p Returns true if a route, params, and query are active, false otherwise.
     
   section
-    h3 getRoutes()
+    h3.lower getRoutes()
     p Returns an array of the currently active routes, in nesting order.
     
   section
-    h1 Router.Navigation
+    h3.lower Router.Navigation
     
   section 
-    h3 transitionTo(routeNameOrPath, [params[, query]])
+    h4.lower transitionTo(routeNameOrPath, [params[, query]])
     p Programmatically transition to a new route.
     
   section
-    h3 replaceWith(routeNameOrPath, [params[, query]])
+    h4.lower replaceWith(routeNameOrPath, [params[, query]])
     p Replace current route with a new route. 
     p Does not add an entry into the browser history.
     
   section
-    h3 goBack()
+    h3.lower goBack()
     p Go to the last route
     p Removes the most recent entry from the browser history. 
     p Returns true unless it's the first entry in the app history.
@@ -189,14 +194,15 @@ include ../includes/mixins
       if (!this.goBack()) {
         this.transitionTo('/otherpage')
       }
+      
       </code>
   
   section
-    h3 makePath(routeName, params, query)
+    h4.lower makePath(routeName, params, query)
     p Creates a URL path to a route.
     
   section
-    h3 makeHref(routeName, params, query)
+    h4.lower makeHref(routeName, params, query)
     p Creates an href to a route. 
     p Used with State when you need to build components similar to Link.
     
@@ -204,32 +210,32 @@ include ../includes/mixins
     h1 React (cont.)
 
   section
-    h1 JSX Event Handlers
-    h2 SyntheticEvent
+    h2 JSX Event Handlers
+    h3.lower SyntheticEvent
     
   section
     p Event handlers are passed instances of SyntheticEvent.
     p Cross-browser wrapper around the browser's native event.
     p It has the same interface as the browser's native event.
-    p stopPropagation() and preventDefault()
+    p.highlight stopPropagation() and preventDefault()
     
   section
-    h1 Supported Events
+    h2 Supported Events
     
   section 
-    h3 Clipboard Events
+    h2 Clipboard Events
     p onCopy onCut onPaste
     
   section
-    h3 Keyboard Events
+    h2 Keyboard Events
     p onKeyDown onKeyPress onKeyUp
     
   section
-    h3 Form Events
+    h2 Form Events
     p onChange onInput onSubmit
     
   section
-    h3 Mouse Events
+    h2 Mouse Events
     p onClick onContextMenu onDoubleClick 
     p onDrag onDragEnd onDragEnter onDragExit
     p onDragLeave onDragOver onDragStart onDrop 
@@ -237,16 +243,16 @@ include ../includes/mixins
     p onMouseMove onMouseOut onMouseOver onMouseUp
     
   section
-    h3 Touch events
+    h2 Touch events
     p Enabled by calling: React.initializeTouchEvents(true) before rendering any component.
     p onTouchCancel onTouchEnd onTouchMove onTouchStart
     
   section 
-    h3 UI Events
+    h2 UI Events
     p onScroll
     
   section
-    h3 Wheel Events
+    h2 Wheel Events
     p onWheel
     
   section
@@ -256,7 +262,7 @@ include ../includes/mixins
     p Check the docs for each event's properties.
     
   section 
-    h1 The Classes Mixin
+    h2 The Classes Mixin
     
   section
     p Third party utility to make it easier to manipulate CSS classes in your React components. 
@@ -272,10 +278,8 @@ include ../includes/mixins
           'faded': employee.deleted
         });
       }
+      
       </code>
-    
-  section 
-    p classes mixin
     
   section
     h3 Lab Prep

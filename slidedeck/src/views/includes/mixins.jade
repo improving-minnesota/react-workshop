@@ -35,16 +35,16 @@ mixin animated-header()
     img.animate-logos.image4(src="#{basepath}/assets/img/browserify-logo.png")
     img.animate-logos.image5(src="#{basepath}/assets/img/bower-logo.png")
   .fading-header-container
-    h1.animate-headers.image1 React
-    h1.animate-headers.image2 Flux
-    h1.animate-headers.image3 Gulp
-    h1.animate-headers.image4 Browserify
-    h1.animate-headers.image5 Bower.js
+    h1.plain.animate-headers.image1 React
+    h1.plain.animate-headers.image2 Flux
+    h1.plain.animate-headers.image3 Gulp
+    h1.plain.animate-headers.image4 Browserify
+    h1.plain.animate-headers.image5 Bower.js
   block
 
 
 mixin lecture-title-page(title, subtitle)
   section.index-section(data-state="index-slide")
     +animated-header()
-    h3=title
-    h4=subtitle
+    h3.plain=title
+    h4.plain=subtitle

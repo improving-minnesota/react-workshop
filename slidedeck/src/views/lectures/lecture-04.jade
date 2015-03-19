@@ -8,7 +8,7 @@ include ../includes/mixins
     h1 Flux
     
   section
-    p Three major parts
+    h3.lower Three major parts
     ul 
       li the dispatcher
       li the stores
@@ -35,10 +35,10 @@ include ../includes/mixins
     p All interested other views update accordingly. 
 
   section 
-    img(src="#{basePath}/assets/img/lecture-04/flux.diagram.png")
+    img(src="/react-workshop/assets/img/lecture-04/flux.diagram.png")
     
   section 
-    h1 Dispatcher
+    h2 Dispatcher
     
   section
     p Singleton
@@ -58,7 +58,8 @@ include ../includes/mixins
     p This payload is typically synonymous with an action.
     
   section
-    p dispatch() provides a simple, synchronous iteration through the callbacks
+    h3.lower dispatch() 
+    p provides a simple, synchronous iteration through the callbacks
     
   section
     pre.
@@ -71,10 +72,11 @@ include ../includes/mixins
           });
         }
       });
+      
       </code>
     
   section 
-    h1 Actions
+    h2 Actions
     
   section 
     p Used to update data via user interaction or other changes in the UI.
@@ -101,10 +103,11 @@ include ../includes/mixins
           query: query
         });
       },
+      
       </code>
   
   section 
-    h1 Stores
+    h2 Stores
     
   section
     p Contain the application state and logic.
@@ -138,6 +141,7 @@ include ../includes/mixins
         this.register(events);
         return this;
       },
+      
       </code>
       
   section
@@ -160,13 +164,14 @@ include ../includes/mixins
           return true;
         });
       }
+      
       </code>
       
   section
     p Notice that the callback is expecting the Store's method to return a promise so that it know to emit a change. 
     
   section
-    h1 axios
+    h2 axios
     p Cool library to simplify HTTP calls
     p 
       a(href="https://github.com/mzabriskie/axios") API on Github

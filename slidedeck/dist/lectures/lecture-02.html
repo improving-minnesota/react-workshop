@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Lecture 02 - React Basics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Lecture 02 - React Basics">
+    <link href="/react-workshop/assets/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/react-workshop/assets/css/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-state="index-slide" class="index-section">
+          <div class="sliding-image-container"><img src="/react-workshop/assets/img/react-logo.png" class="animate-logos image1"><img src="/react-workshop/assets/img/flux-logo.png" class="animate-logos image2"><img src="/react-workshop/assets/img/gulp-logo.png" class="animate-logos image3"><img src="/react-workshop/assets/img/browserify-logo.png" class="animate-logos image4"><img src="/react-workshop/assets/img/bower-logo.png" class="animate-logos image5"></div>
+          <div class="fading-header-container">
+            <h1 class="plain animate-headers image1">React</h1>
+            <h1 class="plain animate-headers image2">Flux</h1>
+            <h1 class="plain animate-headers image3">Gulp</h1>
+            <h1 class="plain animate-headers image4">Browserify</h1>
+            <h1 class="plain animate-headers image5">Bower.js</h1>
+          </div>
+          <h3 class="plain">React Basics</h3>
+          <h4 class="plain">Lecture 02</h4>
+        </section>
+        <section>
+          <h1>React</h1>
+          <p><a href="http://facebook.github.io/react/index.html">website</a></p>
+        </section>
+        <section>
+          <p>A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES</p>
+        </section>
+        <section>
+          <h1>Virtual Dom</h1>
+        </section>
+        <section>
+          <p>Replica of the Browser DOM</p>
+          <p>React redraws the entire screen on change</p>
+          <p>React calculates the minimum amount of changes</p>
+        </section>
+        <section>
+          <p><a href="http://facebook.github.io/react/docs/glossary.html">More info?</a></p>
+        </section>
+        <section>
+          <p>For a bare-bones React component, we need to know about 2 top level api methods: </p>
+          <ul>
+            <li>React.createClass();</li>
+            <li>React.render();</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="lower">React.createClass();</h2>
+        </section>
+        <section>
+          <p>Creates a component class, given a specification. </p>
+          <p>A component implements a render method which returns one single child. </p>
+          <p>That child may have an arbitrarily deep child structure. </p>
+          <p>They are convenience wrappers that construct backing instances (via new) for you.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var React = require('react/addons');
+var Hello = React.createClass({
+  render: function () {...}
+});
+
+module.exports = Hello;
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2>Component Specifications</h2>
+        </section>
+        <section>
+          <h2 class="lower">render()</h2>
+          <p>Required</p>
+          <p>Return a single child component. </p>
+          <p>Either a virtual representation of a native DOM component or composite component.</p>
+        </section>
+        <section>
+          <h2 class="lower">render()</h2>
+          <p>Return null (or false) to indicate that you don't want anything rendered. </p>
+          <p>React renders a &lt;noscript&gt; tag to work with our current diffing algorithm.</p>
+          <p>When returning null or false, React.findDOMNode(this) will return null.</p>
+        </section>
+        <section>
+          <h2 class="lower">render()</h2>
+          <p>Should be pure</p>
+          <p>Does not modify component state</p>
+          <p>Returns the same result each time it's invoked</p>
+          <p>Does not read from or write to the DOM. </p>
+          <p>Perform work in componentDidMount() or the other lifecycle methods.</p>
+        </section>
+        <section>
+          <h2 class="lower">getInitialState()</h2>
+          <p>Invoked once before the component is mounted. </p>
+          <p>The return value will be used as the initial value of this.state.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+getInitialState: function () {
+  return {
+    saveText: 'Update',
+    employee: {},
+    errors: {}
+  };
+},
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2 class="lower">getDefaultProps()</h2>
+          <p>Invoked once and cached when the class is created. </p>
+          <p>Values in the mapping will be set on this.props if that prop is not specified by the parent component.</p>
+        </section>
+        <section>
+          <h2 class="lower">getDefaultProps()</h2>
+          <p>This method is invoked before any instances are created and thus cannot rely on this.props. </p>
+          <p>Objects returned will be shared across instances, not copied.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+getDefaultProps: function() {
+  return {
+    maxVisible: 5
+  };
+},
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2 class="lower">propTypes: {}</h2>
+          <p>The propTypes object allows you to validate props being passed to your components. </p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+propTypes: {
+  max:        React.PropTypes.number.isRequired,
+  maxVisible: React.PropTypes.number,
+  onChange:   React.PropTypes.func.isRequired
+},
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2 class="lower">mixins: []</h2>
+          <p>The mixins array allows you to use mixins to share behavior among multiple components. </p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+mixins: [
+  Router.Navigation,
+  Router.State,
+  EmployeeMixin
+],
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2 class="lower">statics: {}</h2>
+          <p>The statics object allows you to define static methods that can be called on the component class. </p>
+          <p>Methods defined within this block are static, meaning that you can run them before any component instances are created.</p>
+        </section>
+        <section>
+          <h2 class="lower">statics: {}</h2>
+          <p>Methods do not have access to the props or state of your components. </p>
+          <p>If you want to check the value of props in a static method, have the caller pass in the props as an argument to the static method.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+statics: {
+  willTransitionTo: function (transition, params) {
+    return LoginStore.requireAuthenticatedUser(transition);
+  }
+},
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2 class="lower">displayName: ""</h2>
+          <p>Used in debugging messages. </p>
+          <p>JSX sets this value automatically.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+displayName: 'super-cool-thingy'
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h1>JSX</h1>
+        </section>
+        <section>
+          <p>JavaScript syntax extension that looks similar to XML. </p>
+          <p>Compiles to actual Javascript which you will be able to see during labs.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+render : function () {
+
+ return (
+  &lt;div className="ui message"&gt;
+    &lt;div className="ui huge header"&gt;{this.state.greeting}&lt;/div&gt;
+    &lt;div className="ui large header"&gt;{this.props.friend}&lt;/div&gt;
+  &lt;/div&gt;
+ );
+}
+
+</code>
+</pre>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+render : function () {
+  return (
+    React.createElement("div", {className: "ui message"}, 
+      React.createElement("div", {className: "ui huge header"}, this.state.greeting), 
+      React.createElement("div", {className: "ui large header"}, this.props.friend)
+    )
+  );
+}
+
+</code>
+</pre>
+        </section>
+        <section>
+          <p>React's JSX uses the upper vs. lower case convention to distinguish between local component classes and HTML tags.</p>
+          <ul>
+            <li>UpperCase = Component</li>
+            <li>lowercase = tag</li>
+          </ul>
+        </section>
+        <section>
+          <p>Since JSX is JavaScript, identifiers such as class and for are discouraged as XML attribute names. </p>
+          <ul>
+            <li>htmlFor = for</li>
+            <li>className = class</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="lower">React.render()</h2>
+          <p>Renders a ReactElement into the DOM in the supplied container.</p>
+          <p>Returns a reference to the component.</p>
+          <p>Replaces the contents of the container node you pass in.</p>
+        </section>
+        <section>
+          <h2 class="lower">React.render()</h2>
+          <p>If the ReactElement was previously rendered into container, this will perform an update on it and only mutate the DOM as necessary to reflect the latest React component.</p>
+        </section>
+        <section>
+          <h2 class="lower">React.render()</h2>
+          <p>If the optional callback is provided, it will be executed after the component is rendered or updated.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+React.render(&lt;Hello friend="WoooHooo"/&gt;, document.getElementById('app'));
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2>Data: State vs. Props</h2>
+        </section>
+        <section>
+          <p>"props" are the data that you pass into your component via attributes</p>
+          <p>Used for application data that you need to display or manage with your component.</p>
+        </section>
+        <section>
+          <p>"state" is your components internally scoped ... state.</p>
+          <p>Used for your components behaviors: open, disabled, submitted, etc. </p>
+        </section>
+        <section>
+          <p>One exception: "Controller" components</p>
+          <p>They will have a state that represents the application data</p>
+          <p>They pass their state as props to thier children components</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+render : function () {
+  return (
+    &lt;EmployeeForm employee={this.state.employee}
+      errors={this.state.errors}
+      validateAll={this.validateAll}
+      hasErrors={this.hasErrors}
+      saveText={this.state.saveText}
+      onSave={this.saveEmployee}
+      validate={this.validate}
+      toggleAdmin={this.toggleAdmin} /&gt;
+  );
+}
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2>Component Lifecycle</h2>
+        </section>
+        <section>
+          <h2 class="lower">Mounting: </h2>
+          <h3 class="lower">componentWillMount</h3>
+          <p>Invoked once, both on the client and server.</p>
+          <p>Immediately before the initial rendering occurs. </p>
+        </section>
+        <section>
+          <h3 class="lower">componentWillMount</h3>
+          <p>If you call setState within this method, render() will see the updated state.</p>
+          <p>Executed only once despite the state change.</p>
+        </section>
+        <section>
+          <h2 class="lower">Mounting: </h2>
+          <h3 class="lower">componentDidMount</h3>
+          <p>Invoked once, only on the client (not on the server).</p>
+          <p>Immediately after the initial rendering occurs. </p>
+          <p>Has a DOM representation which you can access via React.findDOMNode(this).</p>
+        </section>
+        <section>
+          <p>Perform in this method: </p>
+          <ul>
+            <li>Integration with other JavaScript frameworks.</li>
+            <li>Set timers using setTimeout or setInterval.</li>
+            <li>Send AJAX requests.</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="lower">Updating: </h2>
+          <h4 class="lower">componentWillReceiveProps(object nextProps)</h4>
+          <p>Invoked when a component is receiving new props. </p>
+          <p>This method is not called for the initial render.</p>
+        </section>
+        <section>
+          <h4 class="lower">componentWillReceiveProps(object nextProps)</h4>
+          <p>Used to react to a prop transition before render() is called by updating the state using this.setState(). </p>
+          <p>The old props can be accessed via this.props. </p>
+          <p>Calling this.setState() within this function will not trigger an additional render.</p>
+        </section>
+        <section>
+          <h2 class="lower">Updating: </h2>
+          <h4 class="lower">shouldComponentUpdate(object nextProps, object nextState)</h4>
+          <p>Invoked before rendering when new props or state are being received. </p>
+          <p>This method is not called for the initial render or when forceUpdate is used.</p>
+        </section>
+        <section>
+          <h4 class="lower">shouldComponentUpdate(object nextProps, object nextState)</h4>
+          <p>Return false when you're certain that the transition to the new props and state will not require a component update.</p>
+          <p>render() will be completely skipped until the next state change. </p>
+          <p>componentWillUpdate and componentDidUpdate will not be called.</p>
+        </section>
+        <section>
+          <h2 class="lower">Updating: </h2>
+          <h4 class="lower">componentWillUpdate(object nextProps, object nextState)</h4>
+          <p>Invoked immediately before rendering when new props or state are being received. </p>
+          <p>Not called for the initial render.</p>
+        </section>
+        <section>
+          <h4 class="lower">componentWillUpdate(object nextProps, object nextState)  </h4>
+          <p>Cannot use this.setState() in this method. </p>
+          <p>If you need to update state in response to a prop change, use componentWillReceiveProps instead.</p>
+        </section>
+        <section>
+          <h2 class="lower">Updating: </h2>
+          <h4 class="lower">componentDidUpdate(object prevProps, object prevState)</h4>
+          <p>Invoked immediately after the component's updates are flushed to the DOM. </p>
+          <p>Not called for the initial render.</p>
+          <p>Operate on the DOM when the component has been updated.</p>
+        </section>
+        <section>
+          <h2 class="lower">Unmounting: </h2>
+          <h3 class="lower">componentWillUnmount</h3>
+          <p>Invoked immediately before a component is unmounted from the DOM.</p>
+          <p>Perform any necessary cleanup in this method</p>
+          <ul>
+            <li>Invalidating timers</li>
+            <li>Cleaning up any DOM elements that were created in componentDidMount.</li>
+          </ul>
+        </section>
+        <section>
+          <h2 class="lower">TestUtils</h2>
+          <p>Utilities to make it easy to test React components.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var React, TestUtils;
+beforeEach(function () {
+  React = require('react/addons');
+  TestUtils = React.addons.TestUtils;
+});
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h4 class="lower">Simulate.{eventName}(DOMElement element, object eventData)</h4>
+          <p>Simulate an event dispatch on a DOM node with optional eventData event data. </p>
+          <p>Possibly the single most useful utility in ReactTestUtils.</p>
+          <p>Has a method for every event that React understands.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var button = TestUtils.findRenderedDOMComponentWithTag(cancel, 'button');
+TestUtils.Simulate.click(button);
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h4 class="lower">renderIntoDocument(ReactComponent instance)</h4>
+          <p>Render a component into a detached DOM node in the document. </p>
+          <p>This function requires a DOM.</p>
+          <p>It's the testing version of React.render()</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+EmployeeForm = require('./employee.form');
+element = TestUtils.renderIntoDocument(
+  &lt;EmployeeForm employee={employee}
+    errors={errors}
+    validate={spies.validate}
+    hasErrors={spies.hasErrors}
+    toggleAdmin={spies.toggleAdmin}
+    onSave={spies.onSave} /&gt;
+);
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2>Expectation Helpers</h2>
+        </section>
+        <section>
+          <h4 class="lower">isElement(ReactElement element)</h4>
+          <p>Returns true if element is any ReactElement.</p>
+        </section>
+        <section>
+          <h4 class="lower">isElementOfType(ReactElement element, function componentClass)</h4>
+          <p>Returns true if element is a ReactElement whose type is of a React componentClass.</p>
+        </section>
+        <section>
+          <h4 class="lower">isDOMComponent(ReactComponent instance)</h4>
+          <p>Returns true if instance is a DOM component (such as a &lt;div&gt; or &lt;span&gt;).</p>
+        </section>
+        <section>
+          <h4 class="lower">isCompositeComponent(ReactComponent instance)</h4>
+          <p>Returns true if instance is a composite component (created with React.createClass())</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+it('should instantiate the EmployeeForm', function () {
+  expect(TestUtils.isCompositeComponent(element)).to.be.true;
+});
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h4 class="lower">isCompositeComponentWithType(ReactComponent instance, function componentClass)</h4>
+          <p>Returns true if instance is a composite component (created with React.createClass()) whose type is of a React componentClass.</p>
+        </section>
+        <section>
+          <h2>DOM Query Methods</h2>
+        </section>
+        <section>
+          <h4 class="lower">scryRenderedDOMComponentsWithClass(ReactComponent tree, string className)</h4>
+          <p>Finds all instances of components in the rendered tree that are DOM components with the class name matching className.</p>
+        </section>
+        <section>
+          <h4 class="lower">findRenderedDOMComponentWithClass(ReactComponent tree, string className)</h4>
+          <p>Like scryRenderedDOMComponentsWithClass() but expects there to be one result</p>
+          <p>Throws exception if there is any other number of matches besides one.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+it('should instantiate the EmployeeForm', function () {
+  expect(TestUtils.isCompositeComponent(element)).to.be.true;
+});
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h4 class="lower">scryRenderedComponentsWithType(ReactComponent tree, function componentClass)</h4>
+          <p>Finds all instances of components with type equal to componentClass.</p>
+        </section>
+        <section>
+          <h4 class="lower">findRenderedComponentWithType(ReactComponent tree, function componentClass)</h4>
+          <p>Same as scryRenderedComponentsWithType() but expects there to be one result. </p>
+          <p>Throws exception if there is any other number of matches besides one.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var cancel = TestUtils.findRenderedComponentWithType(element, CancelButton);
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h4 class="lower">scryRenderedDOMComponentsWithTag(ReactComponent tree, string tagName)</h4>
+          <p>Finds all instances of components in the rendered tree that are DOM components with the tag name matching tagName.</p>
+        </section>
+        <section>
+          <h4 class="lower">findRenderedDOMComponentWithTag(ReactComponent tree, string tagName)</h4>
+          <p>Like scryRenderedDOMComponentsWithTag() but expects there to be one result.</p>
+          <p>Throws exception if there is any other number of matches besides one.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var button = TestUtils.findRenderedDOMComponentWithTag(cancel, 'button');
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h1>Lab 02</h1>
+          <h2>Your First React Component</h2>
+        </section>
+      </div>
+    </div>
+    <script src="/react-workshop/assets/js/app.js"></script>
+  </body>
+</html>

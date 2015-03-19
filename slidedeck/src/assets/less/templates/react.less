@@ -65,15 +65,29 @@ body {
 /*********************************************
  * HEADERS
  *********************************************/
+.highlight {
+  color: #53d1fa;
+}
+
 .reveal {
   h1, h2, h3, h4, h5, h6 {
     margin: 0 0 20px 0;
-    color: @text-color;
+    color: #53d1fa;
     font-family: "Quicksand", sans-serif;
     line-height: 0.9em;
     letter-spacing: -0.06em;
     text-transform: uppercase;
     text-shadow: none;
+
+    &.lower {
+      text-transform: none;
+      letter-spacing: 0.04em;
+      color: #53d1fa;
+    }
+
+    &.plain {
+      color: @text-color;
+    }
   }
   h1 {
     font-weight: 700;
@@ -93,7 +107,7 @@ body {
  *********************************************/
 .reveal {
   a:not(.image) {
-    color: @link-color;
+    color: @text-color;
     text-decoration: none;
     .transition-property(color);
     .transition-duration(0.15s);

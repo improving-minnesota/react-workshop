@@ -2,11 +2,11 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title>Introductions</title>
+    <title>Lecture 06 - Custom Components</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="Introductions">
+    <meta name="description" content="Lecture 06 - Custom Components">
     <link href="/react-workshop/assets/css/style.css" rel="stylesheet" type="text/css">
     <script type="text/javascript">
       if( window.location.search.match( /print-pdf/gi ) ) {
@@ -31,62 +31,62 @@
             <h1 class="plain animate-headers image4">Browserify</h1>
             <h1 class="plain animate-headers image5">Bower.js</h1>
           </div>
-          <h3>Workshop Introductions</h3>
+          <h3 class="plain">Custom Components</h3>
+          <h4 class="plain">Lecture 06</h4>
         </section>
         <section>
-          <h1><i class="fa fa-github"></i></h1>
-          <p>These slides are up on GitHub!</p><a href="https://github.com/objectpartners/react-workshop" target="_blank">objectpartners/react-workshop</a>
+          <h1>Custom Components</h1>
         </section>
         <section>
-          <h2>Introductions</h2>
+          <h2>axios interceptors</h2>
+        </section>
+        <section>
+          <p>You can actually intercept requests before they are made. </p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+axios.interceptors.request.use(
+  // successful request
+  function (config) {
+    // Do something with the request config
+    return config;
+  },
+  // errored request
+  function (err) {
+    // recover from the error?
+    return Promise.reject(err);
+  }
+);
+axios.interceptors.response.use(
+  // successful response
+  function (response) {
+    // manipulate your response before
+    // sending it to the store
+    return response;
+  },
+  // errored response
+  function (err) {
+    // attempt to recover from the error
+    return Promise.reject(err);
+  }
+);
+</code>
+</pre>
+        </section>
+        <section>
+          <h2>NProgress</h2>
+          <p><a href="http://ricostacruz.com/nprogress/">Website</a></p>
+        </section>
+        <section>
+          <h3>API</h3>
           <ul>
-            <li>Bruce Coddington<a href="https://twitter.com/brucecoddington" target="_blank"> (@brucecoddington)</a></li>
+            <li>start() : start the progress bar</li>
+            <li>done() : show the progress completed</li>
           </ul>
         </section>
         <section>
-          <h2>Workshop Objectives</h2>
-          <ul>
-            <li>React Vocabulary and Concepts</li>
-            <li>Flux Components and Flow</li>
-            <li>Familiarity with Modern JS Tools</li>
-          </ul>
-        </section>
-        <section>
-          <h1>Topics</h1>
-          <ul>
-            <li>Project Setup and Build Tools</li>
-            <li>React Basics</li>
-            <li>Flux</li>
-            <li>Routing </li>
-            <li>Forms and Validation</li>
-            <li>Custom Components</li>
-          </ul>
-        </section>
-        <section>
-          <h2>Format</h2>
-          <ul>
-            <li>Lecture</li>
-            <li>Individual Labs</li>
-            <li>Review</li>
-            <li>Repeat</li>
-          </ul>
-        </section>
-        <section>
-          <h1>The Lab</h1>
-        </section>
-        <section>
-          <h2>Timesheetz</h2>
-          <p>We will build a fully-functioning React/Flux application together.</p>
-          <p>It is an application for tracking and updating timesheets. Woot Woot.</p>
-        </section>
-        <section>
-          <h2>Teammates</h2>
-          <ul>
-            <li><strong>Designers</strong>: Will provide styles and page designs.</li>
-            <li><strong>Server Team</strong>: Provide a REST Api and NodeJs application server.</li>
-            <li><strong>Product Owners</strong>: Provide us with requirements along the way.</li>
-            <li><strong>Front End Team</strong>: This is all of us and we are awesome!</li>
-          </ul>
+          <h1>Lab 6</h1>
+          <h2>External Libraries and Custom Components</h2>
         </section>
       </div>
     </div>

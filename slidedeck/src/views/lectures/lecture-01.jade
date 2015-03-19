@@ -6,7 +6,7 @@ include ../includes/mixins
 
   section
     h1 NPM
-    p
+    p.plain
       a(href="https://www.npmjs.org") npmjs.org
 
   section
@@ -57,6 +57,7 @@ include ../includes/mixins
       <code class="json" data-trim>
       var React = require('react/addons');
       var myModule = require('./modules/myModule');
+      
       </code>
       
     p Can be either .js or .jsx
@@ -65,6 +66,7 @@ include ../includes/mixins
     pre.
       <code class="json" data-trim>
       % browserify main.js
+      
       </code>
     
   section
@@ -79,6 +81,7 @@ include ../includes/mixins
     pre.
       <code class="json" data-trim>
       % browserify -t reactify main.js
+      
       </code>
     
   section
@@ -102,38 +105,43 @@ include ../includes/mixins
           .pipe(livereload())
           .on('error', gutil.log.bind(gutil, 'Error during minification.'));
       });
+      
       </code>
       
   section
-    p How do we run our tasks?
+    p.centered How do we run our tasks?
     pre.
       <code class="json" data-trim>
       gulp uglify
+      
       </code>
       
   section
     pre.
       <code class="json" data-trim>
       gulp watch:dev
+      
       </code>
     
-    p Watches our code for changes and re-runs the build.
+    p.centered Watches our code for changes and re-runs the build.
       
   section
     pre.
       <code class="json" data-trim>
       gulp serve:dev
+      
       </code>
       
-    p Starts our Hapi server and serves our static content.
+    p.centered Starts our Hapi server and serves our static content.
     
   section
     pre.
       <code class="json" data-trim>
       gulp test
+      
       </code>
       
-    p Runs our unit tests via the Karma test runner. 
+    p.centered Runs our unit tests via the Karma test runner. 
     
   section 
     h1 Hapi
@@ -165,7 +173,7 @@ include ../includes/mixins
       describe('when there is no message', function () {
         beforeEach(function () {
           Snackbar = require('./snackbar');
-          element = TestUtils.renderIntoDocument(<Snackbar />);
+          element = TestUtils.renderIntoDocument(&lt;Snackbar /&gt;);
         });
 
         it('should hide the snackbar', function () {
@@ -173,15 +181,16 @@ include ../includes/mixins
           expect(div.props.className).contains('hide');
         });
       });
+      
       </code>
       
   section
     p Reporter in Terminal
-    img(src="#{basePath}/assets/img/lecture-01/gulp.test.png")
+    img(src="/react-workshop/assets/img/lecture-01/gulp.test.png")
       
   section
     p HTML Reporter
-    img(src="#{basePath}/assets/img/lecture-01/mocha.htmlreporter.png")
+    img(src="/react-workshop/assets/img/lecture-01/mocha.htmlreporter.png")
     
   section
     h1 Chai
@@ -201,12 +210,13 @@ include ../includes/mixins
     p No dependencies, works with any unit testing framework.
       
   section
-    p Used with sinon-chai
+    p.centered Used with sinon-chai
     pre.
       <code class="json" data-trim>
       spies.transitionTo = sinon.stub(element, 'transitionTo');
       
       expect(spies.transitionTo).to.have.been.calledWith('employees.create');
+      
       </code>
     
   section
@@ -236,6 +246,7 @@ include ../includes/mixins
       };
 
       EmployeeDetail = proxyquire('./employee.detail', proxies);
+      
       </code>
     
   section
@@ -249,7 +260,7 @@ include ../includes/mixins
       a(href="http://karma-runner.github.io/0.12/index.html") karma-runner.github.io
       
   section
-    p Test runner build orginally for Angular
+    p Test runner built orginally for Angular
     p Runs tests in multiple browsers
     
   section
@@ -291,4 +302,4 @@ include ../includes/mixins
 
   section
     h1 Lab 01
-    h2 Application Setup
+    h2.plain Application Setup

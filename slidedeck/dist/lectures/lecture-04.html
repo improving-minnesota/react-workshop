@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Lecture 04 - Flux</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Lecture 04 - Flux">
+    <link href="/react-workshop/assets/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/react-workshop/assets/css/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-state="index-slide" class="index-section">
+          <div class="sliding-image-container"><img src="/react-workshop/assets/img/react-logo.png" class="animate-logos image1"><img src="/react-workshop/assets/img/flux-logo.png" class="animate-logos image2"><img src="/react-workshop/assets/img/gulp-logo.png" class="animate-logos image3"><img src="/react-workshop/assets/img/browserify-logo.png" class="animate-logos image4"><img src="/react-workshop/assets/img/bower-logo.png" class="animate-logos image5"></div>
+          <div class="fading-header-container">
+            <h1 class="plain animate-headers image1">React</h1>
+            <h1 class="plain animate-headers image2">Flux</h1>
+            <h1 class="plain animate-headers image3">Gulp</h1>
+            <h1 class="plain animate-headers image4">Browserify</h1>
+            <h1 class="plain animate-headers image5">Bower.js</h1>
+          </div>
+          <h3 class="plain">Flux</h3>
+          <h4 class="plain">Lecture 04</h4>
+        </section>
+        <section>
+          <h1>Flux</h1>
+        </section>
+        <section>
+          <h3 class="lower">Three major parts</h3>
+          <ul>
+            <li>the dispatcher</li>
+            <li>the stores</li>
+            <li>the views (React components)</li>
+          </ul>
+        </section>
+        <section>
+          <p>Not MVC</p>
+          <p>Controllers do exist in a Flux application, but they are controller-views</p>
+        </section>
+        <section>
+          <h3>Controller Components</h3>
+          <p>Views at the top of the hierarchy that retrieve data from the stores</p>
+          <p>Pass data down to their children.</p>
+        </section>
+        <section>
+          <h3>Action creators</h3>
+          <p>Dispatcher helper methods</p>
+          <p>Support a semantic API that describes all changes that are possible in the application. </p>
+        </section>
+        <section>
+          <p>Unidirectional data flow. </p>
+          <p>When a user interacts with a React view, the view propagates an action.</p>
+          <p>The stores react and fire an event</p>
+          <p>All interested other views update accordingly. </p>
+        </section>
+        <section><img src="/react-workshop/assets/img/lecture-04/flux.diagram.png"></section>
+        <section>
+          <h2>Dispatcher</h2>
+        </section>
+        <section>
+          <p>Singleton</p>
+          <p>Central hub of data flow in a Flux application. </p>
+        </section>
+        <section>
+          <p>Essentially a registry of callbacks.</p>
+          <p>Can invoke these callbacks in order. </p>
+        </section>
+        <section>
+          <p>Each store registers a callback with the dispatcher. </p>
+          <p>When new data comes into the dispatcher, it then uses these callbacks to propagate that data to all of the stores. </p>
+        </section>
+        <section>
+          <p>Initiated through the dispatch() method</p>
+          <p>Takes a data payload object as its sole argument. </p>
+          <p>This payload is typically synonymous with an action.</p>
+        </section>
+        <section>
+          <h3 class="lower">dispatch() </h3>
+          <p>provides a simple, synchronous iteration through the callbacks</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+var dispatcher = _.extend(new Dispatcher(), {
+  handleViewAction: function(action) {
+    this.dispatch({
+      source: 'VIEW_ACTION',
+      action: action
+    });
+  }
+});
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2>Actions</h2>
+        </section>
+        <section>
+          <p>Used to update data via user interaction or other changes in the UI.</p>
+          <p>Data is packaged into an action</p>
+          <ul>
+            <li>Object literal containing the new fields of data.</li>
+            <li>Specific action type. </li>
+          </ul>
+        </section>
+        <section>
+          <p>Identified by a type attribute. </p>
+          <p>Stores typically use this attribute to determine if and how they should respond to it. </p>
+        </section>
+        <section>
+          <p>Stores and views control themselves.</p>
+          <p>They are not acted upon by external objects. </p>
+          <p>Actions flow into the stores through the callbacks they define and register.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+list: function (query) {
+  dispatcher.handleViewAction({
+    actionType: 'list',
+    query: query
+  });
+},
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h2>Stores</h2>
+        </section>
+        <section>
+          <p>Contain the application state and logic.</p>
+          <p>Somewhat similar to a model in a traditional MVC</p>
+          <p>They manage the state of many objects.</p>
+          <p>They do not represent a single record of data like ORM models do.</p>
+        </section>
+        <section>
+          <p>Registers itself with the dispatcher and provides it with a callback. </p>
+          <p>Callback receives the action as a parameter. </p>
+          <p>Interpret the action and to provide the proper hooks into the store's internal methods. </p>
+          <p>This allows an action to result in an update to the state of the store, via the dispatcher. </p>
+        </section>
+        <section>
+          <p>After the stores are updated, they broadcast an event.</p>
+          <p>Declare that their state has changed.</p>
+          <p>Views query the new state and update themselves.</p>
+        </section>
+        <section>
+          <p>Let's look at the base Store that other's extend</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+// The initialize function of an extended Store
+initialize: function () {
+  var events = {};
+  events['list']    = this.list;
+  events['get']     = this.get;
+  events['update']  = this.update;
+  this.register(events);
+  return this;
+},
+
+</code>
+</pre>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+register: function (events) {
+  var self = this;
+  
+  // calling the dispatcher's register method
+  dispatcher.register(function (payload) {
+    var action = payload.action;
+    var promise = events[action.actionType];
+    
+    if (!_.isUndefined(promise)) {
+      promise.apply(self, [payload])
+        .then(function () {
+          self.emitChange();
+        });
+    }
+    return true;
+  });
+}
+
+</code>
+</pre>
+        </section>
+        <section>
+          <p>Notice that the callback is expecting the Store's method to return a promise so that it know to emit a change. </p>
+        </section>
+        <section>
+          <h2>axios</h2>
+          <p>Cool library to simplify HTTP calls</p>
+          <p><a href="https://github.com/mzabriskie/axios">API on Github</a></p>
+        </section>
+        <section>
+          <h1>Lab 04</h1>
+          <h2>Adding Flux to Timesheetz</h2>
+        </section>
+      </div>
+    </div>
+    <script src="/react-workshop/assets/js/app.js"></script>
+  </body>
+</html>

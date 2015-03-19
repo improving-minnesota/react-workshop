@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Lecture 05 - React Forms Validation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Lecture 05 - React Forms Validation">
+    <link href="/react-workshop/assets/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '/react-workshop/assets/css/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+      
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-state="index-slide" class="index-section">
+          <div class="sliding-image-container"><img src="/react-workshop/assets/img/react-logo.png" class="animate-logos image1"><img src="/react-workshop/assets/img/flux-logo.png" class="animate-logos image2"><img src="/react-workshop/assets/img/gulp-logo.png" class="animate-logos image3"><img src="/react-workshop/assets/img/browserify-logo.png" class="animate-logos image4"><img src="/react-workshop/assets/img/bower-logo.png" class="animate-logos image5"></div>
+          <div class="fading-header-container">
+            <h1 class="plain animate-headers image1">React</h1>
+            <h1 class="plain animate-headers image2">Flux</h1>
+            <h1 class="plain animate-headers image3">Gulp</h1>
+            <h1 class="plain animate-headers image4">Browserify</h1>
+            <h1 class="plain animate-headers image5">Bower.js</h1>
+          </div>
+          <h3 class="plain">React Forms Validation</h3>
+          <h4 class="plain">Lecture 05</h4>
+        </section>
+        <section>
+          <h1>React Forms</h1>
+        </section>
+        <section>
+          <p>&lt;input&gt;, &lt;textarea&gt;, and &lt;option&gt; differ from other native components.</p>
+          <p>Mutated via user interactions. </p>
+          <p>Provide interfaces to manage forms in response to user interactions.</p>
+        </section>
+        <section>
+          <h2>Interactive Props</h2>
+        </section>
+        <section>
+          <p>Props affected via user interactions:</p>
+          <ul>
+            <li>value:     supported by input and textarea.</li>
+            <li>checked:   supported checkbox or radio.</li>
+            <li>selected:  supported by option.</li>
+          </ul>
+        </section>
+        <section>
+          <p>Form components allow listening for changes.</p>
+          <p>Set a callback to the onChange prop. </p>
+          <p>Callback fires when: </p>
+          <ul>
+            <li>The value changes.</li>
+            <li>Checked state changes.</li>
+            <li>Selected state changes.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Controlled Components</h2>
+        </section>
+        <section>
+          <p>Any &lt;input&gt; with value set is a controlled component. </p>
+          <p>Value of the rendered element will always reflect the value prop. </p>
+        </section>
+        <section>
+          <h2>Uncontrolled Components</h2>
+        </section>
+        <section>
+          <p>Any &lt;input&gt; that does not supply a value (or sets it to null).</p>
+          <p>Value of the rendered element will reflect the user's input.</p>
+        </section>
+        <section>
+          <h2>Validation </h2>
+        </section>
+        <section>
+          <p>We can now use controlled components in our form to enforce validation.</p>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+&lt;form name="employeeForm"&gt;
+  &lt;input name="username" 
+    value={this.props.employee.username}
+    onChange={this.props.validate} /&gt;
+&lt;/form&gt;
+
+</code>
+</pre>
+        </section>
+        <section>
+          <pre><code class="json" data-trim>
+validate: function (event) {
+  var field = event.target.name;
+  var value = event.target.value;
+  
+  // min length 1
+  if (!value || value.length &lt; 1) {
+    this.state.errors[field] = 
+      'You must provide a username.';
+  }
+  // max length 40
+  else if (value.length &gt; 40) {
+    this.state.errors[field] = 
+      'Username can only be 40 characters long.';
+  }
+  
+  this.props.employee[field] = value;
+  return this.setState({
+    employee: this.state.employee, 
+    errors: this.state.errors
+  });
+},
+
+</code>
+</pre>
+        </section>
+        <section>
+          <h1>lab prep</h1>
+          <p>LoginStore and LoginActions</p>
+        </section>
+        <section>
+          <h1>Lab 5</h1>
+          <h2>React Form Validation</h2>
+        </section>
+      </div>
+    </div>
+    <script src="/react-workshop/assets/js/app.js"></script>
+  </body>
+</html>
