@@ -1,0 +1,14 @@
+{
+  "name": "jquery.classList",
+  "homepage": "https://github.com/mzgol/jquery.classList",
+  "version": "0.2.0",
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.0",
+    "commit": "b149428130d2cfe0c0cc07fe28b74b68a98a3ed8"
+  },
+  "_source": "git://github.com/mzgol/jquery.classList.git",
+  "_target": "*",
+  "_originalSource": "jquery.classList"
+}
