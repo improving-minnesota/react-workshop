@@ -473,7 +473,7 @@ saveEmployee: function (event) {
 
 ```
 
-- Finally we just need to use the form and pass it all of the props it is expecting in our `render()` method.
+- Finally, we just need to use the form and pass it all of the props it is expecting in our `render()` method.
 
 ```javascript
 render : function () {
@@ -493,7 +493,8 @@ render : function () {
 &nbsp;
 ## Test the Employee Detail Component
 
-- Open **client/src/components/employee.detail.spec.js** and add the following tests:
+- Open **client/src/components/employee.detail.spec.js**
+- Uncomment the spies and add the following suites:
 
 ```javascript
 describe('getting the employee', function () {
@@ -550,9 +551,10 @@ describe('saving an employee', function () {
 
 - Run the tests and verify that they pass before moving on to the next section.
 
+## Add navigation to the Employee Detail Component
 
-- We've got an Employee Detail route, but don't have a way to get to it yet.
-- We're going to make it so that when you click an **EmployeeRow** we navigate to the appropriate detail route for that employee.
+- We have an Employee Detail route, but there's no way to get to it yet.
+- We're going to functionality so that when you click an **EmployeeRow**, navigate to the appropriate detail route for the employee.
 
 
 - Open **client/src/components/employees/employee.row.jsx**
@@ -563,7 +565,7 @@ describe('saving an employee', function () {
 showDetail: function showDetail () {
   var employee = this.props.employee;
   if (employee.deleted) {
-    console.log('You cannot edit a deleted employee.');
+    SnackbarActions.error('You cannot edit a deleted employee.');
     return;
   }
   this.props.store.setState({employee: employee});
@@ -577,10 +579,10 @@ showDetail: function showDetail () {
 <tr className={classNames} ref={employee._id} onClick={this.showDetail}>
 ```
 
-- Let's test that clicking the row actually navigates where it is supposed to:
+- Let's test that clicking the row actually navigates to where it's supposed to:
 
 - Open **client/src/components/employees/employee.row.spec.js**
-- Add the following tests:
+- Add the following suites to the end of the **Employee Row Component** suite:
 
 ```javascript
 describe('clicking the row', function () {
@@ -634,12 +636,12 @@ describe('clicking the row', function () {
 });
 ```
 
-- Run the tests and verify that they pass before moving to the next section.
-  - You'll have to uncomment the spies for them to work.
+- Run the tests and verify that all of them pass before moving to the next section.
 
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
@@ -742,7 +744,7 @@ describe('saving an employee', function () {
 });
 ```
 
-- We need a way to get there, so let's add a button in the **Employees** component to navigate us to the create employee route.
+- Now, we need a way to get there.  Let's add a button in the **Employees** component that navigates to the create employee route.
 
 - Open **client/src/components/employees.jsx**
 
@@ -765,7 +767,7 @@ describe('saving an employee', function () {
 </div>
 ```
 
-- And then, of course, test it:
+- Then, lets test it, of course!:
 
 - In **client/src/components/employees.spec.js** add:
 
@@ -784,6 +786,7 @@ describe('clicking the new employee button', function () {
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
