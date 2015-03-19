@@ -49,7 +49,7 @@ Checking connectivity... done.
 - Change directories to the lab main directory.
 
 ```
-cd react-workshop
+cd react-timesheet
 ```
 
 - Now let's checkout the `lab-1-setup` branch.
@@ -104,12 +104,5 @@ gulp serve:dev
 - Verify that you see the welcome page.
 
 ![](img/lab01/welcome.png)
-
-### Commit your changes to Git
-
-```
-git add .
-git commit -m 'Project started successfully'
-```
 
 ##### Now let's check out our project's structure so we know what goes where.
