@@ -97,7 +97,7 @@ statics: {
 },
 ```
 
-- Now let's test that it is working.
+- Now, let's test that it is working.
 - Open **client/src/components/app.spec.js** and add the suite below:
 
 ```javascript
@@ -138,7 +138,7 @@ componentWillUnmount: function () {
 },
 ```
 
-- Next let's create the JSX to display a login form: (yeah..you can copy/paste this)
+- Next, let's create the JSX to display a login form: (yeah..you can copy/paste this)
 
 ```javascript
 render: function () {
@@ -199,7 +199,7 @@ onChange={this.validate}
 
 - We need to implement these two callbacks.
 
-- Since input's are controlled components they will not automatically update themselves just by having your user type into them.
+- Since inputs are controlled components, they will not automatically update themselves when the user types into them.
 - Controlled components force you to deliberately handle changes to the input. This makes it very easy to write custom validation for any of your form inputs.
 
 - We don't really need to validate either form inputs, so we can just update our store and component state with the value:
@@ -220,12 +220,13 @@ handleSubmit: function (event) {
 },
 ```
 
-> Note that we needed to prevent the default behavior of the submit event so that our browser didn't try to do a traditional form submit. Remember this is just Javascript. **React** is not doing any magic for us under the covers to overwrite the default behavior of the browser.
+> Note that we needed to prevent the default behavior of the submit event.  That way, the browser doesn't try to do a traditional form submit. Remember, this is just Javascript. **React** is not doing any magic for us under the covers to override the default behavior of the browser.
 
 
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
@@ -242,16 +243,16 @@ handleSubmit: function (event) {
 - Now that we can log in to our application, let's set up a way to edit an employee.
 
 &nbsp;
-###### Before we get started, take the time to look at our custom form components already implemented for us.
+###### Before we get started, take the time to look at the custom form components already implemented for us.
 
 - The first component we need is a form to contain all of our employee's properties.
 - Open **client/src/components/employees.form.jsx**.
 
-- This form has several more props than any component we've made so far so let's review them:
+- This form has more props than any component we've made so far, so let's review them:
   - employee : the employee we will be editing
   - errors: an object containing validation errors
   - validate: the function to be called upon a form input value change
-  - validateAll: the function to call to validate the entire form
+  - validateAll: the function to validate the entire form
   - hasErrors: a function that can be called to determine if any of the form inputs have validation errors
   - toggleAdmin: a helper function to toggle the boolean value of `employee.admin`
   - onSave: the callback to call when the user submits the form
@@ -287,7 +288,7 @@ onCancel: function (event) {
 },
 ```
 
-- Now it's time to draw our `render()` method with the JSX to build the form:
+- Now it's time to draw our `render()` method with the JSX we'll use to build the form:
 
 ```javascript
 render : function () {
@@ -346,7 +347,7 @@ render : function () {
 > Notice that we are not actually implementing the save function. That is left for the component that uses this form to implement and pass it in as a prop.
 
 - Time to test the form.
-- For time's sake, we'll just test the functionality of the cancel button, because it will highlight some more coolness of **TestUtils**.
+- For time's sake, we'll just test the functionality of the cancel button.  This will highlight some more coolness of **TestUtils**.
 
 - Open **client/src/components/employees.form.spec.js**.
 
@@ -369,7 +370,7 @@ describe('clicking the cancel button', function () {
 });
 ```
 
-- Run the tests and validate it passes before going to the next section.
+- Run the tests and validate that they all pass before going to the next section.
 
 &nbsp;
 ## Add the Form into an Employee Detail Component
