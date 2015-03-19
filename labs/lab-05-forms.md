@@ -9,12 +9,14 @@ git checkout lab-05-forms-start
 git pull
 ```
 
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-05-forms-start branch.
+
 &nbsp;
 ### Check it out!
 
-- Let's see what pull requests have been merged into our code base during the slides.
-  - The biggest change is that our server team has added cookie-based security so we need to create a login form and all the flux components needed for that.
-  - The file for the components needed to edit and or create an employee have been created for you, but they need to be hooked up.
+- Let's look at the progress that has already been completed on the application by the rest of the team.
+  - The biggest change is that our server team has added cookie-based security.  We need to create a login form and all the flux components needed for that.
+  - The component files needed to create and edit an employee have been created for you.  You will need to implement them.
   - You'll also notice that **React Router** mixins have been added to some of our previous components. More on that later.
 
 &nbsp;
@@ -48,7 +50,7 @@ git pull
 </Route>
 ```
 
-> Take the time to check out the path declarations and how they are adding route params, via a colon, that are dynamically replaced.
+> Take the time to check out the path declarations and how they are adding route params that are dynamically replaced.
 
 
 &nbsp;
@@ -63,8 +65,8 @@ git pull
 
 
 - Let's implement that right now:
-- Open **client/src/main.jsx**
-- Add the call to the `LoginStore.current()` to our bootstrap process.
+  - Open **client/src/main.jsx**
+  - Add the call to the `LoginStore.current()` to our bootstrap process.
 
 ```javascript
 // Attempt to get a current user session
@@ -78,11 +80,11 @@ LoginStore.current()
   });
 ```
 
-- Another way that we can secure the application is by using **react-router**'s `willTransitionTo()` static method that it adds to components that are used as handlers.
+- Another way we can secure the application is by using **react-router**'s `willTransitionTo()` static method.  This method adds components that are used as handlers.
   - The `willTransitionTo()` method is expecting a **Promise** to be returned in its implementation.
   - It will block the transition until the promise has been resolved.
 
-- The **LoginStore** also has a `requireAuthenticatedUser()` method that returns a **Promise** that resolves upon a successful authentication.  
+- The **LoginStore** also has a `requireAuthenticatedUser()` method that returns a **Promise** which resolves on successful authentication.  
 
 - Let's implement `willTransitionTo()` in our **App** component.
 - Open **client/src/components/app.jsx** and add the statics array block:
@@ -96,7 +98,7 @@ statics: {
 ```
 
 - Now let's test that it is working.
-- Open **client/src/components/app.spec.js** and add the test:
+- Open **client/src/components/app.spec.js** and add the suite below:
 
 ```javascript
 describe('during the will transition to lifecyle', function () {
@@ -106,7 +108,7 @@ describe('during the will transition to lifecyle', function () {
   });
 });
 ```
-- Run the tests and make sure it passes before moving on.
+- Run the tests and make sure the all pass before moving on.
 
 &nbsp;
 ## Add a Login Form Component
