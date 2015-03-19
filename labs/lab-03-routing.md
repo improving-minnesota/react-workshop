@@ -7,19 +7,21 @@
 git checkout lab-03-routing-start
 git pull
 ```
-&nbsp;
+
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-03-routing-start branch.
+
 ### Check it out!
 
-- Before doing anything, let's look at the progress that has already been completed by the team on the application.
+- Before doing anything, let's look at the progress that has already been completed on the application by the rest of the team.
   - Peruse the **client/src/components** directory and notice that the **Projects** and **Timesheets** modules have been implemented by the team.
   - You will be building out the **Employees** module and adding a **Navbar** to the app to enable navigation.
   - The module files have been stubbed out for you, we just need to add the codez.
 
 &nbsp;
-## Create our Application's Routes
+## Creating our Application's Routes
 
 - Open **client/src/routes.jsx**
-- Let's start by importing the component classes that we are going to use as our **Handlers** for our routes:
+- Let's start by importing the component classes that we're going to use as the **Handlers** for our routes:
 
 ```javascript
 var App = require('./components/app');
@@ -31,9 +33,9 @@ var Timesheets = require('./components/timesheets/timesheets');
 
 - Next let's configure our routes:
   - We need a container route `app` to contain our application skeleton.
-  - We need separate sibling routes for **Projects**, **Employees**, and **Timesheets** to populate the `<RouteHandler />` inside the **App** component.
-  - Even though **Timesheets** content is a sibling to **Employees**, we want the route to behave as if it is a child so that we have access to the `user_id` from the route's params.
-  - If we can't match the route entered, we want to redirect the user to the **Employees** component.
+  - We need separate sibling routes for **Projects**, **Employees**, and **Timesheets** that will populate the `<RouteHandler />` inside the **App** component.
+  - Even though **Timesheets** content is a sibling to **Employees**, we want the route to behave as if it is a child. That way, we'll have access to the `user_id` from the route's params.
+  - If we can't match a route, we want to redirect the user to the **Employees** component.
 
 > Note: You will notice below that we are exporting `JSX` which is wrapped in parens `()`, not curlies `{}`.
 
@@ -55,8 +57,8 @@ module.exports = (
 
 - Open **client/src/components/common/navigation/navbar.jsx**
 
-- We first need to mixin the extra functionality that we want our component to have. We do this by adding the array to the **mixins** property:
-  - **Router.State** gives us the `getRoutes()` method which we will use to set the active class on the correct navbar link.
+- We first need to mixin the extra functionality that we want our component to have. We do this by adding an array of our mixins to the **mixins** property on the React class:
+  - **Router.State** gives us the `getRoutes()` method which we'll use to set the active class on the correct navbar link.
   - **classes** mixin gives us a helper method, `getClass()`, to make manipulating `className` in our `render()` method a bit less painful.
 
 - Add the mixins to the **Navbar** component definition:  
@@ -68,11 +70,11 @@ module.exports = (
   ],
 ```
 - Now we can implement our `render()` method:
-  - We first do a little lodash gymnastics to determine if our current route matches any of the routes registered in **routes.js**.
+  - We first do a little lodash gymnastics to determine if the current route matches any of the routes registered in **routes.js**.
     - If there is a match, we add the **active** class to the corresponding **Link**.
 
   - We use **react-router**'s **Link** component to attach our navbar's buttons to the router's routes.
-    - Notice for the Timesheet's Link, we are adding an extra prop, **params** so that the user's ID is reflected in the application's url.
+    - Notice the Timesheet's Link.  We are adding an extra prop, **params** so that the user's ID is reflected in the application's url.
 
 
 ```javascript
@@ -106,7 +108,7 @@ render : function () {
 }
 ```
 
-- Now all we need is to set up some initial state to be used within the `render()` method we just implemented:
+- Now, all we need do is to set up the initial state to be used within the `render()` method we just implemented:
 
 ```javascript
 getInitialState: function () {
@@ -121,12 +123,12 @@ getInitialState: function () {
 ## Test the Navbar
 
 - Just like in lab 2, we need to test that our component will render without errors.
-- Open **client/src/components/common/navigation/navbar.spec.js** and add the setup and test.
+- Open **client/src/components/common/navigation/navbar.spec.js** and add the test suite.
 
 &nbsp;
 #### What's different?
-  - You'll notice that we are using **proxyquire** to mock our our component imports for **react-router**. This is because we don't want the router to actually change routes in our browser during tests.
-  - We are also using a very simple `mockComponent()` that you can find in **src/components/mock.jsx**. It just returns a plain `div`.
+  - You'll notice that we are using **proxyquire** to mock our our component imports for **react-router**. This is because we don't want the router to actually change the browser url during our tests.
+  - We are also using a very simple `mockComponent()` that you can find in **src/components/mock.jsx**. This mock component just returns a plain `div`.
   - Finally, we are using **sinon** to stub the `getRoutes()` method so that we can control what it returns and track when it has been called.
 
 - Add the below code to the **navbar.spec.js**
@@ -161,14 +163,14 @@ it('should instantiate the Navbar', function () {
 &nbsp;
 ## Run the tests
 
-- Run `gulp test` in the terminal you have set aside for testing and verify that the test passes.
-  - Since there are already a bunch of tests implemented, you may have to do a little searching in the report to find the one you just wrote.
+- Run `gulp test` and verify that all the tests pass.
+  - Since the rest of your team has already implemented a bunch of tests, you may have to do a little searching to find the tests you just wrote.
 
 &nbsp;
-## Test the active class gets set correctly on the Link
+## Test that the active class gets set on the correct Link
 
-- Now that we can verify that the component can be compiled, let's test that the `active` class gets set on the appropriate `Link`.
-- Add the below test right under the previous test.
+- Now that we've verified that the component can be compiled, let's test that the `active` class gets set on the appropriate `Link`.
+- Add the test below under the previous test.
 
 > Note: With Mocha (and other test suites) you can nest **describe** blocks within each other to make your test descriptions more specific.
 
@@ -188,7 +190,7 @@ describe('when navigating between routes', function () {
 });
 ```
 
-- Run the tests (or look at them if they are still running). Did your new one pass?
+- Run the tests. Did your new one pass?
 - Note that we use the `getDOMNode()` method on the component to get its vanilla DOM object from the browser.
 
 > Yeah, I know. We didn't even use the line of code that found all of the **Links** rendered within **element**, but I thought it would be cool to demonstrate that method. Try adding a breakpoint and stepping through your test in Chrome Dev Tools and inspect each object.
@@ -196,7 +198,7 @@ describe('when navigating between routes', function () {
 &nbsp;
 ## Implement the Application's container
 
-- Now that we have our routes configured and a navbar to navigate between the routes, we need a container to provide a home for the navbar and the entry point for the route handlers.
+- Now that we have our routes configured and a navbar that triggers those routes, we need a container for the navbar and an entry point for the route handlers.
 
 - Open **src/client/components/app.jsx**
 - Implement the `render()` method:
@@ -217,9 +219,8 @@ render : function () {
 }
 ```
 
-- And test the render method:
-
 - Open **client/src/components/app.spec.js**
+- Now, test the render method:
 
 ```javascript
 beforeEach(function () {
@@ -245,12 +246,14 @@ it('should instantiate the App', function () {
 });
 ```
 
-&nbsp;
-## Boostrap the Router
+- Run the tests. Did your new one pass?
 
-- Now all we have to do is wrap our `React.render()` method within the callback for the `Router.run()` method to boostrap the application and hand the control over to the **React Router**.
+&nbsp;
+## Bootstrap the Router
+
+- Now all we have to do is wrap our `React.render()` method within the callback for the `Router.run()` method. This will boostrap the application and hand control over to the **React Router**.
 - Open our application entry point: **client/src/main.jsx**
--
+- Add the following:
 
 ```javascript
 Router.run(routes, function (Handler) {
@@ -261,16 +264,17 @@ Router.run(routes, function (Handler) {
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal window run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
-- You should be able to click around the navbar and have the routes change revealing each handler.
+- You should be able to click around the navbar and see the routes change.
   - I'm sure it worked fine for **Timesheets** and **Projects**, but we still need to implement **Employees**.
 
 &nbsp;
 ## Composing React Components
 
-- Now that we fully functional routing between our three sections of the application, we need to finish the **Employee** module.
+- Now that we have functional routing between our three sections of the application, we need to finish the **Employee** module.
 
 - We want to display the list of employees when the user clicks the employee link in the navbar.
 - To do this, we need to build three components:
@@ -282,18 +286,28 @@ Router.run(routes, function (Handler) {
 ## Create the EmployeeRow Component
 
 - Open **client/src/components/employees/employee.row.jsx**
-- We need to create a component that accepts an employee property that is an object.
+- We need to create a component that accepts an employee property (which is an object).
 - We will expose a reference (ref) to the row via that employee's `_id` property.
 - The row should contain `<td/>`'s for each of the employee's properties.
-
+- Add the following to your EmployeeRow React class
 
 ```javascript
+mixins: [
+  Router.Navigation,
+  Router.State,
+  classes
+],
+
 propTypes: {
   employee: React.PropTypes.object
 },
 
 render: function () {
   var employee = this.props.employee;
+
+  var classNames = this.getClass('repeated-item fadeable-row', {
+    'faded': employee.deleted
+  });
 
   return (
     <tr className={classNames} ref={employee._id}>
@@ -307,9 +321,9 @@ render: function () {
 }
 ```
 
-- We can then test that our component renders correctly:
-- Open **client/src/components/employees/employee.row.spec.js** and add the below tests.
-  - Feel free to add actual properties to the employee object and test for thier existence in a `<td/>`.
+- Now, we need to test that our component renders correctly.
+- Open **client/src/components/employees/employee.row.spec.js** and add the tests below.
+  - Feel free to add actual properties to the employee object and test for their existence in a `<td/>`.
 
 ```javascript
 beforeEach(function () {
@@ -327,12 +341,14 @@ it('should instantiate the EmployeeRow', function () {
 });
 ```
 
+- Run the tests. Did your new one pass?
+
 ## Create the EmployeesTable Component
 
 - Our next move is to create the table that will contain our **EmployeeRow**s.
 - Open **client/src/components/employees/employee.table.jsx**
 
-- We need to declare that the **employees** property should be an array of object and that it is required.
+- We need to declare that the **employees** property should be an array of objects and that it is required.
 
 ```javascript
 propTypes: {
@@ -340,11 +356,13 @@ propTypes: {
 },
 ```
 
-- Now we need to implement our `render()` method in order to:
-  - Iterate through the list of employees and instantiate a new **EmployeeRow** for each.
-  - Collect all of the rows into a variable and put them into our table JSX.
+- Now we need to implement our `render()` method that:
+  - Iterates through the list of employees and instantiates a new **EmployeeRow** for each employee.
+  - Collect all the rows into a variable and add that variable to the table body.
 
-> Remember JSX is just Javascript when it compiles so you can pass it to other JSX to include it in our component's DOM.
+> Remember JSX is just Javascript when it compiles so you can pass variables to other JSX elements so that it's included in our component's DOM.
+
+- Add the render method below to the React class.
 
 ```javascript
 render: function () {
@@ -379,8 +397,9 @@ render: function () {
 
 - Now let's test that our employee table renders correctly.
 - Can you write a test to check the number of **EmployeeRows** added to our table?
+- Open **components/employees/employee.table.spec.js**
+- Add the following to the **Employee Table Component** suite:
 
-components/employees/employee.table.spec.js
 ```javascript
 beforeEach(function () {
   React = require('react/addons');
@@ -401,11 +420,14 @@ it('should instantiate the EmployeeTable', function () {
 });
 ```
 
+- Run the tests. Did your new one pass?
+
 &nbsp;
 ## Create Employees Component
 
-- Lastly, we need to add the table to our handler for the `/employees` route.
+- Last, we need to add the table to our handler for the `/employees` route.
 - Open **client/src/components/employees/employees.jsx**
+- Add the render method below to the React class
 
 > The component's `getInitialState()` has been implemented for you so that you'll have mock data.
 
@@ -423,6 +445,7 @@ render: function () {
 
 - Open **client/src/components/employees/employees.spec.js**
 - Test that our component renders as expected.
+- Add the code below to the **Employees Component** suite
 
 ```javascript
 beforeEach(function () {
@@ -440,14 +463,17 @@ it('should instantiate the Employees', function () {
 });
 ```
 
+- Run the tests. Did your new one pass?
+
 &nbsp;
 ## Run the application and see your work.
 
+If you haven't already done so,
 - In a terminal windows run: `gulp watch:dev` to fire off the build.
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
 
-- Click around and enjoy the result of your hard work during this lab. 
+- Click around and enjoy the result of your hard work during this lab.
 
 ![](img/lab03/first.page.png)
 
