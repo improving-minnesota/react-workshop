@@ -7,6 +7,9 @@
 git checkout lab-02-first-component-start
 git pull
 ```
+
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-02-first-component-start branch.
+
 &nbsp;
 ## Create the Hello World component
 
@@ -52,9 +55,9 @@ render : function () {
   - The large header is going to display the value of the `friend` "prop" or attribute passed in by the parent component rendering this component.
 
 
-- We want to initialize our component with data, so let's the component a default state.
+- We want to initialize our component with data, so let's give the component a default state.
   - To do this we need to implement `getIntialState` which will be called by React when initializing the component.
-- Add the below method to your component:
+- Add the method below to your component:
 
 ```javascript
 getInitialState: function () {
@@ -64,7 +67,7 @@ getInitialState: function () {
 }
 ```
 
-- Now we need set the default value for the `friend` prop, just in case the caller doesn't include the attribute in the `JSX`.
+- Now we need set the default value for the `friend` prop in case the caller doesn't include the attribute in the `JSX`.
   - To do that, we implement `getDefaultProps` which is also called by **React** during the component's initialization.
 
 ```javascript
@@ -75,7 +78,7 @@ getDefaultProps: function () {
 }
 ```
 
-- When completed, the entire module should look like:
+- When complete, the entire module should look like:
 
 ```javascript
 var React = require('react/addons');
@@ -113,10 +116,10 @@ module.exports = Hello;
 &nbsp;
 ## Test the component
 
-- Now that we have our first component created, let's test it to make sure that React can initialize and render it to the DOM.
+- Now that we've created our first component, let's test it to make sure that React can initialize and render it to the DOM.
 
 - Open **client/src/hello.spec.js**
-- Let's set up the Hello World specification by adding our describe block to the page:
+- Let's set up the Hello World specification by adding a suite (describe block):
 
 
 ```javascript
@@ -144,7 +147,7 @@ beforeEach(function () {
 
 - Now we need to set up our components that we'll be testing.
 - Since we can use multiple `beforeEach` blocks, I like to use separate blocks for libraries and components.
-- Add the below code inside our spec:
+- Add the code below to our suite:
 
 ```javascript
 beforeEach(function () {
@@ -154,7 +157,7 @@ beforeEach(function () {
 ```
 > What is happening here? We get the **React** class, `Hello`, by injecting it into our task via **Browserify**. Next we use React's **TestUtils** to render the component into a sandboxed "document" so that we can perform inquiries. Notice that we are using `JSX` in the `TestUtils.renderIntoDocument()` method.
 
-- Now that the component has been rendered into our test document and assigned to the `element` variable, we can perform tests on it:
+- Now that the component has been rendered into our test document and assigned to the `element` variable, we can perform tests on it.  Create the spec below:
 
 ```javascript
 it('should instantiate the Hello World', function () {
@@ -162,9 +165,9 @@ it('should instantiate the Hello World', function () {
 });
 ```
 
-- Above we just used the `TestUtils.isCompositComponent()` to determine if the `Hello` component successfully rendered to our mocked document.
+- Above, we just used the `TestUtils.isCompositComponent()` to determine if the `Hello` component successfully rendered to our mock document.
 
-- When finished your specification should look similar to below:
+- When finished, your suite should look similar to the one below:
 
 ```javascript
 describe('Hello World:', function () {
@@ -259,7 +262,7 @@ React.render(<Hello />, document.getElementById('app'));
 - To override it, we just add the prop as an attribute to our JSX in the render method.
 
 ```javascript
-React.render(<Hello friend="WoooHooo!", document.getElementById('app'));
+React.render(<Hello friend="WoooHooo!"/>, document.getElementById('app'));
 ```
 
 - Now refresh the page. The default prop should have been overridden.
@@ -271,5 +274,5 @@ React.render(<Hello friend="WoooHooo!", document.getElementById('app'));
 
 ```
 git add .
-git commit -m 'Project started successfully'
+git commit -m 'Lab 2 completed successfully'
 ```
