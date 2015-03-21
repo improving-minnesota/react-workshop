@@ -8,7 +8,7 @@ git checkout lab-04-flux-start
 git pull
 ```
 
-If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-03-routing-start branch.
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-04-flux-start branch.
 
 &nbsp;
 ### Check it out!

@@ -5,11 +5,11 @@
 - In a terminal:
 
 ```
-git checkout lab-05-forms-start
+git checkout lab-05-form-validation-start
 git pull
 ```
 
-If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-05-forms-start branch.
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-05-form-validation-start branch.
 
 &nbsp;
 ### Check it out!
@@ -84,7 +84,7 @@ LoginStore.current()
   - The `willTransitionTo()` method is expecting a **Promise** to be returned in its implementation.
   - It will block the transition until the promise has been resolved.
 
-- The **LoginStore** also has a `requireAuthenticatedUser()` method that returns a **Promise** which resolves on successful authentication.  
+- The **LoginStore** also has a `requireAuthenticatedUser()` method that returns a **Promise** which resolves on successful authentication.
 
 - Let's implement `willTransitionTo()` in our **App** component.
 - Open **client/src/components/app.jsx** and add the statics array block:
@@ -185,7 +185,7 @@ render: function () {
 
 ###### There are 2 items in the above JSX that I want you to notice:
 
-- The form is specifying to call the `handleSubmit()` callback on submit.  
+- The form is specifying to call the `handleSubmit()` callback on submit.
 
 ```javascript
 <form className="ui form" name="loginForm" onSubmit={this.handleSubmit}>
