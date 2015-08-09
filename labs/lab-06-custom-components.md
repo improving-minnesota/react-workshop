@@ -24,7 +24,7 @@ If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwis
 
 - Before we start, check out the **SnackbarStore** and **SnackbarActions** that have already been implemented for you.
 
-- Open **client/src/components/snackbar.jsx**
+- Open **client/src/components/common/snackbar.jsx**
 
 - First, let's take care of the boilerplate to hook our component to our **Flux** classes, set our mixins, and initial state.
 
@@ -88,7 +88,7 @@ If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwis
 &nbsp;
 ## Test the Snackbar
 
-- Open **client/src/components/snackbar.spec.js** and add the suites. You know the drill by now.
+- Open **client/src/components/common/snackbar.spec.js** and add the suites. You know the drill by now.
 
 ```javascript
   describe('when there is no message', function () {

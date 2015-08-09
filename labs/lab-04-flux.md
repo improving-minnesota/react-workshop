@@ -543,7 +543,7 @@ If you haven't already done so,
 &nbsp;
 ### Communicate with the EmployeeStore via EmployeeActions
 
-- Open **client/src/components/employee.row.js**
+- Open **client/src/components/employee.row.jsx**
 - Uncomment the require statement for the **EmployeeActions**.
 - Find the `TODO`s and add the appropriate Action calls to signal the **EmployeeStore** to take 'action'.
 
