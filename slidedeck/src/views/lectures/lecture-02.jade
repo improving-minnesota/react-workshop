@@ -457,9 +457,7 @@ include ../includes/mixins
   section
     pre.
       <code class="json" data-trim>
-      it('should instantiate the EmployeeForm', function () {
-        expect(TestUtils.isCompositeComponent(element)).to.be.true;
-      });
+      var cancel = TestUtils.findRenderedComponentWithClass(element, 'cancel-btn');
       
       </code>
       

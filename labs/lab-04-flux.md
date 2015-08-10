@@ -8,7 +8,7 @@ git checkout lab-04-flux-start
 git pull
 ```
 
-If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-03-routing-start branch.
+If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwise, restart the running tasks to pick up any changes in the lab-04-flux-start branch.
 
 &nbsp;
 ### Check it out!
@@ -543,7 +543,7 @@ If you haven't already done so,
 &nbsp;
 ### Communicate with the EmployeeStore via EmployeeActions
 
-- Open **client/src/components/employee.row.js**
+- Open **client/src/components/employee.row.jsx**
 - Uncomment the require statement for the **EmployeeActions**.
 - Find the `TODO`s and add the appropriate Action calls to signal the **EmployeeStore** to take 'action'.
 
