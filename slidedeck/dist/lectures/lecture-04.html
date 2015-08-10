@@ -39,7 +39,7 @@
         </section>
         <section>
           <h3 class="lower">Three major parts</h3>
-          <ul>
+          <ul> 
             <li>the dispatcher</li>
             <li>the stores</li>
             <li>the views (React components)</li>
@@ -54,7 +54,7 @@
           <p>Views at the top of the hierarchy that retrieve data from the stores</p>
           <p>Pass data down to their children.</p>
         </section>
-        <section>
+        <section> 
           <h3>Action creators</h3>
           <p>Dispatcher helper methods</p>
           <p>Support a semantic API that describes all changes that are possible in the application. </p>
@@ -65,8 +65,8 @@
           <p>The stores react and fire an event</p>
           <p>All interested other views update accordingly. </p>
         </section>
-        <section><img src="/react-workshop/assets/img/lecture-04/flux.diagram.png"></section>
-        <section>
+        <section> <img src="/react-workshop/assets/img/lecture-04/flux.diagram.png"></section>
+        <section> 
           <h2>Dispatcher</h2>
         </section>
         <section>
@@ -91,7 +91,7 @@
           <p>provides a simple, synchronous iteration through the callbacks</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 var dispatcher = _.extend(new Dispatcher(), {
   handleViewAction: function(action) {
     this.dispatch({
@@ -104,13 +104,13 @@ var dispatcher = _.extend(new Dispatcher(), {
 </code>
 </pre>
         </section>
-        <section>
+        <section> 
           <h2>Actions</h2>
         </section>
-        <section>
+        <section> 
           <p>Used to update data via user interaction or other changes in the UI.</p>
           <p>Data is packaged into an action</p>
-          <ul>
+          <ul> 
             <li>Object literal containing the new fields of data.</li>
             <li>Specific action type. </li>
           </ul>
@@ -125,18 +125,18 @@ var dispatcher = _.extend(new Dispatcher(), {
           <p>Actions flow into the stores through the callbacks they define and register.</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 list: function (query) {
   dispatcher.handleViewAction({
     actionType: 'list',
     query: query
   });
-},
+}
 
 </code>
 </pre>
         </section>
-        <section>
+        <section> 
           <h2>Stores</h2>
         </section>
         <section>
@@ -160,7 +160,7 @@ list: function (query) {
           <p>Let's look at the base Store that other's extend</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 // The initialize function of an extended Store
 initialize: function () {
   var events = {};
@@ -169,21 +169,21 @@ initialize: function () {
   events['update']  = this.update;
   this.register(events);
   return this;
-},
+}
 
 </code>
 </pre>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 register: function (events) {
   var self = this;
-  
+
   // calling the dispatcher's register method
   dispatcher.register(function (payload) {
     var action = payload.action;
     var promise = events[action.actionType];
-    
+
     if (!_.isUndefined(promise)) {
       promise.apply(self, [payload])
         .then(function () {
@@ -203,7 +203,7 @@ register: function (events) {
         <section>
           <h2>axios</h2>
           <p>Cool library to simplify HTTP calls</p>
-          <p><a href="https://github.com/mzabriskie/axios">API on Github</a></p>
+          <p> <a href="https://github.com/mzabriskie/axios">API on Github</a></p>
         </section>
         <section>
           <h1>Lab 04</h1>

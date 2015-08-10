@@ -67,19 +67,19 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var Projects = require('./components/projects/projects');
       var Employees = require('./components/employees/employees');
       var Timesheets = require('./components/timesheets/timesheets');
       
-      &lt;Route name='app' path="/" handler={App}&gt;
+      (&lt;Route name='app' path="/" handler={App}&gt;
 
         &lt;Route name='projects'   path='/projects'  handler={Projects} /&gt;
         &lt;Route name='employees'  path='/employees' handler={Employees} /&gt;
         &lt;Route name='timesheets' path='/employees/:user_id/timesheets' handler={Timesheets} /&gt;
         
         &lt;Redirect to="employees" /&gt;
-      &lt;/Route&gt;
+      &lt;/Route&gt;)
       
       </code>
     
@@ -98,11 +98,11 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
-      &lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
+      <code class="javascript" data-trim>
+      (&lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
       &lt;Link className={employeesClasses} to="employees"&gt;Employees&lt;/Link&gt;
       &lt;Link className={timesheetsClasses} to="timesheets" 
-        params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;      
+        params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;) 
       
       </code>
       
@@ -133,7 +133,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       Router.run(routes, function (Handler, state) {
         React.render(<Handler />, document.getElementById('app'));
       });
@@ -190,7 +190,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       if (!this.goBack()) {
         this.transitionTo('/otherpage')
       }
@@ -269,7 +269,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var classNames = require('classnames');
       // In our Component 
       render: function () {
