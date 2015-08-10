@@ -16,9 +16,9 @@ include ../includes/mixins
     h1 Virtual Dom
     
   section
-    p Replica of the Browser DOM
-    p React redraws the entire screen on change
-    p React calculates the minimum amount of changes
+    p Replica of the Browser DOM.
+    p React redraws the entire screen on change.
+    p React calculates the minimum amount of changes required.
     
   section
     p 
@@ -35,7 +35,7 @@ include ../includes/mixins
     
   section
       p Creates a component class, given a specification. 
-      p A component implements a render method which returns one single child. 
+      p A component implements a render method which returns a single child. 
       p That child may have an arbitrarily deep child structure. 
       p They are convenience wrappers that construct backing instances (via new) for you.
       
@@ -68,9 +68,9 @@ include ../includes/mixins
     
   section
     h2.lower render()
-    p Should be pure
-    p Does not modify component state
-    p Returns the same result each time it's invoked
+    p Should be pure.
+    p Does not modify component state.
+    p Returns the same result each time it's invoked.
     p Does not read from or write to the DOM. 
     p Perform work in componentDidMount() or the other lifecycle methods.
 
@@ -99,7 +99,7 @@ include ../includes/mixins
     
   section
     h2.lower getDefaultProps()
-    p This method is invoked before any instances are created and thus cannot rely on this.props. 
+    p This method is invoked before any instances are created and therefore it can't rely on this.props. 
     p Objects returned will be shared across instances, not copied.
     
   section
@@ -146,7 +146,7 @@ include ../includes/mixins
   section
     h2.lower statics: {}
     p The statics object allows you to define static methods that can be called on the component class. 
-    p Methods defined within this block are static, meaning that you can run them before any component instances are created.
+    p Methods defined within this block are static, meaning you can run them before any component instances are created.
     
   section
     h2.lower statics: {}
@@ -181,7 +181,7 @@ include ../includes/mixins
     
   section
     p JavaScript syntax extension that looks similar to XML. 
-    p Compiles to actual Javascript which you will be able to see during labs.
+    p Compiles to actual Javascript that you'll be able to see during labs.
     
   section
     pre.
@@ -219,20 +219,21 @@ include ../includes/mixins
       li lowercase = tag
     
   section
-    p Since JSX is JavaScript, identifiers such as class and for are discouraged as XML attribute names. 
+    p Since JSX is a superset of JavaScript, identifiers like class and for as XML attribute names is discouraged. 
     ul
       li htmlFor = for
       li className = class
       
   section
     h2.lower React.render()
-    p Renders a ReactElement into the DOM in the supplied container.
+    p Renders a ReactElement into the DOM of the supplied container.
     p Returns a reference to the component.
     p Replaces the contents of the container node you pass in.
     
   section
     h2.lower React.render()
-    p If the ReactElement was previously rendered into container, this will perform an update on it and only mutate the DOM as necessary to reflect the latest React component.
+    p If the ReactElement was previously rendered into container, this method will perform an update on it.
+    p This update will mutate the DOM as necessary to reflect the latest React component.
     
   section
     h2.lower React.render()
@@ -249,7 +250,7 @@ include ../includes/mixins
     h2 Data: State vs. Props
     
   section
-    p "props" are the data that you pass into your component via attributes
+    p "props" are the data you pass into your component via attributes.
     p Used for application data that you need to display or manage with your component.
           
   section
@@ -257,9 +258,9 @@ include ../includes/mixins
     p Used for your components behaviors: open, disabled, submitted, etc. 
     
   section
-    p One exception: "Controller" components
-    p They will have a state that represents the application data
-    p They pass their state as props to thier children components
+    p One exception: "Controller" components.
+    p They will have a state that represents the application data.
+    p They pass their state as props to thier children components.
     
   section
     pre.
@@ -285,8 +286,8 @@ include ../includes/mixins
   section
     h2.lower Mounting: 
     h3.lower componentWillMount
-    p Invoked once, both on the client and server.
-    p Immediately before the initial rendering occurs. 
+    p Invoked once, on both the client and server.
+    p Invoked immediately before the initial rendering occurs. 
     
   section
     h3.lower componentWillMount
@@ -297,8 +298,8 @@ include ../includes/mixins
     h2.lower Mounting: 
     h3.lower componentDidMount
     p Invoked once, only on the client (not on the server).
-    p Immediately after the initial rendering occurs. 
-    p Has a DOM representation which you can access via React.findDOMNode(this).
+    p Invoked immediately after the initial rendering occurs. 
+    p Has a DOM representation that you can access via React.findDOMNode(this).
     
   section
     p Perform in this method: 
@@ -315,7 +316,8 @@ include ../includes/mixins
     
   section
     h4.lower componentWillReceiveProps(object nextProps)
-    p Used to react to a prop transition before render() is called by updating the state using this.setState(). 
+    p Used to react to a prop transition.
+    p This happens before render() is called when updating the state using this.setState(). 
     p The old props can be accessed via this.props. 
     p Calling this.setState() within this function will not trigger an additional render.
     
@@ -353,7 +355,7 @@ include ../includes/mixins
     h2.lower Unmounting: 
     h3.lower componentWillUnmount
     p Invoked immediately before a component is unmounted from the DOM.
-    p Perform any necessary cleanup in this method
+    p Perform any necessary cleanup in this method.
     ul 
       li Invalidating timers
       li Cleaning up any DOM elements that were created in componentDidMount.
@@ -375,7 +377,7 @@ include ../includes/mixins
       
   section
     h4.lower Simulate.{eventName}(DOMElement element, object eventData)
-    p Simulate an event dispatch on a DOM node with optional eventData event data. 
+    p Simulate an event dispatch on a DOM node with optional event data. 
     p Possibly the single most useful utility in ReactTestUtils.
     p Has a method for every event that React understands.
     
@@ -413,19 +415,19 @@ include ../includes/mixins
     
   section 
     h4.lower isElement(ReactElement element)
-    p Returns true if element is any ReactElement.
+    p Returns true if the element is any ReactElement.
     
   section 
     h4.lower isElementOfType(ReactElement element, function componentClass)
-    p Returns true if element is a ReactElement whose type is of a React componentClass.
+    p Returns true if the element is a ReactElement and whose type is of a React componentClass.
     
   section 
     h4.lower isDOMComponent(ReactComponent instance)
-    p Returns true if instance is a DOM component (such as a &lt;div&gt; or &lt;span&gt;).
+    p Returns true if the instance is a DOM component (such as a &lt;div&gt; or &lt;span&gt;).
     
   section 
     h4.lower isCompositeComponent(ReactComponent instance)
-    p Returns true if instance is a composite component (created with React.createClass())
+    p Returns true if the instance is a composite component (created with React.createClass())
     
   section
     pre.
@@ -438,19 +440,19 @@ include ../includes/mixins
     
   section 
     h4.lower isCompositeComponentWithType(ReactComponent instance, function componentClass)
-    p Returns true if instance is a composite component (created with React.createClass()) whose type is of a React componentClass.
+    p Returns true if the instance is a composite component (created with React.createClass()) whose type is of a React componentClass.
 
   section
     h2 DOM Query Methods
     
   section
     h4.lower scryRenderedDOMComponentsWithClass(ReactComponent tree, string className)
-    p Finds all instances of components in the rendered tree that are DOM components with the class name matching className.
+    p Finds all instances of components in the rendered tree that are DOM components and whose class matches className.
     
   section
     h4.lower findRenderedDOMComponentWithClass(ReactComponent tree, string className)
-    p Like scryRenderedDOMComponentsWithClass() but expects there to be one result
-    p Throws exception if there is any other number of matches besides one.
+    p Like scryRenderedDOMComponentsWithClass() but expects there to be one result.
+    p Throws an exception if there is more than one match or no match at all. 
     
   section
     pre.
@@ -468,7 +470,7 @@ include ../includes/mixins
   section
     h4.lower findRenderedComponentWithType(ReactComponent tree, function componentClass)
     p Same as scryRenderedComponentsWithType() but expects there to be one result. 
-    p Throws exception if there is any other number of matches besides one.
+    p Throws an exception if there is more than one match or no match at all. 
     
   section
     pre.
@@ -479,12 +481,12 @@ include ../includes/mixins
     
   section
     h4.lower scryRenderedDOMComponentsWithTag(ReactComponent tree, string tagName)
-    p Finds all instances of components in the rendered tree that are DOM components with the tag name matching tagName.
+    p Finds all instances of components in the rendered tree that are DOM components and whose tag name matches tagName.
     
   section 
     h4.lower findRenderedDOMComponentWithTag(ReactComponent tree, string tagName)
     p Like scryRenderedDOMComponentsWithTag() but expects there to be one result.
-    p Throws exception if there is any other number of matches besides one.
+    p Throws an exception if there is more than one match or no match at all.
 
   section
     pre.
