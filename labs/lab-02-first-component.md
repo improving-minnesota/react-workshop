@@ -236,7 +236,7 @@ describe('Hello World:', function () {
 &nbsp;
 ## Let's render Hello World to the Browser!!
 
-- Open **main.jsx**, which is our entry point for the Browserify bundler, and tell **React** to render our component into our index.html.
+- Open **client/src/main.jsx**, which is our entry point for the Browserify bundler, and tell **React** to render our component into our index.html.
   - We first need to import the **React** library and our **Hello** component.
   - We then use the `React.render()` method to place it on our page:
 

@@ -65,8 +65,7 @@ module.exports = (
 
 ```javascript
   mixins: [
-    Router.State,
-    classes
+    Router.State
   ],
 ```
 - Now we can implement our `render()` method:
@@ -81,15 +80,15 @@ module.exports = (
 render : function () {
   var activeRoutes = _.pluck(this.getRoutes(), 'name').join('.').split('.');
 
-  var projectsClasses = this.getClass('item', {
+  var projectsClasses = classNames('item', {
     active: _.contains(activeRoutes, 'projects')
   });
 
-  var employeesClasses = this.getClass('item', {
+  var employeesClasses = classNames('item', {
     active: _.contains(activeRoutes, 'employees')
   });
 
-  var timesheetsClasses = this.getClass('item', {
+  var timesheetsClasses = classNames('item', {
     active: _.contains(activeRoutes, 'timesheets')
   });
 
@@ -200,7 +199,7 @@ describe('when navigating between routes', function () {
 
 - Now that we have our routes configured and a navbar that triggers those routes, we need a container for the navbar and an entry point for the route handlers.
 
-- Open **src/client/components/app.jsx**
+- Open **client/src/components/app.jsx**
 - Implement the `render()` method:
 
 ```javascript

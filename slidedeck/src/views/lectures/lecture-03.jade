@@ -262,7 +262,7 @@ include ../includes/mixins
     p Check the docs for each event's properties.
     
   section 
-    h2 The Classes Mixin
+    h2 The Classnames Library
     
   section
     p Third party utility to make it easier to manipulate CSS classes in your React components. 
@@ -270,11 +270,10 @@ include ../includes/mixins
   section
     pre.
       <code class="json" data-trim>
-      var classes = require('react-classes');
+      var classNames = require('classnames');
       // In our Component 
-      mixins: [classes],
       render: function () {
-        var classNames = this.getClass('repeated-item fadeable-row', {
+        var rowClasses = classNames('repeated-item fadeable-row', {
           'faded': employee.deleted
         });
       }
