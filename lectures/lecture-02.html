@@ -45,9 +45,9 @@
           <h1>Virtual Dom</h1>
         </section>
         <section>
-          <p>Replica of the Browser DOM</p>
-          <p>React redraws the entire screen on change</p>
-          <p>React calculates the minimum amount of changes</p>
+          <p>Replica of the Browser DOM.</p>
+          <p>React redraws the entire screen on change.</p>
+          <p>React calculates the minimum amount of changes required.</p>
         </section>
         <section>
           <p><a href="http://facebook.github.io/react/docs/glossary.html">More info?</a></p>
@@ -64,7 +64,7 @@
         </section>
         <section>
           <p>Creates a component class, given a specification. </p>
-          <p>A component implements a render method which returns one single child. </p>
+          <p>A component implements a render method which returns a single child. </p>
           <p>That child may have an arbitrarily deep child structure. </p>
           <p>They are convenience wrappers that construct backing instances (via new) for you.</p>
         </section>
@@ -97,9 +97,9 @@ module.exports = Hello;
         </section>
         <section>
           <h2 class="lower">render()</h2>
-          <p>Should be pure</p>
-          <p>Does not modify component state</p>
-          <p>Returns the same result each time it's invoked</p>
+          <p>Should be pure.</p>
+          <p>Does not modify component state.</p>
+          <p>Returns the same result each time it's invoked.</p>
           <p>Does not read from or write to the DOM. </p>
           <p>Perform work in componentDidMount() or the other lifecycle methods.</p>
         </section>
@@ -128,7 +128,7 @@ getInitialState: function () {
         </section>
         <section>
           <h2 class="lower">getDefaultProps()</h2>
-          <p>This method is invoked before any instances are created and thus cannot rely on this.props. </p>
+          <p>This method is invoked before any instances are created and therefore it can't rely on this.props. </p>
           <p>Objects returned will be shared across instances, not copied.</p>
         </section>
         <section>
@@ -175,7 +175,7 @@ mixins: [
         <section>
           <h2 class="lower">statics: {}</h2>
           <p>The statics object allows you to define static methods that can be called on the component class. </p>
-          <p>Methods defined within this block are static, meaning that you can run them before any component instances are created.</p>
+          <p>Methods defined within this block are static, meaning you can run them before any component instances are created.</p>
         </section>
         <section>
           <h2 class="lower">statics: {}</h2>
@@ -210,7 +210,7 @@ displayName: 'super-cool-thingy'
         </section>
         <section>
           <p>JavaScript syntax extension that looks similar to XML. </p>
-          <p>Compiles to actual Javascript which you will be able to see during labs.</p>
+          <p>Compiles to actual Javascript that you'll be able to see during labs.</p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -249,7 +249,7 @@ render : function () {
           </ul>
         </section>
         <section>
-          <p>Since JSX is JavaScript, identifiers such as class and for are discouraged as XML attribute names. </p>
+          <p>Since JSX is a superset of JavaScript, identifiers like class and for as XML attribute names is discouraged. </p>
           <ul>
             <li>htmlFor = for</li>
             <li>className = class</li>
@@ -257,13 +257,14 @@ render : function () {
         </section>
         <section>
           <h2 class="lower">React.render()</h2>
-          <p>Renders a ReactElement into the DOM in the supplied container.</p>
+          <p>Renders a ReactElement into the DOM of the supplied container.</p>
           <p>Returns a reference to the component.</p>
           <p>Replaces the contents of the container node you pass in.</p>
         </section>
         <section>
           <h2 class="lower">React.render()</h2>
-          <p>If the ReactElement was previously rendered into container, this will perform an update on it and only mutate the DOM as necessary to reflect the latest React component.</p>
+          <p>If the ReactElement was previously rendered into container, this method will perform an update on it.</p>
+          <p>This update will mutate the DOM as necessary to reflect the latest React component.</p>
         </section>
         <section>
           <h2 class="lower">React.render()</h2>
@@ -280,7 +281,7 @@ React.render(&lt;Hello friend="WoooHooo"/&gt;, document.getElementById('app'));
           <h2>Data: State vs. Props</h2>
         </section>
         <section>
-          <p>"props" are the data that you pass into your component via attributes</p>
+          <p>"props" are the data you pass into your component via attributes.</p>
           <p>Used for application data that you need to display or manage with your component.</p>
         </section>
         <section>
@@ -288,9 +289,9 @@ React.render(&lt;Hello friend="WoooHooo"/&gt;, document.getElementById('app'));
           <p>Used for your components behaviors: open, disabled, submitted, etc. </p>
         </section>
         <section>
-          <p>One exception: "Controller" components</p>
-          <p>They will have a state that represents the application data</p>
-          <p>They pass their state as props to thier children components</p>
+          <p>One exception: "Controller" components.</p>
+          <p>They will have a state that represents the application data.</p>
+          <p>They pass their state as props to thier children components.</p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -316,8 +317,8 @@ render : function () {
         <section>
           <h2 class="lower">Mounting: </h2>
           <h3 class="lower">componentWillMount</h3>
-          <p>Invoked once, both on the client and server.</p>
-          <p>Immediately before the initial rendering occurs. </p>
+          <p>Invoked once, on both the client and server.</p>
+          <p>Invoked immediately before the initial rendering occurs. </p>
         </section>
         <section>
           <h3 class="lower">componentWillMount</h3>
@@ -328,8 +329,8 @@ render : function () {
           <h2 class="lower">Mounting: </h2>
           <h3 class="lower">componentDidMount</h3>
           <p>Invoked once, only on the client (not on the server).</p>
-          <p>Immediately after the initial rendering occurs. </p>
-          <p>Has a DOM representation which you can access via React.findDOMNode(this).</p>
+          <p>Invoked immediately after the initial rendering occurs. </p>
+          <p>Has a DOM representation that you can access via React.findDOMNode(this).</p>
         </section>
         <section>
           <p>Perform in this method: </p>
@@ -347,7 +348,8 @@ render : function () {
         </section>
         <section>
           <h4 class="lower">componentWillReceiveProps(object nextProps)</h4>
-          <p>Used to react to a prop transition before render() is called by updating the state using this.setState(). </p>
+          <p>Used to react to a prop transition.</p>
+          <p>This happens before render() is called when updating the state using this.setState(). </p>
           <p>The old props can be accessed via this.props. </p>
           <p>Calling this.setState() within this function will not trigger an additional render.</p>
         </section>
@@ -385,7 +387,7 @@ render : function () {
           <h2 class="lower">Unmounting: </h2>
           <h3 class="lower">componentWillUnmount</h3>
           <p>Invoked immediately before a component is unmounted from the DOM.</p>
-          <p>Perform any necessary cleanup in this method</p>
+          <p>Perform any necessary cleanup in this method.</p>
           <ul>
             <li>Invalidating timers</li>
             <li>Cleaning up any DOM elements that were created in componentDidMount.</li>
@@ -408,7 +410,7 @@ beforeEach(function () {
         </section>
         <section>
           <h4 class="lower">Simulate.{eventName}(DOMElement element, object eventData)</h4>
-          <p>Simulate an event dispatch on a DOM node with optional eventData event data. </p>
+          <p>Simulate an event dispatch on a DOM node with optional event data. </p>
           <p>Possibly the single most useful utility in ReactTestUtils.</p>
           <p>Has a method for every event that React understands.</p>
         </section>
@@ -446,19 +448,19 @@ element = TestUtils.renderIntoDocument(
         </section>
         <section>
           <h4 class="lower">isElement(ReactElement element)</h4>
-          <p>Returns true if element is any ReactElement.</p>
+          <p>Returns true if the element is any ReactElement.</p>
         </section>
         <section>
           <h4 class="lower">isElementOfType(ReactElement element, function componentClass)</h4>
-          <p>Returns true if element is a ReactElement whose type is of a React componentClass.</p>
+          <p>Returns true if the element is a ReactElement and whose type is of a React componentClass.</p>
         </section>
         <section>
           <h4 class="lower">isDOMComponent(ReactComponent instance)</h4>
-          <p>Returns true if instance is a DOM component (such as a &lt;div&gt; or &lt;span&gt;).</p>
+          <p>Returns true if the instance is a DOM component (such as a &lt;div&gt; or &lt;span&gt;).</p>
         </section>
         <section>
           <h4 class="lower">isCompositeComponent(ReactComponent instance)</h4>
-          <p>Returns true if instance is a composite component (created with React.createClass())</p>
+          <p>Returns true if the instance is a composite component (created with React.createClass())</p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -471,19 +473,19 @@ it('should instantiate the EmployeeForm', function () {
         </section>
         <section>
           <h4 class="lower">isCompositeComponentWithType(ReactComponent instance, function componentClass)</h4>
-          <p>Returns true if instance is a composite component (created with React.createClass()) whose type is of a React componentClass.</p>
+          <p>Returns true if the instance is a composite component (created with React.createClass()) whose type is of a React componentClass.</p>
         </section>
         <section>
           <h2>DOM Query Methods</h2>
         </section>
         <section>
           <h4 class="lower">scryRenderedDOMComponentsWithClass(ReactComponent tree, string className)</h4>
-          <p>Finds all instances of components in the rendered tree that are DOM components with the class name matching className.</p>
+          <p>Finds all instances of components in the rendered tree that are DOM components and whose class matches className.</p>
         </section>
         <section>
           <h4 class="lower">findRenderedDOMComponentWithClass(ReactComponent tree, string className)</h4>
-          <p>Like scryRenderedDOMComponentsWithClass() but expects there to be one result</p>
-          <p>Throws exception if there is any other number of matches besides one.</p>
+          <p>Like scryRenderedDOMComponentsWithClass() but expects there to be one result.</p>
+          <p>Throws an exception if there is more than one match or no match at all. </p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -501,7 +503,7 @@ it('should instantiate the EmployeeForm', function () {
         <section>
           <h4 class="lower">findRenderedComponentWithType(ReactComponent tree, function componentClass)</h4>
           <p>Same as scryRenderedComponentsWithType() but expects there to be one result. </p>
-          <p>Throws exception if there is any other number of matches besides one.</p>
+          <p>Throws an exception if there is more than one match or no match at all. </p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -512,12 +514,12 @@ var cancel = TestUtils.findRenderedComponentWithType(element, CancelButton);
         </section>
         <section>
           <h4 class="lower">scryRenderedDOMComponentsWithTag(ReactComponent tree, string tagName)</h4>
-          <p>Finds all instances of components in the rendered tree that are DOM components with the tag name matching tagName.</p>
+          <p>Finds all instances of components in the rendered tree that are DOM components and whose tag name matches tagName.</p>
         </section>
         <section>
           <h4 class="lower">findRenderedDOMComponentWithTag(ReactComponent tree, string tagName)</h4>
           <p>Like scryRenderedDOMComponentsWithTag() but expects there to be one result.</p>
-          <p>Throws exception if there is any other number of matches besides one.</p>
+          <p>Throws an exception if there is more than one match or no match at all.</p>
         </section>
         <section>
           <pre><code class="json" data-trim>
