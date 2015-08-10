@@ -45,9 +45,9 @@
         <section>
           <h2>Interactive Props</h2>
         </section>
-        <section>
+        <section> 
           <p>Props affected via user interactions:</p>
-          <ul>
+          <ul> 
             <li>value:     supported by input and textarea.</li>
             <li>checked:   supported checkbox or radio.</li>
             <li>selected:  supported by option.</li>
@@ -57,13 +57,13 @@
           <p>Form components allow listening for changes.</p>
           <p>Set a callback to the onChange prop. </p>
           <p>Callback fires when: </p>
-          <ul>
+          <ul> 
             <li>The value changes.</li>
             <li>Checked state changes.</li>
             <li>Selected state changes.</li>
           </ul>
         </section>
-        <section>
+        <section> 
           <h2>Controlled Components</h2>
         </section>
         <section>
@@ -84,18 +84,18 @@
           <p>We can now use controlled components in our form to enforce validation.</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
-&lt;form name="employeeForm"&gt;
+          <pre><code class="javascript" data-trim>
+(&lt;form name="employeeForm"&gt;
   &lt;input name="username" 
     value={this.props.employee.username}
     onChange={this.props.validate} /&gt;
-&lt;/form&gt;
+&lt;/form&gt;)
 
 </code>
 </pre>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 validate: function (event) {
   var field = event.target.name;
   var value = event.target.value;
@@ -110,16 +110,16 @@ validate: function (event) {
     this.state.errors[field] = 
       'Username can only be 40 characters long.';
   }
-  
+
   this.props.employee[field] = value;
   return this.setState({
     employee: this.state.employee, 
     errors: this.state.errors
   });
-},
+}
 
 </code>
-</pre>
+  </pre>
         </section>
         <section>
           <h1>lab prep</h1>

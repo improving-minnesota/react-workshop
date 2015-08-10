@@ -46,10 +46,10 @@
           <h2 class="lower">Router.Route</h2>
           <h2 class="lower">&lt;Route /&gt;</h2>
         </section>
-        <section>
+        <section> 
           <h2 class="plain">Route props</h2>
         </section>
-        <section>
+        <section> 
           <h2 class="lower">name</h2>
           <p>The unique name of the route.</p>
           <p>Used in the Link component and the router's transition methods.</p>
@@ -76,7 +76,7 @@
         <section>
           <h2 class="plain">Redirect props.</h2>
         </section>
-        <section>
+        <section> 
           <h2 class="lower">from</h2>
           <p>Path you want to redirect from, including dynamic segments. </p>
           <p>Defaults to * so you can redirect anything not matched to somewhere else.</p>
@@ -96,19 +96,19 @@
           <p>You can specify them if you need to.</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 var Projects = require('./components/projects/projects');
 var Employees = require('./components/employees/employees');
 var Timesheets = require('./components/timesheets/timesheets');
 
-&lt;Route name='app' path="/" handler={App}&gt;
+(&lt;Route name='app' path="/" handler={App}&gt;
 
   &lt;Route name='projects'   path='/projects'  handler={Projects} /&gt;
   &lt;Route name='employees'  path='/employees' handler={Employees} /&gt;
   &lt;Route name='timesheets' path='/employees/:user_id/timesheets' handler={Timesheets} /&gt;
   
   &lt;Redirect to="employees" /&gt;
-&lt;/Route&gt;
+&lt;/Route&gt;)
 
 </code>
 </pre>
@@ -127,12 +127,12 @@ var Timesheets = require('./components/timesheets/timesheets');
           <p>Automatically applies its activeClassName and/or activeStyle.</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
-&lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
+          <pre><code class="javascript" data-trim>
+(&lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
 &lt;Link className={employeesClasses} to="employees"&gt;Employees&lt;/Link&gt;
 &lt;Link className={timesheetsClasses} to="timesheets" 
-  params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;      
-  
+  params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;) 
+
 </code>
 </pre>
         </section>
@@ -140,7 +140,7 @@ var Timesheets = require('./components/timesheets/timesheets');
           <h2 class="lower">Router.RouteHandler</h2>
           <h3>&lt;RouteHandler /&gt;</h3>
         </section>
-        <section>
+        <section> 
           <p>Renders the handler of the route.</p>
           <p>Entry point in the DOM for your handler component. </p>
         </section>
@@ -148,16 +148,16 @@ var Timesheets = require('./components/timesheets/timesheets');
           <h3>Static Lifecycle Methods</h3>
           <ul>
             <li class="highlight">willTransitionTo(transition, params, query, callback)</li>
-            <ul>
+            <ul> 
               <li>Called when a handler is about to render.</li>
             </ul>
             <li class="highlight">willTransitionFrom(transition, component, callback)</li>
-            <ul>
+            <ul> 
               <li>Called when an active route is being transitioned out.</li>
             </ul>
           </ul>
         </section>
-        <section>
+        <section> 
           <h3 class="lower">Router.run()</h3>
           <p>The main API for the react router. </p>
           <p>It runs your routes.</p>
@@ -165,7 +165,7 @@ var Timesheets = require('./components/timesheets/timesheets');
           <p>Calls back with the next state for you to render.</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 Router.run(routes, function (Handler, state) {
   React.render(<Handler />, document.getElementById('app'));
 });
@@ -176,14 +176,14 @@ Router.run(routes, function (Handler, state) {
         <section>
           <h1>Router Mixins</h1>
         </section>
-        <section>
+        <section> 
           <h2 class="lower">Router.State</h2>
         </section>
         <section>
           <h3 class="lower">getPath()</h3>
           <p>Returns the current URL path, including the query string.</p>
         </section>
-        <section>
+        <section> 
           <h3 class="lower">getPathname()</h3>
           <p>Returns the current URL path without the query string.</p>
         </section>
@@ -206,7 +206,7 @@ Router.run(routes, function (Handler, state) {
         <section>
           <h3 class="lower">Router.Navigation</h3>
         </section>
-        <section>
+        <section> 
           <h4 class="lower">transitionTo(routeNameOrPath, [params[, query]])</h4>
           <p>Programmatically transition to a new route.</p>
         </section>
@@ -222,7 +222,7 @@ Router.run(routes, function (Handler, state) {
           <p>Returns true unless it's the first entry in the app history.</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 if (!this.goBack()) {
   this.transitionTo('/otherpage')
 }
@@ -239,7 +239,7 @@ if (!this.goBack()) {
           <p>Creates an href to a route. </p>
           <p>Used with State when you need to build components similar to Link.</p>
         </section>
-        <section>
+        <section> 
           <h1>React (cont.)</h1>
         </section>
         <section>
@@ -255,7 +255,7 @@ if (!this.goBack()) {
         <section>
           <h2>Supported Events</h2>
         </section>
-        <section>
+        <section> 
           <h2>Clipboard Events</h2>
           <p>onCopy onCut onPaste</p>
         </section>
@@ -280,7 +280,7 @@ if (!this.goBack()) {
           <p>Enabled by calling: React.initializeTouchEvents(true) before rendering any component.</p>
           <p>onTouchCancel onTouchEnd onTouchMove onTouchStart</p>
         </section>
-        <section>
+        <section> 
           <h2>UI Events</h2>
           <p>onScroll</p>
         </section>
@@ -294,19 +294,18 @@ if (!this.goBack()) {
           <p>Have the same properties.</p>
           <p>Check the docs for each event's properties.</p>
         </section>
-        <section>
-          <h2>The Classes Mixin</h2>
+        <section> 
+          <h2>The Classnames Library</h2>
         </section>
         <section>
           <p>Third party utility to make it easier to manipulate CSS classes in your React components. </p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
-var classes = require('react-classes');
+          <pre><code class="javascript" data-trim>
+var classNames = require('classnames');
 // In our Component 
-mixins: [classes],
 render: function () {
-  var classNames = this.getClass('repeated-item fadeable-row', {
+  var rowClasses = classNames('repeated-item fadeable-row', {
     'faded': employee.deleted
   });
 }
