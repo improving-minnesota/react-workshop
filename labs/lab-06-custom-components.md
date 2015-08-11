@@ -26,12 +26,10 @@ If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwis
 
 - Open **client/src/components/common/snackbar.jsx**
 
-- First, let's take care of the boilerplate to hook our component to our **Flux** classes, set our mixins, and initial state.
+- First, let's take care of the boilerplate to hook our component to our **Flux** classes and initial state.
 
 ```javascript
   store: SnackbarStore,
-
-  mixins: [classes],
 
   getInitialState: function () {
     return {
@@ -60,7 +58,7 @@ If not running, start the `gulp watch:dev` and `gulp serve:dev` tasks.  Otherwis
 ```javascript
   render: function () {
 
-    var classes = this.getClass('ui inline snackbar top right', {
+    var classes = classNames('ui inline snackbar top right', {
       'hide':     !this.state.message.length,
       'success':  this.state.messageType === 'success',
       'info':     this.state.messageType === 'info',

@@ -59,7 +59,6 @@ module.exports = (
 
 - We first need to mixin the extra functionality that we want our component to have. We do this by adding an array of our mixins to the **mixins** property on the React class:
   - **Router.State** gives us the `getRoutes()` method which we'll use to set the active class on the correct navbar link.
-  - **classes** mixin gives us a helper method, `getClass()`, to make manipulating `className` in our `render()` method a bit less painful.
 
 - Add the mixins to the **Navbar** component definition:  
 
@@ -293,8 +292,7 @@ If you haven't already done so,
 ```javascript
 mixins: [
   Router.Navigation,
-  Router.State,
-  classes
+  Router.State
 ],
 
 propTypes: {
@@ -304,12 +302,12 @@ propTypes: {
 render: function () {
   var employee = this.props.employee;
 
-  var classNames = this.getClass('repeated-item fadeable-row', {
+  var rowClasses = classNames('repeated-item fadeable-row', {
     'faded': employee.deleted
   });
 
   return (
-    <tr className={classNames} ref={employee._id}>
+    <tr className={rowClasses} ref={employee._id}>
       <td>{employee.username}</td>
       <td>{employee.email}</td>
       <td>{employee.firstName}</td>
