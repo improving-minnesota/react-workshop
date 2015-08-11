@@ -77,7 +77,7 @@
           <p>No need for 2 different module systems anymore. </p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 var React = require('react/addons');
 var myModule = require('./modules/myModule');
 
@@ -116,7 +116,7 @@ var myModule = require('./modules/myModule');
           <p>Runs tasks asynchronuously and uses streams. </p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 gulp.task('uglify', ['watchify'], function () {
   return gulp.src(dist('/js/app.js'))
     .pipe(gulp.dest(dist('/js')))
@@ -162,7 +162,7 @@ gulp test
 </pre>
           <p class="centered">Runs our unit tests via the Karma test runner. </p>
         </section>
-        <section>
+        <section> 
           <h1>Hapi</h1>
           <p><a href="http://hapijs.com/">hapijs.com</a></p>
         </section>
@@ -185,13 +185,13 @@ gulp test
           <p>BDD-style (Behavior Driven Development)</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 describe('when there is no message', function () {
   beforeEach(function () {
     Snackbar = require('./snackbar');
     element = TestUtils.renderIntoDocument(&lt;Snackbar /&gt;);
   });
-  
+
   it('should hide the snackbar', function () {
     var div = TestUtils.findRenderedDOMComponentWithTag(element, 'div');
     expect(div.props.className).contains('hide');
@@ -224,7 +224,7 @@ describe('when there is no message', function () {
         </section>
         <section>
           <p class="centered">Used with sinon-chai</p>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 spies.transitionTo = sinon.stub(element, 'transitionTo');
 
 expect(spies.transitionTo).to.have.been.calledWith('employees.create');
@@ -241,7 +241,7 @@ expect(spies.transitionTo).to.have.been.calledWith('employees.create');
           <p>Staying totally unobstrusive.</p>
         </section>
         <section>
-          <pre><code class="json" data-trim>
+          <pre><code class="javascript" data-trim>
 proxies = {
   './employee.form': mockComponent('EmployeeForm'),
   '../../actions/employee.actions': {

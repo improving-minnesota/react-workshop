@@ -53,18 +53,18 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
-      &lt;form name="employeeForm"&gt;
+      <code class="javascript" data-trim>
+      (&lt;form name="employeeForm"&gt;
         &lt;input name="username" 
           value={this.props.employee.username}
           onChange={this.props.validate} /&gt;
-      &lt;/form&gt;
+      &lt;/form&gt;)
       
       </code>
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       validate: function (event) {
         var field = event.target.name;
         var value = event.target.value;
@@ -85,7 +85,7 @@ include ../includes/mixins
           employee: this.state.employee, 
           errors: this.state.errors
         });
-      },
+      }
       
       </code>
         

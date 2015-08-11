@@ -63,7 +63,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var dispatcher = _.extend(new Dispatcher(), {
         handleViewAction: function(action) {
           this.dispatch({
@@ -96,13 +96,13 @@ include ../includes/mixins
 
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       list: function (query) {
         dispatcher.handleViewAction({
           actionType: 'list',
           query: query
         });
-      },
+      }
       
       </code>
   
@@ -131,7 +131,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       // The initialize function of an extended Store
       initialize: function () {
         var events = {};
@@ -140,13 +140,13 @@ include ../includes/mixins
         events['update']  = this.update;
         this.register(events);
         return this;
-      },
+      }
       
       </code>
       
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       register: function (events) {
         var self = this;
 

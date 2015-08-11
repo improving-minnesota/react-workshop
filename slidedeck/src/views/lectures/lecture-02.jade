@@ -41,7 +41,7 @@ include ../includes/mixins
       
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var React = require('react/addons');
       var Hello = React.createClass({
         render: function () {...}
@@ -81,14 +81,14 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       getInitialState: function () {
         return {
           saveText: 'Update',
           employee: {},
           errors: {}
         };
-      },
+      }
       
       </code>
     
@@ -104,12 +104,12 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       getDefaultProps: function() {
         return {
           maxVisible: 5
         };
-      },
+      }
       
       </code>
     
@@ -119,12 +119,12 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       propTypes: {
         max:        React.PropTypes.number.isRequired,
         maxVisible: React.PropTypes.number,
         onChange:   React.PropTypes.func.isRequired
-      },
+      }
       
       </code>
     
@@ -134,12 +134,12 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       mixins: [
         Router.Navigation,
         Router.State,
         EmployeeMixin
-      ],
+      ]
       
       </code>
     
@@ -155,12 +155,12 @@ include ../includes/mixins
 
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       statics: {
         willTransitionTo: function (transition, params) {
           return LoginStore.requireAuthenticatedUser(transition);
         }
-      },
+      }
       
       </code>
 
@@ -171,7 +171,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       displayName: 'super-cool-thingy'
       
       </code>
@@ -185,22 +185,21 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       render : function () {
-
-       return (
-        &lt;div className="ui message"&gt;
-          &lt;div className="ui huge header"&gt;{this.state.greeting}&lt;/div&gt;
-          &lt;div className="ui large header"&gt;{this.props.friend}&lt;/div&gt;
-        &lt;/div&gt;
-       );
+        return (
+          &lt;div className="ui message"&gt;
+            &lt;div className="ui huge header"&gt;{this.state.greeting}&lt;/div&gt;
+            &lt;div className="ui large header"&gt;{this.props.friend}&lt;/div&gt;
+          &lt;/div&gt;
+        );
       }
       
       </code>
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       render : function () {
         return (
           React.createElement("div", {className: "ui message"}, 
@@ -241,7 +240,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       React.render(&lt;Hello friend="WoooHooo"/&gt;, document.getElementById('app'));
       
       </code>
@@ -264,7 +263,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       render : function () {
         return (
           &lt;EmployeeForm employee={this.state.employee}
@@ -366,7 +365,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var React, TestUtils;
       beforeEach(function () {
         React = require('react/addons');
@@ -383,7 +382,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var button = TestUtils.findRenderedDOMComponentWithTag(cancel, 'button');
       TestUtils.Simulate.click(button);
       
@@ -397,7 +396,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       EmployeeForm = require('./employee.form');
       element = TestUtils.renderIntoDocument(
         &lt;EmployeeForm employee={employee}
@@ -431,7 +430,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       it('should instantiate the EmployeeForm', function () {
         expect(TestUtils.isCompositeComponent(element)).to.be.true;
       });
@@ -456,7 +455,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var cancel = TestUtils.findRenderedComponentWithClass(element, 'cancel-btn');
       
       </code>
@@ -472,7 +471,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var cancel = TestUtils.findRenderedComponentWithType(element, CancelButton);
       
       </code>
@@ -488,7 +487,7 @@ include ../includes/mixins
 
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var button = TestUtils.findRenderedDOMComponentWithTag(cancel, 'button');
       
       </code>

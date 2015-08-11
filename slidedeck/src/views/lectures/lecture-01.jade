@@ -54,7 +54,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       var React = require('react/addons');
       var myModule = require('./modules/myModule');
       
@@ -96,7 +96,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       gulp.task('uglify', ['watchify'], function () {
         return gulp.src(dist('/js/app.js'))
           .pipe(gulp.dest(dist('/js')))
@@ -170,7 +170,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       describe('when there is no message', function () {
         beforeEach(function () {
           Snackbar = require('./snackbar');
@@ -213,7 +213,7 @@ include ../includes/mixins
   section
     p.centered Used with sinon-chai
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       spies.transitionTo = sinon.stub(element, 'transitionTo');
       
       expect(spies.transitionTo).to.have.been.calledWith('employees.create');
@@ -231,7 +231,7 @@ include ../includes/mixins
     
   section
     pre.
-      <code class="json" data-trim>
+      <code class="javascript" data-trim>
       proxies = {
         './employee.form': mockComponent('EmployeeForm'),
         '../../actions/employee.actions': {
