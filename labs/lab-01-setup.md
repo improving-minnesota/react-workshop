@@ -68,14 +68,6 @@ npm install
 
 ### Start the Gulp build and watcher.
 
-- Compile the Semantic UI `less` into `CSS`.
-
-```
-gulp init
-```
-
-![](img/lab01/gulp.init.png)
-
 - Run the Gulp watcher for our Client src.
 
 ```
