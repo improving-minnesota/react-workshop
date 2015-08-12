@@ -231,7 +231,7 @@ If you haven't already done so,
 - In a separate terminal run: `gulp serve:dev` to serve the index.html.
 - Navigate to [http://localhost:3000](http://localhost:3000) in your favorite browser.
 
-- Login with username: **Admin** and password: **password** (should have been 'guest').
+- Login with username: **admin** and password: **password** (should have been 'guest').
 - Did it work?
 
 ![](img/lab05/login.form.png)
