@@ -206,7 +206,7 @@ describe('Hello World:', function () {
 - There are a couple of other tests we could perform:
   - Test that the initial state was rendered inside the element.
   - Test that the default prop was rendered inside the element.
-  - We'll do more of this style testing in upcoming labs, but you can study ahead in the [React docs for TestUtils.](http://facebook.github.io/react/docs/test-utils.htm)
+  - We'll do more of this style testing in upcoming labs, but you can study ahead in the [React docs for TestUtils.](https://facebook.github.io/react/docs/test-utils.html)
 
 ## Inspect the Karma Debug in Chrome
 
