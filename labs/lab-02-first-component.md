@@ -165,7 +165,7 @@ it('should instantiate the Hello World', function () {
 });
 ```
 
-- Above, we just used the `TestUtils.isCompositComponent()` to determine if the `Hello` component successfully rendered to our mock document.
+- Above, we just used the `TestUtils.isCompositeComponent()` to determine if the `Hello` component successfully rendered to our mock document.
 
 - When finished, your suite should look similar to the one below:
 
