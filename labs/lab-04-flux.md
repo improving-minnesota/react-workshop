@@ -468,7 +468,7 @@ create: function (payload) {
 &nbsp;
 ### Add the Store and Actions to Employees
 
-- Open **client/src/components/employees.jsx**
+- Open **client/src/components/employees/employees.jsx**
 
 - First things first, look inside the render method.  There are a couple of enhancements that have been made for you:
   - A **Pagination** component has been added for you to control pagination. Notice that it calls the `onPageChange()` callback.
