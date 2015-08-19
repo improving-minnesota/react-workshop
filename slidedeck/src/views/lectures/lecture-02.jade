@@ -6,39 +6,41 @@ include ../includes/mixins
 
   section
     h1 React
-    p 
+    p
       a(href="http://facebook.github.io/react/index.html") website
-      
+
   section
-    p A JAVASCRIPT LIBRARY FOR BUILDING USER INTERFACES
-    
-  section 
-    h1 Virtual Dom
-    
+    h3 A JavaScript library for building user interfaces
+
   section
-    p Replica of the Browser DOM.
-    p React redraws the entire screen on change.
-    p React calculates the minimum amount of changes required.
-    
+    h1 Virtual DOM
+
   section
-    p 
+    ul
+      li Replica of the Browser DOM
+      li React redraws the entire screen on change
+      li React calculates the minimum amount of changes required
+
+  section
+    p
       a(href="http://facebook.github.io/react/docs/glossary.html") More info?
-    
+
   section
-    p For a bare-bones React component, we need to know about 2 top level api methods: 
+    p For a bare-bones React component, we need to know about 2 top level API methods:
     ul
       li React.createClass();
       li React.render();
-      
+
   section
     h2.lower React.createClass();
-    
+
   section
-      p Creates a component class, given a specification. 
-      p A component implements a render method which returns a single child. 
-      p That child may have an arbitrarily deep child structure. 
-      p They are convenience wrappers that construct backing instances (via new) for you.
-      
+    ul
+      li Creates a component class, given a specification
+      li A component implements a render method which returns a single child
+      li That child may have an arbitrarily deep child structure
+      li They are convenience wrappers that construct backing instances (via new) for you
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -48,37 +50,40 @@ include ../includes/mixins
       });
 
       module.exports = Hello;
-      
+
       </code>
-    
+
   section
     h2 Component Specifications
-    
+
   section
     h2.lower render()
-    p Required
-    p Return a single child component. 
-    p Either a virtual representation of a native DOM component or composite component.
-    
+    ul
+      li Required
+      li Returns a single child component that is either a virtual representation of a native DOM component or composite component
+
   section
     h2.lower render()
-    p Return null (or false) to indicate that you don't want anything rendered. 
-    p React renders a &lt;noscript&gt; tag to work with our current diffing algorithm.
-    p When returning null or false, React.findDOMNode(this) will return null.
-    
+    ul
+      li You should return null (or false) to indicate that you don't want anything rendered
+      li React renders a &lt;noscript&gt; tag to work with our current diffing algorithm
+      li When returning null or false, React.findDOMNode(this) will return null
+
   section
     h2.lower render()
-    p Should be pure.
-    p Does not modify component state.
-    p Returns the same result each time it's invoked.
-    p Does not read from or write to the DOM. 
-    p Perform work in componentDidMount() or the other lifecycle methods.
+    ul
+      li Should be pure
+      li Should not modify component state
+      li Should return the same result each time it's invoked
+      li Should not read from or write to the DOM
+      li Work should be performed in componentDidMount() or the other lifecycle methods
 
   section
     h2.lower getInitialState()
-    p Invoked once before the component is mounted. 
-    p The return value will be used as the initial value of this.state.
-    
+    ul
+      li Invoked once before the component is mounted
+      li The return value will be used as the initial value of this.state
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -89,19 +94,21 @@ include ../includes/mixins
           errors: {}
         };
       }
-      
+
       </code>
-    
+
   section
     h2.lower getDefaultProps()
-    p Invoked once and cached when the class is created. 
-    p Values in the mapping will be set on this.props if that prop is not specified by the parent component.
-    
+    ul
+      li Invoked once and cached when the class is created
+      li Values in the mapping will be set on this.props if that prop is not specified by the parent component
+
   section
     h2.lower getDefaultProps()
-    p This method is invoked before any instances are created and therefore it can't rely on this.props. 
-    p Objects returned will be shared across instances, not copied.
-    
+    ul
+      li This method is invoked before any instances are created and therefore it can't rely on this.props
+      li Objects returned will be shared across instances, not copied
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -110,13 +117,14 @@ include ../includes/mixins
           maxVisible: 5
         };
       }
-      
+
       </code>
-    
+
   section
     h2.lower propTypes: {}
-    p The propTypes object allows you to validate props being passed to your components. 
-    
+    ul
+      li The propTypes object allows you to validate props being passed to your components
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -125,13 +133,14 @@ include ../includes/mixins
         maxVisible: React.PropTypes.number,
         onChange:   React.PropTypes.func.isRequired
       }
-      
+
       </code>
-    
+
   section
     h2.lower mixins: []
-    p The mixins array allows you to use mixins to share behavior among multiple components. 
-    
+    ul
+      li The mixins array allows you to use mixins to share behavior among multiple components
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -140,18 +149,20 @@ include ../includes/mixins
         Router.State,
         EmployeeMixin
       ]
-      
+
       </code>
-    
+
   section
     h2.lower statics: {}
-    p The statics object allows you to define static methods that can be called on the component class. 
-    p Methods defined within this block are static, meaning you can run them before any component instances are created.
-    
+    ul
+      li The statics object allows you to define static methods that can be called on the component class
+      li Methods defined within this block are static, meaning you can run them before any component instances are created
+
   section
     h2.lower statics: {}
-    p Methods do not have access to the props or state of your components. 
-    p If you want to check the value of props in a static method, have the caller pass in the props as an argument to the static method.
+    ul
+      li Methods do not have access to the props or state of your components
+      li If you want to check the value of props in a static method, have the caller pass in the props as an argument to the static method
 
   section
     pre.
@@ -161,28 +172,30 @@ include ../includes/mixins
           return LoginStore.requireAuthenticatedUser(transition);
         }
       }
-      
+
       </code>
 
   section
     h2.lower displayName: ""
-    p Used in debugging messages. 
-    p JSX sets this value automatically.
-    
+    ul
+      li Used in debugging messages
+      li JSX sets this value automatically
+
   section
     pre.
       <code class="javascript" data-trim>
       displayName: 'super-cool-thingy'
-      
+
       </code>
-    
+
   section
     h1 JSX
-    
+
   section
-    p JavaScript syntax extension that looks similar to XML. 
-    p Compiles to actual Javascript that you'll be able to see during labs.
-    
+    ul
+      li JavaScript syntax extension that looks similar to XML
+      li Compiles to actual JavaScript that you'll be able to see during labs
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -194,73 +207,79 @@ include ../includes/mixins
           &lt;/div&gt;
         );
       }
-      
+
       </code>
-    
+
   section
     pre.
       <code class="javascript" data-trim>
       render : function () {
         return (
-          React.createElement("div", {className: "ui message"}, 
-            React.createElement("div", {className: "ui huge header"}, this.state.greeting), 
+          React.createElement("div", {className: "ui message"},
+            React.createElement("div", {className: "ui huge header"}, this.state.greeting),
             React.createElement("div", {className: "ui large header"}, this.props.friend)
           )
         );
       }
-      
+
       </code>
-    
+
   section
-    p React's JSX uses the upper vs. lower case convention to distinguish between local component classes and HTML tags.
+    p React's JSX uses the upper vs. lower case convention to distinguish between local component classes and HTML tags
     ul
       li UpperCase = Component
       li lowercase = tag
-    
+
   section
-    p Since JSX is a superset of JavaScript, identifiers like class and for as XML attribute names is discouraged. 
+    p Since JSX is a superset of JavaScript, identifiers like class and for as XML attribute names is discouraged
     ul
       li htmlFor = for
       li className = class
-      
+
   section
     h2.lower React.render()
-    p Renders a ReactElement into the DOM of the supplied container.
-    p Returns a reference to the component.
-    p Replaces the contents of the container node you pass in.
-    
+    ul
+      li Renders a ReactElement into the DOM of the supplied container
+      li Returns a reference to the component
+      li Replaces the contents of the container node you pass in
+
   section
     h2.lower React.render()
-    p If the ReactElement was previously rendered into container, this method will perform an update on it.
-    p This update will mutate the DOM as necessary to reflect the latest React component.
-    
+    ul
+      li If the ReactElement was previously rendered into container, this method will perform an update on it
+      li This update will mutate the DOM as necessary to reflect the latest React component
+
   section
     h2.lower React.render()
-    p If the optional callback is provided, it will be executed after the component is rendered or updated.
-    
+    ul
+      li If the optional callback is provided, it will be executed after the component is rendered or updated
+
   section
     pre.
       <code class="javascript" data-trim>
       React.render(&lt;Hello friend="WoooHooo"/&gt;, document.getElementById('app'));
-      
+
       </code>
-      
+
   section
     h2 Data: State vs. Props
-    
+
   section
-    p "props" are the data you pass into your component via attributes.
-    p Used for application data that you need to display or manage with your component.
-          
+    ul
+      li "props" are the data you pass into your component via attributes
+      li Used for application data that you need to display or manage with your component
+
   section
-    p "state" is your components internally scoped ... state.
-    p Used for your components behaviors: open, disabled, submitted, etc. 
-    
+    ul
+      li "state" is your component's internally scoped ... state
+      li Used for the behavior of your component: open, disabled, submitted, etc.
+
   section
-    p One exception: "Controller" components.
-    p They will have a state that represents the application data.
-    p They pass their state as props to thier children components.
-    
+    ul
+      li One exception: "Controller" components
+      li They will have a state that represents the application data
+      li They pass their state as props to thier children components
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -276,93 +295,105 @@ include ../includes/mixins
             toggleAdmin={this.toggleAdmin} /&gt;
         );
       }
-      
+
       </code>
-    
+
   section
     h2 Component Lifecycle
-    
-  section
-    h2.lower Mounting: 
-    h3.lower componentWillMount
-    p Invoked once, on both the client and server.
-    p Invoked immediately before the initial rendering occurs. 
-    
-  section
-    h3.lower componentWillMount
-    p If you call setState within this method, render() will see the updated state.
-    p Executed only once despite the state change.
-    
-  section 
-    h2.lower Mounting: 
-    h3.lower componentDidMount
-    p Invoked once, only on the client (not on the server).
-    p Invoked immediately after the initial rendering occurs. 
-    p Has a DOM representation that you can access via React.findDOMNode(this).
-    
-  section
-    p Perform in this method: 
-    ul 
-      li Integration with other JavaScript frameworks.
-      li Set timers using setTimeout or setInterval.
-      li Send AJAX requests.
-      
-  section
-    h2.lower Updating: 
-    h4.lower componentWillReceiveProps(object nextProps)
-    p Invoked when a component is receiving new props. 
-    p This method is not called for the initial render.
-    
-  section
-    h4.lower componentWillReceiveProps(object nextProps)
-    p Used to react to a prop transition.
-    p This happens before render() is called when updating the state using this.setState(). 
-    p The old props can be accessed via this.props. 
-    p Calling this.setState() within this function will not trigger an additional render.
-    
-  section
-    h2.lower Updating: 
-    h4.lower shouldComponentUpdate(object nextProps, object nextState)
-    p Invoked before rendering when new props or state are being received. 
-    p This method is not called for the initial render or when forceUpdate is used.
-    
-  section 
-    h4.lower shouldComponentUpdate(object nextProps, object nextState)
-    p Return false when you're certain that the transition to the new props and state will not require a component update.
-    p render() will be completely skipped until the next state change. 
-    p componentWillUpdate and componentDidUpdate will not be called.
 
-  section 
-    h2.lower Updating: 
+  section
+    h2.lower Mounting:
+    h3.lower componentWillMount()
+    ul
+      li Invoked once, on both the client and server
+      li Invoked immediately before the initial rendering occurs
+
+  section
+    h3.lower componentWillMount()
+    ul
+      li If you call setState within this method, render() will see the updated state
+      li Executed only once despite the state change
+
+  section
+    h2.lower Mounting:
+    h3.lower componentDidMount()
+    ul
+      li Invoked once, only on the client (not on the server)
+      li Invoked immediately after the initial rendering occurs
+      li Has a DOM representation that you can access via React.findDOMNode(this)
+
+  section
+    p Examples of things that should be performed in this method:
+    ul
+      li Integration with other JavaScript frameworks
+      li Set timers using setTimeout or setInterval
+      li Send AJAX requests
+
+  section
+    h2.lower Updating:
+    h4.lower componentWillReceiveProps(object nextProps)
+    ul
+      li Invoked when a component is receiving new props
+      li This method is not called for the initial render
+
+  section
+    h4.lower componentWillReceiveProps(object nextProps)
+    ul
+      li Used to react to a prop transition
+      li This happens before render() is called when updating the state using this.setState()
+      li The old props can be accessed via this.props
+      li Calling this.setState() within this function will not trigger an additional render
+
+  section
+    h2.lower Updating:
+    h4.lower shouldComponentUpdate(object nextProps, object nextState)
+    ul
+      li Invoked before rendering when new props or state are being received
+      li This method is not called for the initial render or when forceUpdate is used
+
+  section
+    h4.lower shouldComponentUpdate(object nextProps, object nextState)
+    ul
+      li Return false when you're certain that the transition to the new props and state will not require a component update
+      li render() will be completely skipped until the next state change
+      li componentWillUpdate() and componentDidUpdate() will not be called
+
+  section
+    h2.lower Updating:
     h4.lower componentWillUpdate(object nextProps, object nextState)
-    p Invoked immediately before rendering when new props or state are being received. 
-    p Not called for the initial render.
-    
+    ul
+      li Invoked immediately before rendering when new props or state are being received
+      li Not called for the initial render
+
   section
-    h4.lower componentWillUpdate(object nextProps, object nextState)  
-    p Cannot use this.setState() in this method. 
-    p If you need to update state in response to a prop change, use componentWillReceiveProps instead.
-    
-  section 
-    h2.lower Updating: 
+    h4.lower componentWillUpdate(object nextProps, object nextState)
+    ul
+      li Cannot use this.setState() in this method
+      li If you need to update state in response to a prop change, use componentWillReceiveProps instead
+
+  section
+    h2.lower Updating:
     h4.lower componentDidUpdate(object prevProps, object prevState)
-    p Invoked immediately after the component's updates are flushed to the DOM. 
-    p Not called for the initial render.
-    p Operate on the DOM when the component has been updated.
-    
+    ul
+      li Invoked immediately after the component's updates are flushed to the DOM
+      li Not called for the initial render
+      li Operate on the DOM when the component has been updated
+
   section
-    h2.lower Unmounting: 
-    h3.lower componentWillUnmount
-    p Invoked immediately before a component is unmounted from the DOM.
-    p Perform any necessary cleanup in this method.
-    ul 
+    h2.lower Unmounting:
+    h3.lower componentWillUnmount()
+    ul
+      li Invoked immediately before a component is unmounted from the DOM
+      li Perform any necessary cleanup in this method
+    ul
       li Invalidating timers
-      li Cleaning up any DOM elements that were created in componentDidMount.
-  
+      li Cleaning up any DOM elements that were created in componentDidMount()
+
   section
     h2.lower TestUtils
-    p Utilities to make it easy to test React components.
-    
+    ul
+      li Utilities to make it easy to test React components
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -371,29 +402,31 @@ include ../includes/mixins
         React = require('react/addons');
         TestUtils = React.addons.TestUtils;
       });
-      
+
       </code>
-      
+
   section
     h4.lower Simulate.{eventName}(DOMElement element, object eventData)
-    p Simulate an event dispatch on a DOM node with optional event data. 
-    p Possibly the single most useful utility in ReactTestUtils.
-    p Has a method for every event that React understands.
-    
+    ul
+      li Simulate an event dispatch on a DOM node with optional event data
+      li Possibly the single most useful utility in ReactTestUtils
+      li Has a method for every event that React understands
+
   section
     pre.
       <code class="javascript" data-trim>
       var button = TestUtils.findRenderedDOMComponentWithTag(cancel, 'button');
       TestUtils.Simulate.click(button);
-      
+
       </code>
-    
-  section 
+
+  section
     h4.lower renderIntoDocument(ReactComponent instance)
-    p Render a component into a detached DOM node in the document. 
-    p This function requires a DOM.
-    p It's the testing version of React.render()
-    
+    ul
+      li Render a component into a detached DOM node in the document
+      li This function requires a DOM
+      li It's the testing version of React.render()
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -406,92 +439,103 @@ include ../includes/mixins
           toggleAdmin={spies.toggleAdmin}
           onSave={spies.onSave} /&gt;
       );
-      
+
       </code>
-    
-  section 
+
+  section
     h2 Expectation Helpers
-    
-  section 
+
+  section
     h4.lower isElement(ReactElement element)
-    p Returns true if the element is any ReactElement.
-    
-  section 
+    ul
+      li Returns true if the element is any ReactElement
+
+  section
     h4.lower isElementOfType(ReactElement element, function componentClass)
-    p Returns true if the element is a ReactElement and whose type is of a React componentClass.
-    
-  section 
+    ul
+      li Returns true if the element is a ReactElement that has a type of a React componentClass
+
+  section
     h4.lower isDOMComponent(ReactComponent instance)
-    p Returns true if the instance is a DOM component (such as a &lt;div&gt; or &lt;span&gt;).
-    
-  section 
+    ul
+      li Returns true if the instance is a DOM component (such as a &lt;div&gt; or &lt;span&gt;)
+
+  section
     h4.lower isCompositeComponent(ReactComponent instance)
-    p Returns true if the instance is a composite component (created with React.createClass())
-    
+    ul
+      li Returns true if the instance is a composite component (created with React.createClass())
+
   section
     pre.
       <code class="javascript" data-trim>
       it('should instantiate the EmployeeForm', function () {
         expect(TestUtils.isCompositeComponent(element)).to.be.true;
       });
-      
+
       </code>
-    
-  section 
+
+  section
     h4.lower isCompositeComponentWithType(ReactComponent instance, function componentClass)
-    p Returns true if the instance is a composite component (created with React.createClass()) whose type is of a React componentClass.
+    ul
+      li Returns true if the instance is a composite component (created with React.createClass()) whose type is of a React componentClass
 
   section
     h2 DOM Query Methods
-    
+
   section
     h4.lower scryRenderedDOMComponentsWithClass(ReactComponent tree, string className)
-    p Finds all instances of components in the rendered tree that are DOM components and whose class matches className.
-    
+    ul
+      li Finds all instances of components in the rendered tree that are DOM components and whose class matches className
+
   section
     h4.lower findRenderedDOMComponentWithClass(ReactComponent tree, string className)
-    p Like scryRenderedDOMComponentsWithClass() but expects there to be one result.
-    p Throws an exception if there is more than one match or no match at all. 
-    
+    ul
+      li Like scryRenderedDOMComponentsWithClass() but expects there to be one result
+      li Throws an exception if there is more than one match or no match at all
+
   section
     pre.
       <code class="javascript" data-trim>
       var cancel = TestUtils.findRenderedComponentWithClass(element, 'cancel-btn');
-      
+
       </code>
-      
+
   section
     h4.lower scryRenderedComponentsWithType(ReactComponent tree, function componentClass)
-    p Finds all instances of components with type equal to componentClass.
-    
+    ul
+      li Finds all instances of components with type equal to componentClass
+
   section
     h4.lower findRenderedComponentWithType(ReactComponent tree, function componentClass)
-    p Same as scryRenderedComponentsWithType() but expects there to be one result. 
-    p Throws an exception if there is more than one match or no match at all. 
-    
+    ul
+      li Same as scryRenderedComponentsWithType() but expects there to be exactly one result
+      li Throws an exception if there is more than one match or no match at all
+
   section
     pre.
       <code class="javascript" data-trim>
       var cancel = TestUtils.findRenderedComponentWithType(element, CancelButton);
-      
+
       </code>
-    
+
   section
     h4.lower scryRenderedDOMComponentsWithTag(ReactComponent tree, string tagName)
-    p Finds all instances of components in the rendered tree that are DOM components and whose tag name matches tagName.
-    
-  section 
+    ul
+      li Finds all instances of components in the rendered tree that are DOM components and whose tag name matches tagName
+
+  section
     h4.lower findRenderedDOMComponentWithTag(ReactComponent tree, string tagName)
-    p Like scryRenderedDOMComponentsWithTag() but expects there to be one result.
-    p Throws an exception if there is more than one match or no match at all.
+    ul
+      li Like scryRenderedDOMComponentsWithTag() but expects there to be exactly one result
+      li Throws an exception if there is more than one match or no match at all
 
   section
     pre.
       <code class="javascript" data-trim>
       var button = TestUtils.findRenderedDOMComponentWithTag(cancel, 'button');
-      
+
       </code>
-    
+
   section
     h1 Lab 02
     h2 Your First React Component

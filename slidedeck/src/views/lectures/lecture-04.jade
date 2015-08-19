@@ -6,61 +6,70 @@ include ../includes/mixins
 
   section
     h1 Flux
-    
+
   section
     h3.lower Three major parts
-    ul 
+    ul
       li the dispatcher
       li the stores
       li the views (React components)
-      
+
   section
-    p Not MVC
-    p Controllers do exist in a Flux application, but they are controller-views
-    
+    ul
+      li Not MVC
+      li Controllers do exist in a Flux application, but they are controller-views
+
   section
     h3 Controller Components
-    p Views at the top of the hierarchy that retrieve data from the stores
-    p Pass data down to their children.
-    
-  section 
-    h3 Action creators
-    p Dispatcher helper methods
-    p Support a semantic API that describes all changes that are possible in the application. 
-    
-  section
-    p Unidirectional data flow. 
-    p When a user interacts with a React view, the view propagates an action.
-    p The stores react and fire an event
-    p All interested other views update accordingly. 
+    ul
+      li Views at the top of the hierarchy that retrieve data from the stores
+      li These views pass data down to their children.
 
-  section 
+  section
+    h3 Action creators
+    ul
+      li Dispatcher helper methods
+      li Support a semantic API that describes all changes that are possible in the application
+
+  section
+    ul
+      li Unidirectional data flow
+      li When a user interacts with a React view, the view propagates an action
+      li The stores react and fire an event
+      li All interested other views update accordingly
+
+  section
     img(src="/react-workshop/assets/img/lecture-04/flux.diagram.png")
-    
-  section 
+
+  section
     h2 Dispatcher
-    
+
   section
-    p Singleton
-    p Central hub of data flow in a Flux application. 
-    
+    ul
+      li Singleton
+      li Central hub of data flow in a Flux application
+
   section
-    p Essentially a registry of callbacks.
-    p Can invoke these callbacks in order. 
-    
+    ul
+      li Essentially a registry of callbacks
+      li Can invoke these callbacks in order
+
   section
-    p Each store registers a callback with the dispatcher. 
-    p When new data comes into the dispatcher, it then uses these callbacks to propagate that data to all of the stores. 
-    
+    ul
+      li Each store registers a callback with the dispatcher
+      li When new data comes into the dispatcher, it then uses these callbacks to propagate that data to all of the stores
+
   section
-    p Initiated through the dispatch() method
-    p Takes a data payload object as its sole argument. 
-    p This payload is typically synonymous with an action.
-    
+    ul
+      li Initiated through the dispatch() method
+      li Takes a data payload object as its sole argument
+      li This payload is typically synonymous with an action
+
   section
-    h3.lower dispatch() 
-    p provides a simple, synchronous iteration through the callbacks
-    
+    h3.lower dispatch()
+    ul
+      li Provides a simple, synchronous iteration through the callbacks
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -72,27 +81,30 @@ include ../includes/mixins
           });
         }
       });
-      
+
       </code>
-    
-  section 
+
+  section
     h2 Actions
-    
-  section 
-    p Used to update data via user interaction or other changes in the UI.
-    p Data is packaged into an action
-    ul 
-      li Object literal containing the new fields of data.
-      li Specific action type. 
-      
+
   section
-    p Identified by a type attribute. 
-    p Stores typically use this attribute to determine if and how they should respond to it. 
-  
+    ul
+      li Used to update data via user interaction or other changes in the UI
+      li Data is packaged into an action
+        ul
+          li Object literal containing the new fields of data
+          li Specific action type
+
   section
-    p Stores and views control themselves.
-    p They are not acted upon by external objects. 
-    p Actions flow into the stores through the callbacks they define and register.
+    ul
+      li Identified by a type attribute.
+      li Stores typically use this attribute to determine if and how they should respond to it
+
+  section
+    ul
+      li Stores and views control themselves
+      li They are not acted upon by external objects
+      li Actions flow into the stores through the callbacks they define and register
 
   section
     pre.
@@ -103,32 +115,34 @@ include ../includes/mixins
           query: query
         });
       }
-      
+
       </code>
-  
-  section 
-    h2 Stores
-    
-  section
-    p Contain the application state and logic.
-    p Somewhat similar to a model in a traditional MVC
-    p They manage the state of many objects.
-    p They do not represent a single record of data like ORM models do.
 
   section
-    p Registers itself with the dispatcher and provides it with a callback. 
-    p Callback receives the action as a parameter. 
-    p Interpret the action and to provide the proper hooks into the store's internal methods. 
-    p This allows an action to result in an update to the state of the store, via the dispatcher. 
-    
+    h2 Stores
+
   section
-    p After the stores are updated, they broadcast an event.
-    p Declare that their state has changed.
-    p Views query the new state and update themselves.
-    
+    ul
+      li Contain the application state and logic
+      li Somewhat similar to a model in a traditional MVC
+      li They manage the state of many objects
+      li They do not represent a single record of data like ORM models do
+
   section
-    p Let's look at the base Store that other's extend
-    
+    ul
+      li Registers itself with the dispatcher and provides it with a callback
+      li The callback receives the action as a parameter
+      li The dispatcher interprets the action and provides the proper hooks into the store's internal methods
+      li This allows an action to result in an update to the state of the store, via the dispatcher
+
+  section
+    ul
+      li After the stores are updated, they broadcast an event and declare that their state has changed
+      li Views query the new state and update themselves
+
+  section
+    p Let's look at the base Store that others extend
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -141,9 +155,9 @@ include ../includes/mixins
         this.register(events);
         return this;
       }
-      
+
       </code>
-      
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -164,19 +178,21 @@ include ../includes/mixins
           return true;
         });
       }
-      
+
       </code>
-      
+
   section
-    p Notice that the callback is expecting the Store's method to return a promise so that it know to emit a change. 
-    
+    ul
+      li Notice that the callback is expecting the Store's method to return a promise so that it knows how to emit a change
+
   section
     h2 axios
-    p Cool library to simplify HTTP calls
-    p 
-      a(href="https://github.com/mzabriskie/axios") API on Github
-    
+    ul
+      li Cool library to simplify HTTP calls
+      li
+        a(href="https://github.com/mzabriskie/axios") API on Github
+
   section
     h1 Lab 04
     h2 Adding Flux to Timesheetz
-    
+

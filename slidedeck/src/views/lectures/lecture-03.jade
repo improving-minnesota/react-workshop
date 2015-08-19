@@ -6,284 +6,316 @@ include ../includes/mixins
 
   section
     h1.lower react-router
-    
+
   section
-    p Library to help us track routes with states of our application.
-    p Able to nest routes and thier handlers.
-    p Routes are represented as React Components.
-      
+    ul
+      li Library to help us track routes with states of our application
+      li Able to nest routes and their handlers
+      li Routes are represented as React Components
+
   section
     h2.lower Router.Route
     h2.lower &lt;Route /&gt;
-    
-  section 
+
+  section
     h2.plain Route props
-    
-  section 
+
+  section
     h2.lower name
-    p The unique name of the route.
-    p Used in the Link component and the router's transition methods.
-   
+    ul
+      li The unique name of the route
+      li Used in the Link component and the router's transition methods
+
   section
     h2.lower path
-    p Used in the URL. 
-    p If left undefined, defined by the name.
-    p If there is no name, will default to '/'.
+    ul
+      li Used in the URL
+      li If left undefined, defined by the name
+      li If there is no name, will default to '/'
 
   section
     h2.lower handler
-    p The component to be rendered when the route is active.
-    
+    ul
+      li The component to be rendered when the route is active
+
   section
     h2.lower children
-    p Routes can be nested. 
-    p When a child route path matches, the parent route is also activated. 
-    
+    ul
+      li Routes can be nested
+      li When a child route path matches, the parent route is also activated
+
   section
     h2.lower Router.Redirect
     h3 &lt;Redirect /&gt;
-    
+
   section
-    h2.plain Redirect props.
-    
-  section 
+    h2.plain Redirect props
+
+  section
     h2.lower from
-    p Path you want to redirect from, including dynamic segments. 
-    p Defaults to * so you can redirect anything not matched to somewhere else.
-    
+    ul
+      li Path you want to redirect from, including dynamic segments
+      li Defaults to * so you can redirect anything not matched to somewhere else
+
   section
     h2.lower to
-    p Name of the route you want to redirect to.
-    
+    ul
+      li Name of the route you want to redirect to
+
   section
     h2.lower params
-    p By default, the parameters will just pass through to the new route. 
-    p You can specify them if you need to.
+    ul
+      li By default, the parameters will just pass through to the new route
+      li You can specify them if you need to
 
   section
     h2.lower query
-    p By default, the query parameters will just pass through to the new route.
-    p You can specify them if you need to.
-    
+    ul
+      li By default, the query parameters will just pass through to the new route
+      li You can specify them if you need to
+
   section
     pre.
       <code class="javascript" data-trim>
       var Projects = require('./components/projects/projects');
       var Employees = require('./components/employees/employees');
       var Timesheets = require('./components/timesheets/timesheets');
-      
+
       (&lt;Route name='app' path="/" handler={App}&gt;
 
         &lt;Route name='projects'   path='/projects'  handler={Projects} /&gt;
         &lt;Route name='employees'  path='/employees' handler={Employees} /&gt;
         &lt;Route name='timesheets' path='/employees/:user_id/timesheets' handler={Timesheets} /&gt;
-        
+
         &lt;Redirect to="employees" /&gt;
       &lt;/Route&gt;)
-      
+
       </code>
-    
+
   section
     h2.lower Router.Link
     h3.lower &lt;Link /&gt;
-    
-  section
-    p Renders an &lt;a&gt; tag.
-    p Links to a route in the application.
-    p If you change the path of your route, you don't have to change your links as well.
 
   section
-    p Knows when the route it links to is active.
-    p Automatically applies its activeClassName and/or activeStyle.
-    
+    ul
+      li Renders an &lt;a&gt; tag
+      li Links to a route in the application
+      li If you change the path of your route, you don't have to change your links as well
+
+  section
+    ul
+      li Knows when the route it links to is active
+      li Automatically applies its activeClassName and/or activeStyle
+
   section
     pre.
       <code class="javascript" data-trim>
       (&lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
       &lt;Link className={employeesClasses} to="employees"&gt;Employees&lt;/Link&gt;
-      &lt;Link className={timesheetsClasses} to="timesheets" 
-        params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;) 
-      
+      &lt;Link className={timesheetsClasses} to="timesheets"
+        params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;)
+
       </code>
-      
+
   section
     h2.lower Router.RouteHandler
     h3 &lt;RouteHandler /&gt;
-    
-  section 
-    p Renders the handler of the route.
-    p Entry point in the DOM for your handler component. 
-    
+
+  section
+    ul
+      li Renders the handler of the route
+      li Entry point in the DOM for your handler component
+
   section
     h3 Static Lifecycle Methods
     ul
       li.highlight willTransitionTo(transition, params, query, callback)
-      ul 
-        li Called when a handler is about to render.
+      ul
+        li Called when a handler is about to render
       li.highlight willTransitionFrom(transition, component, callback)
-      ul 
-        li Called when an active route is being transitioned out.
-    
-  section 
+      ul
+        li Called when an active route is being transitioned out
+
+  section
     h3.lower Router.run()
-    p The main API for the react router. 
-    p It runs your routes.
-    p Matches them against a location.
-    p Calls back with the next state for you to render.
-    
+    ul
+      li The main API for the react router
+      li It runs your routes, matches them against a location, and calls back with the next state for you to render
+
   section
     pre.
       <code class="javascript" data-trim>
       Router.run(routes, function (Handler, state) {
         React.render(<Handler />, document.getElementById('app'));
       });
-      
+
       </code>
-  
+
   section
     h1 Router Mixins
-    
-  section 
+
+  section
     h2.lower Router.State
-  
+
   section
     h3.lower getPath()
-    p Returns the current URL path, including the query string.
-    
-  section 
+    ul
+      li Returns the current URL path, including the query string
+
+  section
     h3.lower getPathname()
-    p Returns the current URL path without the query string.
-    
+    ul
+      li Returns the current URL path without the query string
+
   section
     h3.lower getParams()
-    p Returns a hash of the currently active URL params.
-    
+    ul
+      li Returns a hash of the currently active URL params
+
   section
     h3.lower getQuery()
-    p Returns a hash of the currently active query params.
-    
+    ul
+      li Returns a hash of the currently active query params
+
   section
     h3.lower isActive(routeName, params, query)
-    p Returns true if a route, params, and query are active, false otherwise.
-    
+    ul
+      li Returns true if a route, params, and query are active, false otherwise
+
   section
     h3.lower getRoutes()
-    p Returns an array of the currently active routes, in nesting order.
-    
+    ul
+      li Returns an array of the currently active routes, in nesting order
+
   section
     h3.lower Router.Navigation
-    
-  section 
+
+  section
     h4.lower transitionTo(routeNameOrPath, [params[, query]])
-    p Programmatically transition to a new route.
-    
+    ul
+      li Programmatically transition to a new route
+
   section
     h4.lower replaceWith(routeNameOrPath, [params[, query]])
-    p Replace current route with a new route. 
-    p Does not add an entry to the browser history.
-    
+    ul
+      li Replace current route with a new route
+      li Does not add an entry to the browser history
+
   section
     h3.lower goBack()
-    p Go to the last route.
-    p Removes the most recent entry from the browser history. 
-    p Returns true unless it's the first entry in the app history.
-    
+    ul
+      li Go to the last route.
+      li Removes the most recent entry from the browser history
+      li Returns true unless it's the first entry in the app history
+
   section
     pre.
       <code class="javascript" data-trim>
       if (!this.goBack()) {
         this.transitionTo('/otherpage')
       }
-      
+
       </code>
-  
+
   section
     h4.lower makePath(routeName, params, query)
-    p Creates a URL path to a route.
-    
+    ul
+      li Creates a URL path to a route
+
   section
     h4.lower makeHref(routeName, params, query)
-    p Creates an href to a route. 
-    p Used with State when you need to build components similar to Link.
-    
-  section 
+    ul
+      li Creates an href to a route
+      li Used with State when you need to build components similar to Link
+
+  section
     h1 React (cont.)
 
   section
     h2 JSX Event Handlers
     h3.lower SyntheticEvent
-    
+
   section
-    p Event handlers are passed instances of SyntheticEvent.
-    p Cross-browser wrapper around the browser's native event.
-    p It has the same interface as the browser's native event.
-    p.highlight stopPropagation() and preventDefault()
-    
+    ul
+      li Event handlers are passed instances of SyntheticEvent.
+      li Cross-browser wrapper around the browser's native event.
+      li It has the same interface as the browser's native event.
+      li.highlight stopPropagation() and preventDefault()
+
   section
     h2 Supported Events
-    
-  section 
+
+  section
     h2 Clipboard Events
-    p onCopy onCut onPaste
-    
+    ul
+      li onCopy onCut onPaste
+
   section
     h2 Keyboard Events
-    p onKeyDown onKeyPress onKeyUp
-    
+    ul
+      li onKeyDown onKeyPress onKeyUp
+
   section
     h2 Form Events
-    p onChange onInput onSubmit
-    
+    ul
+      li onChange onInput onSubmit
+
   section
     h2 Mouse Events
-    p onClick onContextMenu onDoubleClick 
-    p onDrag onDragEnd onDragEnter onDragExit
-    p onDragLeave onDragOver onDragStart onDrop 
-    p onMouseDown onMouseEnter onMouseLeave
-    p onMouseMove onMouseOut onMouseOver onMouseUp
-    
+    ul
+      li onClick onContextMenu onDoubleClick
+      li onDrag onDragEnd onDragEnter onDragExit
+      li onDragLeave onDragOver onDragStart onDrop
+      li onMouseDown onMouseEnter onMouseLeave
+      li onMouseMove onMouseOut onMouseOver onMouseUp
+
   section
     h2 Touch events
-    p Enabled by calling: React.initializeTouchEvents(true) before rendering any component.
-    p onTouchCancel onTouchEnd onTouchMove onTouchStart
-    
-  section 
+    ul
+      li Enabled by calling: React.initializeTouchEvents(true) before rendering any component
+      li onTouchCancel onTouchEnd onTouchMove onTouchStart
+
+  section
     h2 UI Events
-    p onScroll
-    
+    ul
+      li onScroll
+
   section
     h2 Wheel Events
-    p onWheel
-    
+    ul
+      li onWheel
+
   section
-    p Each of these events are normalized for every supported browser. 
-    p Behave the same across browsers.
-    p Have the same properties.
-    p Check the docs for each event's properties.
-    
-  section 
+    ul
+      li Each of these events are normalized for every supported browser
+      li Behave the same across browsers
+      li Have the same properties
+      li Check the docs for each event's properties
+
+  section
     h2 The Classnames Library
-    
+
   section
-    p Third party utility to make it easier to manipulate CSS classes in your React components. 
-    
+    ul
+      li Third party utility to make it easier to manipulate CSS classes in your React components
+
   section
     pre.
       <code class="javascript" data-trim>
       var classNames = require('classnames');
-      // In our Component 
+      // In our Component
       render: function () {
         var rowClasses = classNames('repeated-item fadeable-row', {
           'faded': employee.deleted
         });
       }
-      
+
       </code>
-    
+
   section
     h3 Lab Prep
-    p Show Projects and Timesheets implementation.
-    
+    p Show Projects and Timesheets implementation
+
   section
     h1 Lab 03
-    h2 Routing and Component Composition.
+    h2 Routing and Component Composition
