@@ -12,11 +12,12 @@ include ../includes/mixins
   section
     p
       strong  NPM
-      |  is the official package manager for Node.js.
+      |  is the official package manager for Node.js
 
   section
-    p NPM runs on the command line and manages dependencies for an application.
-    p It also allows users to install Node.js applications that are available on the NPM registry.
+    ul
+      li NPM runs on the command line and manages dependencies for an application
+      li It also allows users to install Node.js applications that are available on the NPM registry
 
   section
     pre.
@@ -35,65 +36,68 @@ include ../includes/mixins
       </code>
 
   section
-    p When checking out a fresh project from GitHub, simply run:
-      strong  'npm install'
-      |  to install all the dependencies required to run the project.
+    ul
+      li When checking out a fresh project from GitHub, simply run:
+        strong  'npm install'
+        |  to install all the dependencies required to run the project
 
-  section
-    p You can visit the NPM website to learn more about them.
-    
+      li You can visit the NPM website to learn more about them
+
   section
     h1 Browserify
     p
       a(href="http://browserify.org/") browserify.org
-    
+
   section
-    p Browserify lets you require('modules') in the browser by bundling up all of your dependencies.
-    p We can use Node.js modules in the browser!!
-    p No need for 2 different module systems anymore. 
-    
+    ul
+      li Browserify lets you require('modules') in the browser by bundling up all of your dependencies
+      li We can use Node.js modules in the browser
+      li No need for two different module systems anymore
+
   section
     pre.
       <code class="javascript" data-trim>
       var React = require('react/addons');
       var myModule = require('./modules/myModule');
-      
+
       </code>
-      
-    p.centered Browserify will read .js extensions by default.
-    p.centered You can also configure it to read .jsx extensions.
-    
+    ul
+      li Browserify will read .js extensions by default
+      li You can also configure it to read .jsx extensions
+
   section
     pre.
       <code class="json" data-trim>
       % browserify main.js
-      
+
       </code>
-    
+
   section
     h1 Reactify
     p
       a(href="https://github.com/andreypopp/reactify") github repo
-    
+
   section
-    p Browserify transform for JSX (superset of JavaScript used in React library).
-    
+    ul
+      li Browserify transform for JSX (superset of JavaScript used in React library)
+
   section
     pre.
       <code class="json" data-trim>
       % browserify -t reactify main.js
-      
+
       </code>
-    
+
   section
     h1 Gulp
     p
       a(href="http://gulpjs.com/") gulpjs.com
-    
+
   section
-    p The streaming build system.
-    p Runs tasks asynchronuously and uses streams. 
-    
+    ul
+      li The streaming build system
+      li Runs tasks asynchronuously and uses streams
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -106,68 +110,68 @@ include ../includes/mixins
           .pipe(livereload())
           .on('error', gutil.log.bind(gutil, 'Error during minification.'));
       });
-      
+
       </code>
-      
+
   section
     p.centered How do we run our tasks?
     pre.
       <code class="json" data-trim>
       gulp uglify
-      
+
       </code>
-      
+
   section
     pre.
       <code class="json" data-trim>
       gulp watch:dev
-      
+
       </code>
-    
-    p.centered Watches our code for changes and re-runs the build.
-      
+
+    p.centered Watches our code for changes and re-runs the build
+
   section
     pre.
       <code class="json" data-trim>
       gulp serve:dev
-      
+
       </code>
-      
-    p.centered Starts our Hapi server and serves our static content.
-    
+
+    p.centered Starts our Hapi server and serves our static content
+
   section
     pre.
       <code class="json" data-trim>
       gulp test
-      
+
       </code>
-      
-    p.centered Runs our unit tests via the Karma test runner. 
-    
-  section 
+
+    p.centered Runs our unit tests via the Karma test runner
+
+  section
     h1 Hapi
     p
       a(href="http://hapijs.com/") hapijs.com
-      
+
   section
-    p A rich framework for building applications and services.
-    p Created by smart people at Walmart Labs.
-    p Focuses on Configuration.
-    
-  section
-    p Provides us with a complete backend for our lab project.
-    
+    ul
+      li A rich framework for building applications and services
+      li Created by smart people at Walmart Labs
+      li Focuses on configuration
+      li Provides us with a complete backend for our lab project
+
   section
     h1 Mocha
     p
       a(href="http://mochajs.org/") mochajs.org
-      
+
   section
-    p Feature-rich JavaScript test framework running on node.js and in the browser.
-    
+    ul
+      li Feature-rich JavaScript test framework running on node.js and in the browser
+
   section
     p BDD-style (Behavior Driven Development)
-    
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -182,53 +186,55 @@ include ../includes/mixins
           expect(div.props.className).contains('hide');
         });
       });
-      
+
       </code>
-      
+
   section
     p Reporter in Terminal
     img(src="/react-workshop/assets/img/lecture-01/gulp.test.png")
-      
+
   section
     p HTML Reporter
     img(src="/react-workshop/assets/img/lecture-01/mocha.htmlreporter.png")
-    
+
   section
     h1 Chai
     p
       a(href="http://chaijs.com/") chaijs.com
-    
+
   section
-    p Assertion library for node and the browser that can be delightfully paired with any javascript testing framework.
-    
+    ul
+      li Assertion library for node and the browser that can be delightfully paired with any JavaScript testing framework
+
   section
     h1 Sinon
     p
       a(href="http://sinonjs.org/") sinonjs.org
-      
+
   section
-    p Standalone test spies, stubs and mocks for JavaScript.
-    p No dependencies, works with any unit testing framework.
-      
+    ul
+      li Standalone test spies, stubs and mocks for JavaScript
+      li No dependencies - works with any unit testing framework
+
   section
     p.centered Used with sinon-chai
     pre.
       <code class="javascript" data-trim>
       spies.transitionTo = sinon.stub(element, 'transitionTo');
-      
+
       expect(spies.transitionTo).to.have.been.calledWith('employees.create');
-      
+
       </code>
-    
+
   section
     h1 Proxyquire
     p
-      a(href="https://github.com/thlorenz/proxyquire") github repo
-      
+      a(href="https://github.com/thlorenz/proxyquire") Proxyquire Github repo
+
   section
-    p Proxies Node's require so we can provide mock dependencies during testing.
-    p Staying totally unobstrusive.
-    
+    ul
+      li Proxies Node's require so we can provide mock dependencies during testing while staying totally unobtrusive
+
   section
     pre.
       <code class="javascript" data-trim>
@@ -248,62 +254,65 @@ include ../includes/mixins
       };
 
       EmployeeDetail = proxyquire('./employee.detail', proxies);
-      
+
       </code>
-    
+
   section
-    p Actually using Proxiquireify to work with Browserify
-    p
-      a(href="https://github.com/thlorenz/proxyquireify") Proxyquireify Github
-    
+    ul
+      li Actually using Proxiquireify to work with Browserify
+      li
+        a(href="https://github.com/thlorenz/proxyquireify") Proxyquireify Github repo
+
   section
     h1 Karma
     p
       a(href="http://karma-runner.github.io/0.12/index.html") karma-runner.github.io
-      
+
   section
-    p Test runner orginally built for Angular
-    p Runs tests in multiple browsers
-    
+    ul
+      li Test runner orginally built for Angular.js
+      li Runs tests in multiple browsers
+
   section
-    p Source maps!!
-    p Browserify and Reactify plugins
-    p Let's look at the Karma configuration
+    ul
+      li Source maps!
+      li Browserify and Reactify plugins
+      li Let's look at the Karma configuration
 
   section
     h1 Semantic UI
     p
       a(href="http://semantic-ui.com/kitchen-sink.html") kitchen sink
-      
+
   section
-    p Emphasizes concise HTML
-    p CSS is Code
-    
+    ul
+      li Emphasizes concise HTML
+      li CSS is code
+
   section
     h1 Less
     p
       a(href="http://lesscss.org/") lesscss.org
-      
+
   section
-    p Less is a CSS pre-processor, meaning that it extends the CSS language.
-    p It provides features that allow variables, mixins, functions.
-    p Allows you to make CSS that's more maintainable, themable and extendable.
-    
+    ul
+      li Less is a CSS pre-processor, meaning that it extends the CSS language
+      li It provides features that allow variables, mixins, and functions
+      li Allows you to make CSS that is more maintainable, themeable and extendable
+
   section
-    p Styles and Less will be provided for you during the labs, but feel free to tinker as you please. 
+    p Styles written in Less will be provided for you during the labs, but feel free to tinker as you please
 
   section
     h1 Project Layout
 
   section
-    p In this training class, you'll be building a React application that tracks employee timesheets across different projects.
+    ul
+      li In this training class, you'll be building a React application that tracks employee timesheets across different projects
+      li To help speed things along so we can focus on the really important parts (like React/Flux), we've created the base project structure for you
 
   section
-    p To help speed things along so we can focus on the really important parts (like React/Flux).
-    p We've created the base project structure for you.
-
-  section
-    p Let's take a look.
+    p Let's take a look
 
   section
     h1 Lab 01

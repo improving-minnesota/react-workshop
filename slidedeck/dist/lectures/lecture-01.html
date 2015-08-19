@@ -39,11 +39,13 @@
           <p class="plain"><a href="https://www.npmjs.org">npmjs.org</a></p>
         </section>
         <section>
-          <p><strong> NPM</strong> is the official package manager for Node.js.</p>
+          <p><strong> NPM</strong> is the official package manager for Node.js</p>
         </section>
         <section>
-          <p>NPM runs on the command line and manages dependencies for an application.</p>
-          <p>It also allows users to install Node.js applications that are available on the NPM registry.</p>
+          <ul>
+            <li>NPM runs on the command line and manages dependencies for an application</li>
+            <li>It also allows users to install Node.js applications that are available on the NPM registry</li>
+          </ul>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -62,29 +64,32 @@
 </pre>
         </section>
         <section>
-          <p>When checking out a fresh project from GitHub, simply run:<strong> 'npm install'</strong> to install all the dependencies required to run the project.</p>
-        </section>
-        <section>
-          <p>You can visit the NPM website to learn more about them.</p>
+          <ul>
+            <li>When checking out a fresh project from GitHub, simply run:<strong> 'npm install'</strong> to install all the dependencies required to run the project</li>
+            <li>You can visit the NPM website to learn more about them</li>
+          </ul>
         </section>
         <section>
           <h1>Browserify</h1>
           <p><a href="http://browserify.org/">browserify.org</a></p>
         </section>
         <section>
-          <p>Browserify lets you require('modules') in the browser by bundling up all of your dependencies.</p>
-          <p>We can use Node.js modules in the browser!!</p>
-          <p>No need for 2 different module systems anymore. </p>
+          <ul>
+            <li>Browserify lets you require('modules') in the browser by bundling up all of your dependencies</li>
+            <li>We can use Node.js modules in the browser</li>
+            <li>No need for two different module systems anymore</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
 var React = require('react/addons');
 var myModule = require('./modules/myModule');
 
-</code>
-</pre>
-          <p class="centered">Browserify will read .js extensions by default.</p>
-          <p class="centered">You can also configure it to read .jsx extensions.</p>
+</code></pre>
+          <ul>
+            <li>Browserify will read .js extensions by default</li>
+            <li>You can also configure it to read .jsx extensions</li>
+          </ul>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -98,7 +103,9 @@ var myModule = require('./modules/myModule');
           <p><a href="https://github.com/andreypopp/reactify">github repo</a></p>
         </section>
         <section>
-          <p>Browserify transform for JSX (superset of JavaScript used in React library).</p>
+          <ul>
+            <li>Browserify transform for JSX (superset of JavaScript used in React library)</li>
+          </ul>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -112,8 +119,10 @@ var myModule = require('./modules/myModule');
           <p><a href="http://gulpjs.com/">gulpjs.com</a></p>
         </section>
         <section>
-          <p>The streaming build system.</p>
-          <p>Runs tasks asynchronuously and uses streams. </p>
+          <ul>
+            <li>The streaming build system</li>
+            <li>Runs tasks asynchronuously and uses streams</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -144,7 +153,7 @@ gulp watch:dev
 
 </code>
 </pre>
-          <p class="centered">Watches our code for changes and re-runs the build.</p>
+          <p class="centered">Watches our code for changes and re-runs the build</p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -152,7 +161,7 @@ gulp serve:dev
 
 </code>
 </pre>
-          <p class="centered">Starts our Hapi server and serves our static content.</p>
+          <p class="centered">Starts our Hapi server and serves our static content</p>
         </section>
         <section>
           <pre><code class="json" data-trim>
@@ -160,26 +169,28 @@ gulp test
 
 </code>
 </pre>
-          <p class="centered">Runs our unit tests via the Karma test runner. </p>
+          <p class="centered">Runs our unit tests via the Karma test runner</p>
         </section>
-        <section> 
+        <section>
           <h1>Hapi</h1>
           <p><a href="http://hapijs.com/">hapijs.com</a></p>
         </section>
         <section>
-          <p>A rich framework for building applications and services.</p>
-          <p>Created by smart people at Walmart Labs.</p>
-          <p>Focuses on Configuration.</p>
-        </section>
-        <section>
-          <p>Provides us with a complete backend for our lab project.</p>
+          <ul>
+            <li>A rich framework for building applications and services</li>
+            <li>Created by smart people at Walmart Labs</li>
+            <li>Focuses on configuration</li>
+            <li>Provides us with a complete backend for our lab project</li>
+          </ul>
         </section>
         <section>
           <h1>Mocha</h1>
           <p><a href="http://mochajs.org/">mochajs.org</a></p>
         </section>
         <section>
-          <p>Feature-rich JavaScript test framework running on node.js and in the browser.</p>
+          <ul>
+            <li>Feature-rich JavaScript test framework running on node.js and in the browser</li>
+          </ul>
         </section>
         <section>
           <p>BDD-style (Behavior Driven Development)</p>
@@ -212,15 +223,19 @@ describe('when there is no message', function () {
           <p><a href="http://chaijs.com/">chaijs.com</a></p>
         </section>
         <section>
-          <p>Assertion library for node and the browser that can be delightfully paired with any javascript testing framework.</p>
+          <ul>
+            <li>Assertion library for node and the browser that can be delightfully paired with any JavaScript testing framework</li>
+          </ul>
         </section>
         <section>
           <h1>Sinon</h1>
           <p><a href="http://sinonjs.org/">sinonjs.org</a></p>
         </section>
         <section>
-          <p>Standalone test spies, stubs and mocks for JavaScript.</p>
-          <p>No dependencies, works with any unit testing framework.</p>
+          <ul>
+            <li>Standalone test spies, stubs and mocks for JavaScript</li>
+            <li>No dependencies - works with any unit testing framework</li>
+          </ul>
         </section>
         <section>
           <p class="centered">Used with sinon-chai</p>
@@ -234,11 +249,12 @@ expect(spies.transitionTo).to.have.been.calledWith('employees.create');
         </section>
         <section>
           <h1>Proxyquire</h1>
-          <p><a href="https://github.com/thlorenz/proxyquire">github repo</a></p>
+          <p><a href="https://github.com/thlorenz/proxyquire">Proxyquire Github repo</a></p>
         </section>
         <section>
-          <p>Proxies Node's require so we can provide mock dependencies during testing.</p>
-          <p>Staying totally unobstrusive.</p>
+          <ul>
+            <li>Proxies Node's require so we can provide mock dependencies during testing while staying totally unobtrusive</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -263,54 +279,63 @@ EmployeeDetail = proxyquire('./employee.detail', proxies);
 </pre>
         </section>
         <section>
-          <p>Actually using Proxiquireify to work with Browserify</p>
-          <p><a href="https://github.com/thlorenz/proxyquireify">Proxyquireify Github</a></p>
+          <ul>
+            <li>Actually using Proxiquireify to work with Browserify</li>
+            <li><a href="https://github.com/thlorenz/proxyquireify">Proxyquireify Github repo</a></li>
+          </ul>
         </section>
         <section>
           <h1>Karma</h1>
           <p><a href="http://karma-runner.github.io/0.12/index.html">karma-runner.github.io</a></p>
         </section>
         <section>
-          <p>Test runner orginally built for Angular</p>
-          <p>Runs tests in multiple browsers</p>
+          <ul>
+            <li>Test runner orginally built for Angular.js</li>
+            <li>Runs tests in multiple browsers</li>
+          </ul>
         </section>
         <section>
-          <p>Source maps!!</p>
-          <p>Browserify and Reactify plugins</p>
-          <p>Let's look at the Karma configuration</p>
+          <ul>
+            <li>Source maps!</li>
+            <li>Browserify and Reactify plugins</li>
+            <li>Let's look at the Karma configuration</li>
+          </ul>
         </section>
         <section>
           <h1>Semantic UI</h1>
           <p><a href="http://semantic-ui.com/kitchen-sink.html">kitchen sink</a></p>
         </section>
         <section>
-          <p>Emphasizes concise HTML</p>
-          <p>CSS is Code</p>
+          <ul>
+            <li>Emphasizes concise HTML</li>
+            <li>CSS is code</li>
+          </ul>
         </section>
         <section>
           <h1>Less</h1>
           <p><a href="http://lesscss.org/">lesscss.org</a></p>
         </section>
         <section>
-          <p>Less is a CSS pre-processor, meaning that it extends the CSS language.</p>
-          <p>It provides features that allow variables, mixins, functions.</p>
-          <p>Allows you to make CSS that's more maintainable, themable and extendable.</p>
+          <ul>
+            <li>Less is a CSS pre-processor, meaning that it extends the CSS language</li>
+            <li>It provides features that allow variables, mixins, and functions</li>
+            <li>Allows you to make CSS that is more maintainable, themeable and extendable</li>
+          </ul>
         </section>
         <section>
-          <p>Styles and Less will be provided for you during the labs, but feel free to tinker as you please. </p>
+          <p>Styles written in Less will be provided for you during the labs, but feel free to tinker as you please</p>
         </section>
         <section>
           <h1>Project Layout</h1>
         </section>
         <section>
-          <p>In this training class, you'll be building a React application that tracks employee timesheets across different projects.</p>
+          <ul>
+            <li>In this training class, you'll be building a React application that tracks employee timesheets across different projects</li>
+            <li>To help speed things along so we can focus on the really important parts (like React/Flux), we've created the base project structure for you</li>
+          </ul>
         </section>
         <section>
-          <p>To help speed things along so we can focus on the really important parts (like React/Flux).</p>
-          <p>We've created the base project structure for you.</p>
-        </section>
-        <section>
-          <p>Let's take a look.</p>
+          <p>Let's take a look</p>
         </section>
         <section>
           <h1>Lab 01</h1>

@@ -38,62 +38,80 @@
           <h1 class="lower">react-router</h1>
         </section>
         <section>
-          <p>Library to help us track routes with states of our application.</p>
-          <p>Able to nest routes and thier handlers.</p>
-          <p>Routes are represented as React Components.</p>
+          <ul>
+            <li>Library to help us track routes with states of our application</li>
+            <li>Able to nest routes and their handlers</li>
+            <li>Routes are represented as React Components</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">Router.Route</h2>
           <h2 class="lower">&lt;Route /&gt;</h2>
         </section>
-        <section> 
+        <section>
           <h2 class="plain">Route props</h2>
         </section>
-        <section> 
+        <section>
           <h2 class="lower">name</h2>
-          <p>The unique name of the route.</p>
-          <p>Used in the Link component and the router's transition methods.</p>
+          <ul>
+            <li>The unique name of the route</li>
+            <li>Used in the Link component and the router's transition methods</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">path</h2>
-          <p>Used in the URL. </p>
-          <p>If left undefined, defined by the name.</p>
-          <p>If there is no name, will default to '/'.</p>
+          <ul>
+            <li>Used in the URL</li>
+            <li>If left undefined, defined by the name</li>
+            <li>If there is no name, will default to '/'</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">handler</h2>
-          <p>The component to be rendered when the route is active.</p>
+          <ul>
+            <li>The component to be rendered when the route is active</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">children</h2>
-          <p>Routes can be nested. </p>
-          <p>When a child route path matches, the parent route is also activated. </p>
+          <ul>
+            <li>Routes can be nested</li>
+            <li>When a child route path matches, the parent route is also activated</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">Router.Redirect</h2>
           <h3>&lt;Redirect /&gt;</h3>
         </section>
         <section>
-          <h2 class="plain">Redirect props.</h2>
+          <h2 class="plain">Redirect props</h2>
         </section>
-        <section> 
+        <section>
           <h2 class="lower">from</h2>
-          <p>Path you want to redirect from, including dynamic segments. </p>
-          <p>Defaults to * so you can redirect anything not matched to somewhere else.</p>
+          <ul>
+            <li>Path you want to redirect from, including dynamic segments</li>
+            <li>Defaults to * so you can redirect anything not matched to somewhere else</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">to</h2>
-          <p>Name of the route you want to redirect to.</p>
+          <ul>
+            <li>Name of the route you want to redirect to</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">params</h2>
-          <p>By default, the parameters will just pass through to the new route. </p>
-          <p>You can specify them if you need to.</p>
+          <ul>
+            <li>By default, the parameters will just pass through to the new route</li>
+            <li>You can specify them if you need to</li>
+          </ul>
         </section>
         <section>
           <h2 class="lower">query</h2>
-          <p>By default, the query parameters will just pass through to the new route.</p>
-          <p>You can specify them if you need to.</p>
+          <ul>
+            <li>By default, the query parameters will just pass through to the new route</li>
+            <li>You can specify them if you need to</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -106,7 +124,7 @@ var Timesheets = require('./components/timesheets/timesheets');
   &lt;Route name='projects'   path='/projects'  handler={Projects} /&gt;
   &lt;Route name='employees'  path='/employees' handler={Employees} /&gt;
   &lt;Route name='timesheets' path='/employees/:user_id/timesheets' handler={Timesheets} /&gt;
-  
+
   &lt;Redirect to="employees" /&gt;
 &lt;/Route&gt;)
 
@@ -118,20 +136,24 @@ var Timesheets = require('./components/timesheets/timesheets');
           <h3 class="lower">&lt;Link /&gt;</h3>
         </section>
         <section>
-          <p>Renders an &lt;a&gt; tag.</p>
-          <p>Links to a route in the application.</p>
-          <p>If you change the path of your route, you don't have to change your links as well.</p>
+          <ul>
+            <li>Renders an &lt;a&gt; tag</li>
+            <li>Links to a route in the application</li>
+            <li>If you change the path of your route, you don't have to change your links as well</li>
+          </ul>
         </section>
         <section>
-          <p>Knows when the route it links to is active.</p>
-          <p>Automatically applies its activeClassName and/or activeStyle.</p>
+          <ul>
+            <li>Knows when the route it links to is active</li>
+            <li>Automatically applies its activeClassName and/or activeStyle</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
 (&lt;Link className={projectsClasses} to="projects"&gt;Projects&lt;/Link&gt;
 &lt;Link className={employeesClasses} to="employees"&gt;Employees&lt;/Link&gt;
-&lt;Link className={timesheetsClasses} to="timesheets" 
-  params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;) 
+&lt;Link className={timesheetsClasses} to="timesheets"
+  params={{user_id: this.state.user._id}}&gt;Timesheets&lt;/Link&gt;)
 
 </code>
 </pre>
@@ -140,29 +162,31 @@ var Timesheets = require('./components/timesheets/timesheets');
           <h2 class="lower">Router.RouteHandler</h2>
           <h3>&lt;RouteHandler /&gt;</h3>
         </section>
-        <section> 
-          <p>Renders the handler of the route.</p>
-          <p>Entry point in the DOM for your handler component. </p>
+        <section>
+          <ul>
+            <li>Renders the handler of the route</li>
+            <li>Entry point in the DOM for your handler component</li>
+          </ul>
         </section>
         <section>
           <h3>Static Lifecycle Methods</h3>
           <ul>
             <li class="highlight">willTransitionTo(transition, params, query, callback)</li>
-            <ul> 
-              <li>Called when a handler is about to render.</li>
+            <ul>
+              <li>Called when a handler is about to render</li>
             </ul>
             <li class="highlight">willTransitionFrom(transition, component, callback)</li>
-            <ul> 
-              <li>Called when an active route is being transitioned out.</li>
+            <ul>
+              <li>Called when an active route is being transitioned out</li>
             </ul>
           </ul>
         </section>
-        <section> 
+        <section>
           <h3 class="lower">Router.run()</h3>
-          <p>The main API for the react router. </p>
-          <p>It runs your routes.</p>
-          <p>Matches them against a location.</p>
-          <p>Calls back with the next state for you to render.</p>
+          <ul>
+            <li>The main API for the react router</li>
+            <li>It runs your routes, matches them against a location, and calls back with the next state for you to render</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -176,50 +200,68 @@ Router.run(routes, function (Handler, state) {
         <section>
           <h1>Router Mixins</h1>
         </section>
-        <section> 
+        <section>
           <h2 class="lower">Router.State</h2>
         </section>
         <section>
           <h3 class="lower">getPath()</h3>
-          <p>Returns the current URL path, including the query string.</p>
+          <ul>
+            <li>Returns the current URL path, including the query string</li>
+          </ul>
         </section>
-        <section> 
+        <section>
           <h3 class="lower">getPathname()</h3>
-          <p>Returns the current URL path without the query string.</p>
+          <ul>
+            <li>Returns the current URL path without the query string</li>
+          </ul>
         </section>
         <section>
           <h3 class="lower">getParams()</h3>
-          <p>Returns a hash of the currently active URL params.</p>
+          <ul>
+            <li>Returns a hash of the currently active URL params</li>
+          </ul>
         </section>
         <section>
           <h3 class="lower">getQuery()</h3>
-          <p>Returns a hash of the currently active query params.</p>
+          <ul>
+            <li>Returns a hash of the currently active query params</li>
+          </ul>
         </section>
         <section>
           <h3 class="lower">isActive(routeName, params, query)</h3>
-          <p>Returns true if a route, params, and query are active, false otherwise.</p>
+          <ul>
+            <li>Returns true if a route, params, and query are active, false otherwise</li>
+          </ul>
         </section>
         <section>
           <h3 class="lower">getRoutes()</h3>
-          <p>Returns an array of the currently active routes, in nesting order.</p>
+          <ul>
+            <li>Returns an array of the currently active routes, in nesting order</li>
+          </ul>
         </section>
         <section>
           <h3 class="lower">Router.Navigation</h3>
         </section>
-        <section> 
+        <section>
           <h4 class="lower">transitionTo(routeNameOrPath, [params[, query]])</h4>
-          <p>Programmatically transition to a new route.</p>
+          <ul>
+            <li>Programmatically transition to a new route</li>
+          </ul>
         </section>
         <section>
           <h4 class="lower">replaceWith(routeNameOrPath, [params[, query]])</h4>
-          <p>Replace current route with a new route. </p>
-          <p>Does not add an entry to the browser history.</p>
+          <ul>
+            <li>Replace current route with a new route</li>
+            <li>Does not add an entry to the browser history</li>
+          </ul>
         </section>
         <section>
           <h3 class="lower">goBack()</h3>
-          <p>Go to the last route.</p>
-          <p>Removes the most recent entry from the browser history. </p>
-          <p>Returns true unless it's the first entry in the app history.</p>
+          <ul>
+            <li>Go to the last route.</li>
+            <li>Removes the most recent entry from the browser history</li>
+            <li>Returns true unless it's the first entry in the app history</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -232,14 +274,18 @@ if (!this.goBack()) {
         </section>
         <section>
           <h4 class="lower">makePath(routeName, params, query)</h4>
-          <p>Creates a URL path to a route.</p>
+          <ul>
+            <li>Creates a URL path to a route</li>
+          </ul>
         </section>
         <section>
           <h4 class="lower">makeHref(routeName, params, query)</h4>
-          <p>Creates an href to a route. </p>
-          <p>Used with State when you need to build components similar to Link.</p>
+          <ul>
+            <li>Creates an href to a route</li>
+            <li>Used with State when you need to build components similar to Link</li>
+          </ul>
         </section>
-        <section> 
+        <section>
           <h1>React (cont.)</h1>
         </section>
         <section>
@@ -247,63 +293,83 @@ if (!this.goBack()) {
           <h3 class="lower">SyntheticEvent</h3>
         </section>
         <section>
-          <p>Event handlers are passed instances of SyntheticEvent.</p>
-          <p>Cross-browser wrapper around the browser's native event.</p>
-          <p>It has the same interface as the browser's native event.</p>
-          <p class="highlight">stopPropagation() and preventDefault()</p>
+          <ul>
+            <li>Event handlers are passed instances of SyntheticEvent.</li>
+            <li>Cross-browser wrapper around the browser's native event.</li>
+            <li>It has the same interface as the browser's native event.</li>
+            <li class="highlight">stopPropagation() and preventDefault()</li>
+          </ul>
         </section>
         <section>
           <h2>Supported Events</h2>
         </section>
-        <section> 
+        <section>
           <h2>Clipboard Events</h2>
-          <p>onCopy onCut onPaste</p>
+          <ul>
+            <li>onCopy onCut onPaste</li>
+          </ul>
         </section>
         <section>
           <h2>Keyboard Events</h2>
-          <p>onKeyDown onKeyPress onKeyUp</p>
+          <ul>
+            <li>onKeyDown onKeyPress onKeyUp</li>
+          </ul>
         </section>
         <section>
           <h2>Form Events</h2>
-          <p>onChange onInput onSubmit</p>
+          <ul>
+            <li>onChange onInput onSubmit</li>
+          </ul>
         </section>
         <section>
           <h2>Mouse Events</h2>
-          <p>onClick onContextMenu onDoubleClick </p>
-          <p>onDrag onDragEnd onDragEnter onDragExit</p>
-          <p>onDragLeave onDragOver onDragStart onDrop </p>
-          <p>onMouseDown onMouseEnter onMouseLeave</p>
-          <p>onMouseMove onMouseOut onMouseOver onMouseUp</p>
+          <ul>
+            <li>onClick onContextMenu onDoubleClick</li>
+            <li>onDrag onDragEnd onDragEnter onDragExit</li>
+            <li>onDragLeave onDragOver onDragStart onDrop</li>
+            <li>onMouseDown onMouseEnter onMouseLeave</li>
+            <li>onMouseMove onMouseOut onMouseOver onMouseUp</li>
+          </ul>
         </section>
         <section>
           <h2>Touch events</h2>
-          <p>Enabled by calling: React.initializeTouchEvents(true) before rendering any component.</p>
-          <p>onTouchCancel onTouchEnd onTouchMove onTouchStart</p>
+          <ul>
+            <li>Enabled by calling: React.initializeTouchEvents(true) before rendering any component</li>
+            <li>onTouchCancel onTouchEnd onTouchMove onTouchStart</li>
+          </ul>
         </section>
-        <section> 
+        <section>
           <h2>UI Events</h2>
-          <p>onScroll</p>
+          <ul>
+            <li>onScroll</li>
+          </ul>
         </section>
         <section>
           <h2>Wheel Events</h2>
-          <p>onWheel</p>
+          <ul>
+            <li>onWheel</li>
+          </ul>
         </section>
         <section>
-          <p>Each of these events are normalized for every supported browser. </p>
-          <p>Behave the same across browsers.</p>
-          <p>Have the same properties.</p>
-          <p>Check the docs for each event's properties.</p>
+          <ul>
+            <li>Each of these events are normalized for every supported browser</li>
+            <li>Behave the same across browsers</li>
+            <li>Have the same properties</li>
+            <li>Check the docs for each event's properties</li>
+          </ul>
         </section>
-        <section> 
+        <section>
           <h2>The Classnames Library</h2>
         </section>
         <section>
-          <p>Third party utility to make it easier to manipulate CSS classes in your React components. </p>
+          <ul>
+            <li>Third party utility to make it easier to manipulate CSS classes in your React components</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
 var classNames = require('classnames');
-// In our Component 
+// In our Component
 render: function () {
   var rowClasses = classNames('repeated-item fadeable-row', {
     'faded': employee.deleted
@@ -315,11 +381,11 @@ render: function () {
         </section>
         <section>
           <h3>Lab Prep</h3>
-          <p>Show Projects and Timesheets implementation.</p>
+          <p>Show Projects and Timesheets implementation</p>
         </section>
         <section>
           <h1>Lab 03</h1>
-          <h2>Routing and Component Composition.</h2>
+          <h2>Routing and Component Composition</h2>
         </section>
       </div>
     </div>

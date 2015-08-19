@@ -39,56 +39,74 @@
         </section>
         <section>
           <h3 class="lower">Three major parts</h3>
-          <ul> 
+          <ul>
             <li>the dispatcher</li>
             <li>the stores</li>
             <li>the views (React components)</li>
           </ul>
         </section>
         <section>
-          <p>Not MVC</p>
-          <p>Controllers do exist in a Flux application, but they are controller-views</p>
+          <ul>
+            <li>Not MVC</li>
+            <li>Controllers do exist in a Flux application, but they are controller-views</li>
+          </ul>
         </section>
         <section>
           <h3>Controller Components</h3>
-          <p>Views at the top of the hierarchy that retrieve data from the stores</p>
-          <p>Pass data down to their children.</p>
-        </section>
-        <section> 
-          <h3>Action creators</h3>
-          <p>Dispatcher helper methods</p>
-          <p>Support a semantic API that describes all changes that are possible in the application. </p>
+          <ul>
+            <li>Views at the top of the hierarchy that retrieve data from the stores</li>
+            <li>These views pass data down to their children.</li>
+          </ul>
         </section>
         <section>
-          <p>Unidirectional data flow. </p>
-          <p>When a user interacts with a React view, the view propagates an action.</p>
-          <p>The stores react and fire an event</p>
-          <p>All interested other views update accordingly. </p>
+          <h3>Action creators</h3>
+          <ul>
+            <li>Dispatcher helper methods</li>
+            <li>Support a semantic API that describes all changes that are possible in the application</li>
+          </ul>
         </section>
-        <section> <img src="/react-workshop/assets/img/lecture-04/flux.diagram.png"></section>
-        <section> 
+        <section>
+          <ul>
+            <li>Unidirectional data flow</li>
+            <li>When a user interacts with a React view, the view propagates an action</li>
+            <li>The stores react and fire an event</li>
+            <li>All interested other views update accordingly</li>
+          </ul>
+        </section>
+        <section><img src="/react-workshop/assets/img/lecture-04/flux.diagram.png"></section>
+        <section>
           <h2>Dispatcher</h2>
         </section>
         <section>
-          <p>Singleton</p>
-          <p>Central hub of data flow in a Flux application. </p>
+          <ul>
+            <li>Singleton</li>
+            <li>Central hub of data flow in a Flux application</li>
+          </ul>
         </section>
         <section>
-          <p>Essentially a registry of callbacks.</p>
-          <p>Can invoke these callbacks in order. </p>
+          <ul>
+            <li>Essentially a registry of callbacks</li>
+            <li>Can invoke these callbacks in order</li>
+          </ul>
         </section>
         <section>
-          <p>Each store registers a callback with the dispatcher. </p>
-          <p>When new data comes into the dispatcher, it then uses these callbacks to propagate that data to all of the stores. </p>
+          <ul>
+            <li>Each store registers a callback with the dispatcher</li>
+            <li>When new data comes into the dispatcher, it then uses these callbacks to propagate that data to all of the stores</li>
+          </ul>
         </section>
         <section>
-          <p>Initiated through the dispatch() method</p>
-          <p>Takes a data payload object as its sole argument. </p>
-          <p>This payload is typically synonymous with an action.</p>
+          <ul>
+            <li>Initiated through the dispatch() method</li>
+            <li>Takes a data payload object as its sole argument</li>
+            <li>This payload is typically synonymous with an action</li>
+          </ul>
         </section>
         <section>
-          <h3 class="lower">dispatch() </h3>
-          <p>provides a simple, synchronous iteration through the callbacks</p>
+          <h3 class="lower">dispatch()</h3>
+          <ul>
+            <li>Provides a simple, synchronous iteration through the callbacks</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -104,25 +122,32 @@ var dispatcher = _.extend(new Dispatcher(), {
 </code>
 </pre>
         </section>
-        <section> 
+        <section>
           <h2>Actions</h2>
         </section>
-        <section> 
-          <p>Used to update data via user interaction or other changes in the UI.</p>
-          <p>Data is packaged into an action</p>
-          <ul> 
-            <li>Object literal containing the new fields of data.</li>
-            <li>Specific action type. </li>
+        <section>
+          <ul>
+            <li>Used to update data via user interaction or other changes in the UI</li>
+            <li>Data is packaged into an action
+              <ul>
+                <li>Object literal containing the new fields of data</li>
+                <li>Specific action type</li>
+              </ul>
+            </li>
           </ul>
         </section>
         <section>
-          <p>Identified by a type attribute. </p>
-          <p>Stores typically use this attribute to determine if and how they should respond to it. </p>
+          <ul>
+            <li>Identified by a type attribute.</li>
+            <li>Stores typically use this attribute to determine if and how they should respond to it</li>
+          </ul>
         </section>
         <section>
-          <p>Stores and views control themselves.</p>
-          <p>They are not acted upon by external objects. </p>
-          <p>Actions flow into the stores through the callbacks they define and register.</p>
+          <ul>
+            <li>Stores and views control themselves</li>
+            <li>They are not acted upon by external objects</li>
+            <li>Actions flow into the stores through the callbacks they define and register</li>
+          </ul>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -136,28 +161,33 @@ list: function (query) {
 </code>
 </pre>
         </section>
-        <section> 
+        <section>
           <h2>Stores</h2>
         </section>
         <section>
-          <p>Contain the application state and logic.</p>
-          <p>Somewhat similar to a model in a traditional MVC</p>
-          <p>They manage the state of many objects.</p>
-          <p>They do not represent a single record of data like ORM models do.</p>
+          <ul>
+            <li>Contain the application state and logic</li>
+            <li>Somewhat similar to a model in a traditional MVC</li>
+            <li>They manage the state of many objects</li>
+            <li>They do not represent a single record of data like ORM models do</li>
+          </ul>
         </section>
         <section>
-          <p>Registers itself with the dispatcher and provides it with a callback. </p>
-          <p>Callback receives the action as a parameter. </p>
-          <p>Interpret the action and to provide the proper hooks into the store's internal methods. </p>
-          <p>This allows an action to result in an update to the state of the store, via the dispatcher. </p>
+          <ul>
+            <li>Registers itself with the dispatcher and provides it with a callback</li>
+            <li>The callback receives the action as a parameter</li>
+            <li>The dispatcher interprets the action and provides the proper hooks into the store's internal methods</li>
+            <li>This allows an action to result in an update to the state of the store, via the dispatcher</li>
+          </ul>
         </section>
         <section>
-          <p>After the stores are updated, they broadcast an event.</p>
-          <p>Declare that their state has changed.</p>
-          <p>Views query the new state and update themselves.</p>
+          <ul>
+            <li>After the stores are updated, they broadcast an event and declare that their state has changed</li>
+            <li>Views query the new state and update themselves</li>
+          </ul>
         </section>
         <section>
-          <p>Let's look at the base Store that other's extend</p>
+          <p>Let's look at the base Store that others extend</p>
         </section>
         <section>
           <pre><code class="javascript" data-trim>
@@ -198,12 +228,16 @@ register: function (events) {
 </pre>
         </section>
         <section>
-          <p>Notice that the callback is expecting the Store's method to return a promise so that it know to emit a change. </p>
+          <ul>
+            <li>Notice that the callback is expecting the Store's method to return a promise so that it knows how to emit a change</li>
+          </ul>
         </section>
         <section>
           <h2>axios</h2>
-          <p>Cool library to simplify HTTP calls</p>
-          <p> <a href="https://github.com/mzabriskie/axios">API on Github</a></p>
+          <ul>
+            <li>Cool library to simplify HTTP calls</li>
+            <li><a href="https://github.com/mzabriskie/axios">API on Github</a></li>
+          </ul>
         </section>
         <section>
           <h1>Lab 04</h1>
